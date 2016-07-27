@@ -74,14 +74,19 @@ public class EgovSampleController {
 	
 	@RequestMapping(value = "/businessMain.do")
 	public String main(ModelMap model){
+		
+		return "bbs/businessMain";
+	}
+	
+	@RequestMapping(value = "/businessReview.do")
+	public String review(ModelMap model){
 
 		List<?>list = sampleService.main();
 		
 		model.addAttribute("list", list);
 		
-		return "bbs/businessMain";
+		return "bbs/businessReview";
 	}
-	
 	
 //	/**
 //	 * 글 목록을 조회한다. (pageing)
