@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package egovframework.example.sample.web;
+package egovframework.hairhair.hairvalley.web;
 
 import java.util.List;
 
-import egovframework.example.sample.service.EgovSampleService;
-import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
+import egovframework.hairhair.hairvalley.service.EgovSampleService;
+import egovframework.hairhair.hairvalley.service.SampleDefaultVO;
+import egovframework.hairhair.hairvalley.service.SampleVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -74,6 +74,9 @@ public class EgovSampleController {
 	
 	@RequestMapping(value = "/businessMain.do")
 	public String main(ModelMap model){
+		List<?>list = sampleService.main();
+		
+		model.addAttribute("list", list);
 		
 		return "bbs/businessMain";
 	}

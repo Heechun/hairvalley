@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package egovframework.example.sample.service.impl;
+package egovframework.hairhair.hairvalley.service.impl;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import egovframework.example.sample.service.EgovSampleService;
-import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
-import egovframework.example.sample.service.TestVO;
+import egovframework.hairhair.hairvalley.service.EgovSampleService;
+import egovframework.hairhair.hairvalley.service.SampleDefaultVO;
+import egovframework.hairhair.hairvalley.service.SampleVO;
+import egovframework.hairhair.hairvalley.service.TestVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 

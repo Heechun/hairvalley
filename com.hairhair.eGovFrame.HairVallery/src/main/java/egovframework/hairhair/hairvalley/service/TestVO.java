@@ -1,4 +1,4 @@
-package egovframework.example.sample.service;
+package egovframework.hairhair.hairvalley.service;
 
 public class TestVO {
 	private String name;
