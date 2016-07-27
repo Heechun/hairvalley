@@ -69,28 +69,6 @@ public class EgovSampleController {
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
 	
-	
-	
-	
-	@RequestMapping(value = "/businessMain.do")
-	public String main(ModelMap model){
-		List<?>list = sampleService.main();
-		
-		model.addAttribute("list", list);
-		
-		return "bbs/businessMain";
-	}
-	
-	@RequestMapping(value = "/businessReview.do")
-	public String review(ModelMap model){
-
-		List<?>list = sampleService.main();
-		
-		model.addAttribute("list", list);
-		
-		return "bbs/businessReview";
-	}
-	
 //	/**
 //	 * 글 목록을 조회한다. (pageing)
 //	 * @param searchVO - 조회할 정보가 담긴 SampleDefaultVO
