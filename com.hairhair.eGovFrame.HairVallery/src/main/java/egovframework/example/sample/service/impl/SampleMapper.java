@@ -19,7 +19,7 @@ import java.util.List;
 
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
-
+import egovframework.example.sample.service.TestVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
@@ -87,5 +87,7 @@ public interface SampleMapper {
 	 * @exception
 	 */
 	int selectSampleListTotCnt(SampleDefaultVO searchVO);
+
+	List<?> test();
 
 }

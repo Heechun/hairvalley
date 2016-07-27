@@ -15,12 +15,14 @@
  */
 package egovframework.example.sample.service.impl;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import egovframework.example.sample.service.EgovSampleService;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
-
+import egovframework.example.sample.service.TestVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
@@ -29,6 +31,8 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Class Name : EgovSampleServiceImpl.java
@@ -63,7 +67,8 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	/** ID Generation */
 	@Resource(name = "egovIdGnrService")
 	private EgovIdGnrService egovIdGnrService;
-
+	
+	
 	/**
 	 * 글을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 SampleVO
@@ -142,9 +147,15 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	}
 
 	@Override
-	public int test() {
-		// TODO Auto-generated method stub
-		return 3;
+	public List<?> main() {
+		
+		
+		List<?> testVO = sampleDAO.test();
+		
+		
+		return testVO;
 	}
+
+
 
 }

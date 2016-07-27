@@ -9,7 +9,15 @@
 		<result property="useYn" column="use_yn"/>
 		<result property="regUser" column="reg_user"/>
 	</resultMap>
-
+	
+	<select id="test" resultType="testVO">
+		select *
+		from test
+		where name = 'test'
+	
+	</select>
+	
+	
 	<insert id="insertSample" parameterType="SampleVO">
 
 			INSERT INTO SAMPLE

@@ -17,6 +17,9 @@ package egovframework.example.sample.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * @Class Name : EgovSampleService.java
  * @Description : EgovSampleService Class
@@ -83,6 +86,7 @@ public interface EgovSampleService {
 	 */
 	int selectSampleListTotCnt(SampleDefaultVO searchVO);
 
-	int test();
+
+	List<?> main();
 
 }

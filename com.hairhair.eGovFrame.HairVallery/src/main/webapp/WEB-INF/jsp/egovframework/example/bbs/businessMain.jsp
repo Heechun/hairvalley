@@ -27,5 +27,13 @@
 </head>
 <body>
 hello world!
+
+<c:forEach var="article" items="${list}">
+	<c:out value="${article.name}"/>
+	<c:out value="${article.num}"/>
+</c:forEach>
+
+
+
 </body>
 </html>
