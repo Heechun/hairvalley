@@ -34,8 +34,8 @@
 		<div class="row">
 			<!-- Logo -->
 			<div class="logo">
-				<a href="index.html" title="">
-					<img src="assets/img/logo.png" alt="Logo" />
+				<a href="/sample//hairvalley_main.do" title="">
+					<img src="assets/hairvalley_images/logo.PNG" alt="Logo" style="padding-top:26px;"/>
 				</a>
 			</div>
 			<!-- End Logo -->
@@ -43,13 +43,13 @@
 			<div class="col-md-12 margin-top-30">
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="pages-about-us.html">About Us</a></li>
-						<li><a href="pages-services.html">Services</a></li>
-						<li><a href="pages-faq.html">F.A.Q.</a></li>
-						<li><a href="portfolio-3-column.html">3 Column</a></li>
-						<li><a href="blog-list.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="/sample/hairvalley_main.do">Home</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">F.A.Q.</a></li>
+						<li><a href="#">3 Column</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Contact</a></li>
 					</ul>				
 				</div>
 			</div>
@@ -74,16 +74,16 @@
 					<!-- Carousel Images -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="assets/img/slideshow/slide1.jpg">
+							<img src="assets/hairvalley_images/1.PNG">
 						</div>
 						<div class="item">
-							<img src="assets/img/slideshow/slide2.jpg">
+							<img src="assets/hairvalley_images/2.PNG">
 						</div>
 						<div class="item">
-							<img src="assets/img/slideshow/slide3.jpg">
+							<img src="assets/hairvalley_images/3.PNG">
 						</div>
 						<div class="item">
-							<img src="assets/img/slideshow/slide4.jpg">
+							<img src="assets/hairvalley_images/1.PNG">
 						</div>
 					</div>
 					<!-- End Carousel Images -->
@@ -112,7 +112,7 @@
 					<div class="image-hover">
 						<a href="#">
 							<figure>
-								<img src="assets/img/frontpage/filler1.jpg" alt="image1">
+								<img src="assets/hairvalley_images/4.PNG" alt="image1">
 								<div class="overlay">
 									<a class="expand" href="#">Image Link</a>
 								</div>
@@ -131,7 +131,7 @@
 					<div class="image-hover">
 						<a href="#">
 							<figure>
-								<img src="assets/img/frontpage/filler2.jpg" alt="image2">
+								<img src="assets/hairvalley_images/5.PNG" alt="image2">
 								<div class="overlay">
 									<a class="expand" href="#">Image Link</a>
 								</div>
@@ -150,7 +150,7 @@
 					<div class="image-hover">
 						<a href="#">
 							<figure>
-								<img src="assets/img/frontpage/filler3.jpg" alt="image3">
+								<img src="assets/hairvalley_images/6.PNG" alt="image3">
 								<div class="overlay">
 									<a class="expand" href="#">Image Link</a>
 								</div>
