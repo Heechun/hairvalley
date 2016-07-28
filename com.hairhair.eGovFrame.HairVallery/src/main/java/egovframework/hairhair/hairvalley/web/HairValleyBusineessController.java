@@ -36,15 +36,15 @@ public class HairValleyBusineessController {
 		return "bbs/businessMain";
 	}
 	
-	@RequestMapping(value = "/businessReview.do")
-	public String review(ModelMap model){
-
-		List<?>list = businessService.main();
-		
-		model.addAttribute("list", list);
-		
-		return "bbs/businessReview";
-	}
+//	@RequestMapping(value = "/businessReview.do")
+//	public String review(ModelMap model){
+//
+//		List<?>list = businessService.main();
+//		
+//		model.addAttribute("list", list);
+//		
+//		return "bbs/businessReview";
+//	}
 	
 
 }
