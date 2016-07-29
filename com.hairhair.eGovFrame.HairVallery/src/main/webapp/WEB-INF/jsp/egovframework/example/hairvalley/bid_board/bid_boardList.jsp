@@ -97,7 +97,7 @@
 					
 									<td>${bidBoardList.reg_date}</td>
 					
-				
+									<td>${bidBoardList.hit}</td>
 								</tr>
 							</c:forEach>
 					    </tbody>
@@ -105,20 +105,20 @@
 					  </div>
 				<div class="row margin-vert-10">
 						<div class="col-md-8">
-							<c:if test="${page > 0}"> 
+							<c:if test="${page > 1}"> 
 								<a href="bid_boardList.do?page=${page-1}">[이전]</a> 
 							</c:if>
-							<c:if test="${page == 0}"> 
+							<c:if test="${page == 1}"> 
 							
 								<a href="#">[이전]</a> 
 							</c:if>
 							 
-							<c:forEach var="num" begin="0" end="${totalpage-1}" step="1" >
+							<c:forEach var="num" begin="1" end="${totalpage}" step="1" >
 								<c:if test="${page == num}"> 
-									<a href="bid_boardList.do?page=${num}" style="color: red; font-weight:bold;">[${num+1}]</a>
+									<a href="bid_boardList.do?page=${num}" style="color: red; font-weight:bold;">[${num}]</a>
 								</c:if>
 								<c:if test="${page != num}"> 
-									<a href="bid_boardList.do?page=${num}">[${num+1}]</a>
+									<a href="bid_boardList.do?page=${num}">[${num}]</a>
 								</c:if>
 							</c:forEach>
 			
@@ -128,6 +128,10 @@
 							<c:if test="${fn:length( bidBoardList ) == 10}"> 
 								<a href="bid_boardList.do?page=${page+1}">[다음]</a>
 							</c:if>
+                    	</div>
+                    	<div class="col-md-4">
+                    		<input class="btn btn-blue" type="button" value="글쓰기"  onclick="move('/sample/bid_insertBoardData.do');" style="float:right"/>
+                    		<input class="btn btn-aqua" type="button" value="처음으로"  onclick="move('/sample/bid_boardList.do');" style="float:right; margin-right:2px;"/>
                     	</div>
                     	</div>
                 </div>
@@ -164,6 +168,7 @@
 	<!-- End Footer Menu -->
 </div>
 </div>
+<script type="text/javascript" src="js/myJs.js" type="text/javascript"></script>
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>

@@ -24,14 +24,6 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	private EgovIdGnrService egovIdGnrService;
 	
 	@Override
-	public List<?> main() throws Exception {
-		// TODO Auto-generated method stub
-		List<?> hairvalleyBidVO = hairvalleyBidMapper.test();
-		
-		return hairvalleyBidVO;
-	}
-	
-	@Override
 	public List<?> selectBidBoardList(HashMap<String, Integer> map) throws Exception {
 		// TODO Auto-generated method stub
 		List<?> hairvalleyBidVO = hairvalleyBidMapper.selectBidBoardList(map); 
@@ -45,6 +37,12 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	public int selectBidBoardListCount() throws Exception {
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectBidBoardListCount();
+	}
+
+	@Override
+	public int insertBidBoardData() throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.insertBidBoardData();
 	}
 	
 }

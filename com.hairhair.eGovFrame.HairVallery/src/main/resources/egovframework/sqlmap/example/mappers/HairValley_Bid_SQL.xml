@@ -2,13 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyBidMapper">
 
-	<select id="test" resultType="hairvalleyBidVO">
-		select *
-		from test	
-	</select>
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, reg_date, title FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow}
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow}
 	]]> 
 	</select>
 
@@ -16,4 +12,8 @@
 	<select id="selectBidBoardListCount" resultType="java.lang.Integer">
 		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list
 	</select>
+	
+	<update id="updateBidBoardContentCount">
+      update hairvalley_bid_board_list set hit= (hit+1) where text_num = #text_num#
+	</update>
 </mapper>

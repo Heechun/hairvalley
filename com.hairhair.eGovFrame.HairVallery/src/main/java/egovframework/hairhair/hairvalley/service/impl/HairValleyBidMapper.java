@@ -7,9 +7,10 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper("hairvalleyBidMapper")
 public interface HairValleyBidMapper {
-	List<?> test();
 	
 	List<?> selectBidBoardList(HashMap<String, Integer> map);
 	
 	int selectBidBoardListCount();
+	
+	int insertBidBoardData();
 }
