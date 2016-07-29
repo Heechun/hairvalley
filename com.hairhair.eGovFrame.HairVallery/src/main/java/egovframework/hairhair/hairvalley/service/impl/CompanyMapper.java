@@ -1,0 +1,13 @@
+package egovframework.hairhair.hairvalley.service.impl;
+
+import java.util.List;
+
+import egovframework.hairhair.hairvalley.service.HairValleyCompanyReviewVO;
+import egovframework.rte.psl.dataaccess.mapper.Mapper;
+
+@Mapper("companyMapper")
+public interface CompanyMapper {
+
+	List<HairValleyCompanyReviewVO> ReviewSelectList();
+
+}

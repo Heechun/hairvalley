@@ -45,11 +45,11 @@
 					<ul class="nav navbar-nav">
 						<li><a href="/sample/hairvalley_main.do">Home</a></li>
 						<li><a href="/sample/bid_boardList.do">Bid Board</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">F.A.Q.</a></li>
-						<li><a href="#">3 Column</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="#">서비스안내</a></li>
+						<li><a href="#">고객센터</a></li>
+<!-- 						<li><a href="#">Blog</a></li> -->
+<!-- 						<li><a href="#">Contact</a></li> -->
 					</ul>				
 				</div>
 			</div>
