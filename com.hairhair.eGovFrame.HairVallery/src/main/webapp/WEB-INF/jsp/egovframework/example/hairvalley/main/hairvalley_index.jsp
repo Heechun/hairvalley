@@ -44,7 +44,7 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="/sample/hairvalley_main.do">Home</a></li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="/sample/bid_boardList.do">Bid Board</a></li>
 						<li><a href="#">Services</a></li>
 						<li><a href="#">F.A.Q.</a></li>
 						<li><a href="#">3 Column</a></li>

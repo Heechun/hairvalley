@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
+import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
@@ -28,5 +29,21 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		
 		return hairvalleyBidVO;
 	}
+	
+	@Override
+	public List<?> selectBidBoardList(int page) throws Exception {
+		// TODO Auto-generated method stub
+		List<?> hairvalleyBidVO = hairvalleyBidMapper.selectBidBoardList(page);
+		//for(int i=0; i< hairvalleyBidVO.size(); i++){
+		//	System.out.println("받아온 아이디 값 : " + ((HairValleyBidVO)hairvalleyBidVO.get(i)).getUser_id());
+		//}
+		return hairvalleyBidVO;
+	}
 
+	@Override
+	public int selectBidBoardListCount() throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectBidBoardListCount();
+	}
+	
 }

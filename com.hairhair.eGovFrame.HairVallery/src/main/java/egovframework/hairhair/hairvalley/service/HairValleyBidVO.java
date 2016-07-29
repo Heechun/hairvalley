@@ -2,27 +2,77 @@ package egovframework.hairhair.hairvalley.service;
 
 public class HairValleyBidVO {
 	
-	private String name;
-	private String num;
-
-	public String getName() {
-		return name;
+	int rnum;
+	
+	int text_num;
+	String user_id;
+	String reg_date;
+	String perm;
+	String cut;
+	String dye;
+	int req_price;
+	String add_request;
+	String title;
+	
+	public int getRnum() {
+		return rnum;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
-
-	public String getNum() {
-		return num;
+	public int getText_num() {
+		return text_num;
 	}
-
-	public void setNum(String num) {
-		this.num = num;
+	public void setText_num(int rownum) {
+		this.text_num = rownum;
 	}
-
-	@Override
-	public String toString() {
-		return "TestVO [name=" + name + ", num=" + num + "]";
+	public String getUser_id() {
+		return user_id;
 	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
+	public String getPerm() {
+		return perm;
+	}
+	public void setPerm(String perm) {
+		this.perm = perm;
+	}
+	public String getCut() {
+		return cut;
+	}
+	public void setCut(String cut) {
+		this.cut = cut;
+	}
+	public String getDye() {
+		return dye;
+	}
+	public void setDye(String dye) {
+		this.dye = dye;
+	}
+	public int getReq_price() {
+		return req_price;
+	}
+	public void setReq_price(int req_price) {
+		this.req_price = req_price;
+	}
+	public String getAdd_request() {
+		return add_request;
+	}
+	public void setAdd_request(String add_request) {
+		this.add_request = add_request;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 }

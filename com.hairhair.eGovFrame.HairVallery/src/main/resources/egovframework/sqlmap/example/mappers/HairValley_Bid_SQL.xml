@@ -4,7 +4,17 @@
 
 	<select id="test" resultType="hairvalleyBidVO">
 		select *
-		from test
+		from test	
+	</select>
+	<select id="selectBidBoardList" resultType="hairvalleyBidVO">
+		<![CDATA[ 
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, reg_date, title FROM hairvalley_bid_board_list) where rnum <= ((#{page}+1)*10)) hairvalley_bid_board_list where rnum >= (((#{page}+1)*10)-9)
 	
+	]]> 
+	</select>
+
+	
+	<select id="selectBidBoardListCount" resultType="java.lang.Integer">
+		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list
 	</select>
 </mapper>
