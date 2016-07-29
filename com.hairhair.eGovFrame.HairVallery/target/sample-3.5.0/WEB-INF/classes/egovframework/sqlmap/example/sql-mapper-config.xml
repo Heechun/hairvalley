@@ -8,5 +8,7 @@
 		<typeAlias alias="sampleVO" type="egovframework.hairhair.hairvalley.service.SampleVO"/>
 		<typeAlias alias="testVO" type="egovframework.hairhair.hairvalley.service.TestVO"/>
 		<typeAlias alias="hairvalleyBidVO" type="egovframework.hairhair.hairvalley.service.HairValleyBidVO"/>
+		<typeAlias alias="HairValleyCompanyReviewVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyReviewVO"/>
+		<typeAlias alias="HairValleyCompanyListVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO"/>
     </typeAliases>
 </configuration>

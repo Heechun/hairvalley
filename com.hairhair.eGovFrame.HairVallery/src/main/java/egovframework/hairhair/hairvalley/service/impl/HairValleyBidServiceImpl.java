@@ -1,5 +1,6 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,9 +32,9 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	}
 	
 	@Override
-	public List<?> selectBidBoardList(int page) throws Exception {
+	public List<?> selectBidBoardList(HashMap<String, Integer> map) throws Exception {
 		// TODO Auto-generated method stub
-		List<?> hairvalleyBidVO = hairvalleyBidMapper.selectBidBoardList(page);
+		List<?> hairvalleyBidVO = hairvalleyBidMapper.selectBidBoardList(map); 
 		//for(int i=0; i< hairvalleyBidVO.size(); i++){
 		//	System.out.println("받아온 아이디 값 : " + ((HairValleyBidVO)hairvalleyBidVO.get(i)).getUser_id());
 		//}

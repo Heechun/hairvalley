@@ -6,10 +6,9 @@
 		select *
 		from test	
 	</select>
-	<select id="selectBidBoardList" resultType="hairvalleyBidVO">
+	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, reg_date, title FROM hairvalley_bid_board_list) where rnum <= ((#{page}+1)*10)) hairvalley_bid_board_list where rnum >= (((#{page}+1)*10)-9)
-	
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, reg_date, title FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow}
 	]]> 
 	</select>
 

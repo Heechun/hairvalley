@@ -1,5 +1,6 @@
 package egovframework.hairhair.hairvalley.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
 
 
 
@@ -56,7 +58,15 @@ public class HairValleyBidController {
             page = Integer.parseInt(request.getParameter("page"));  
         }    
         
-    	List<?>bidBoardList = hairvalleyBidService.selectBidBoardList(page);
+        int startRow, endRow;
+        endRow = (int)((page + 1) * 10);
+        startRow = endRow - 9;
+  
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("startRow", startRow);
+        map.put("endRow", endRow);
+        
+    	List<?>bidBoardList = hairvalleyBidService.selectBidBoardList(map);
     	
         int totalnum = hairvalleyBidService.selectBidBoardListCount();
 	

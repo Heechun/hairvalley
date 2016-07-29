@@ -1,5 +1,6 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
@@ -8,7 +9,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface HairValleyBidMapper {
 	List<?> test();
 	
-	List<?> selectBidBoardList(int page);
+	List<?> selectBidBoardList(HashMap<String, Integer> map);
 	
 	int selectBidBoardListCount();
 }
