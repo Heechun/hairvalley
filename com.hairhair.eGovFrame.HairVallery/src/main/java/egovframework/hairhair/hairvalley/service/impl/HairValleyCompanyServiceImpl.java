@@ -21,7 +21,7 @@ public class HairValleyCompanyServiceImpl extends EgovAbstractServiceImpl implem
 
 	@Override
 	public List<HairValleyCompanyReviewVO> selectList() {
-		List<HairValleyCompanyReviewVO> reviewList = companyDAO.ReviewSelectList();
+		List<HairValleyCompanyReviewVO> reviewList = companyDAO.reviewSelectList();
 
 		return reviewList;
 	}
@@ -29,8 +29,8 @@ public class HairValleyCompanyServiceImpl extends EgovAbstractServiceImpl implem
 
 	@Override
 	public List<HairValleyCompanyListVO> companySelectList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<HairValleyCompanyListVO> companyList = companyDAO.companySelectList();
+		return companyList;
 	}
 	
 }

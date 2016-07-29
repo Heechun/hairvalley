@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.hairhair.hairvalley.service.impl.CompanyMapper">
 
-	<select id="ReviewSelectList" resultType="HairValleyCompanyReviewVO">
+	<select id="reviewSelectList" resultType="HairValleyCompanyReviewVO">
 		SELECT *
 		FROM review
 	</select>
-
+	
+	<select id="companySelectList" resultType="HairValleyCompanyListVO">
+		SELECT seq, company_id, company_name, company_location, SALESMAN_NUM
+		FROM hairValley_company_list
+	</select>
 
 </mapper>

@@ -4,9 +4,8 @@ public class HairValleyCompanyListVO {
 	private int seq;
 	private String company_id;
 	private String company_name;
-	private int salesman_num;
+	private String salesman_num;
 	private String company_location;
-	
 	public int getSeq() {
 		return seq;
 	}
@@ -25,10 +24,10 @@ public class HairValleyCompanyListVO {
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
-	public int getSalesman_num() {
+	public String getSalesman_num() {
 		return salesman_num;
 	}
-	public void setSalesman_num(int salesman_num) {
+	public void setSalesman_num(String salesman_num) {
 		this.salesman_num = salesman_num;
 	}
 	public String getCompany_location() {
@@ -44,6 +43,7 @@ public class HairValleyCompanyListVO {
 				+ ", salesman_num=" + salesman_num + ", company_location="
 				+ company_location + "]";
 	}
+	
 	
 	
 }

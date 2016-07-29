@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
@@ -37,13 +38,17 @@ public class HairValleyCompanyController {
 		
 		List<HairValleyCompanyListVO>companyList = companyService.companySelectList();
 		
+		model.addAttribute("companyList",companyList);
+		
+		
 		
 		return "hairvalley/company/company_main";
 	}
 	
 	@RequestMapping(value = "/companyContent.do")
-	public String content(ModelMap model){
-		
+	public String content(@ModelAttribute("companyList") HairValleyCompanyListVO companyList, ModelMap model){
+		//vo받기해야됨
+		System.out.println(companyList);
 		return "hairvalley/company/company_content";
 	}
 	

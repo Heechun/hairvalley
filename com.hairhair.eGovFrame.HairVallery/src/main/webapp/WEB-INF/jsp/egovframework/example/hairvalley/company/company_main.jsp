@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,21 +86,23 @@
 				<div class="portfolio-group col-md-12 margin-top-30 no-padding">
 					<div class="row">
 						<!-- Portfolio Item -->
-						<div class="portfolio-item col-md-4 design">
-							<div class="image-hover">
-								<a href="companyContent.do">
-									<figure>
-										<img src="assets/img/portfolio/image2.jpg" alt="image2">
-										<div class="overlay">
-<!-- 											<a class="expand" href="#">Image Link</a> -->
-										</div>
-									</figure>
-									<h3 class="margin-top-20">1번제목</h3>
-									<p class="margin-top-10">1번내용</p>
-								</a>
+						<c:forEach var="companyList" items="${companyList}">
+							<div class="portfolio-item col-md-4 design">
+								<div class="image-hover">
+									<a href="/sample/companyContent.do?companyList=${companyList}">
+										<figure>
+											<img src="assets/img/portfolio/image2.jpg" alt="image2">
+											<div class="overlay">
+	<!-- 											<a class="expand" href="#">Image Link</a> -->
+											</div>
+										</figure>
+										<h3 class="margin-top-20">${companyList.company_name}</h3>
+										<p class="margin-top-10">${companyList.company_location}</p>
+									</a>
+								</div>
+								<div class="clearfix"></div>
 							</div>
-							<div class="clearfix"></div>
-						</div>
+						</c:forEach>
 						<!-- //Portfolio Item// -->
 					</div>
 				</div>
