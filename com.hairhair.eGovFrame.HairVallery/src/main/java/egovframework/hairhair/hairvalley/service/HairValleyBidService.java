@@ -10,5 +10,9 @@ public interface HairValleyBidService {
 	int selectBidBoardListCount() throws Exception;
 	
 	
-	int insertBidBoardData(List<?> bidBoardContent) throws Exception;
+	int insertBidBoardData(HairValleyBidInsertVO bidBoardContent) throws Exception;
+	
+	int insertBidBoardUserFaceImage(String url) throws Exception;
+	
+	int insertBidBoardUserRefImage(String url) throws Exception;
 }

@@ -3,6 +3,7 @@ package egovframework.hairhair.hairvalley.web;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
 
 
 
@@ -116,10 +118,42 @@ public class HairValleyBidController {
 	@RequestMapping(value = "/bid_insertBoardData.do", method = RequestMethod.POST)
 	public String insertBidBoardData(MultipartHttpServletRequest multiRequest, ModelMap model) throws Exception {
 		
-		System.out.println("VO에서 얻어온 값 : " + multiRequest.getParameter("title"));
+		try{
+			System.out.println("VO에서 얻어온 값 : " + multiRequest.getParameter("title"));
+			
+			
+			List<String> user_faceImg = FileUpload("C:\\HairValley/upload/user_face_images/", multiRequest.getFiles("user_faceImg"));
+			List<String> user_refImg = FileUpload("C:\\HairValley/upload/user_ref_images/", multiRequest.getFiles("user_refImg"));
+			
+			
+			HairValleyBidInsertVO hairvalley_bid_insertVO = new HairValleyBidInsertVO(); 
+			hairvalley_bid_insertVO.setTitle(multiRequest.getParameter("title"));
+			hairvalley_bid_insertVO.setReq_price(Integer.parseInt(multiRequest.getParameter("req_price")));
+			hairvalley_bid_insertVO.setPerm(multiRequest.getParameter("perm"));
+			hairvalley_bid_insertVO.setCut(multiRequest.getParameter("cut"));
+			hairvalley_bid_insertVO.setDye(multiRequest.getParameter("dye"));
+			hairvalley_bid_insertVO.setAdd_request(multiRequest.getParameter("add_request"));
+			hairvalley_bid_insertVO.setUser_id(multiRequest.getParameter("user_id"));
+			hairvalley_bid_insertVO.setHit(0);
+			
+			int boardlist_retval = hairvalleyBidService.insertBidBoardData(hairvalley_bid_insertVO);
+			
+			System.out.println("boardlist결과 : " + boardlist_retval);
+			
+			for(int i=0; i< user_faceImg.size(); i++){
+				int userFace_retval = hairvalleyBidService.insertBidBoardUserFaceImage(user_faceImg.get(i));
+				System.out.println("face image 결과 : ["+i+"] ==> " + userFace_retval);
+			}
+			
+			for(int i=0; i< user_refImg.size(); i++){
+				int userRef_retval = hairvalleyBidService.insertBidBoardUserRefImage(user_refImg.get(i));
+				System.out.println("ref image 결과 :: ["+i+"] ==> " + userRef_retval);
+			}
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
+	
 		
-		FileUpload("C:\\HairValley/upload/user_face_images/", multiRequest.getFiles("user_faceImg"));
-		FileUpload("C:\\HairValley/upload/user_ref_images/", multiRequest.getFiles("user_refImg"));
 		
 		return "hairvalley/bid_board/bid_boardWrite";
 	}
@@ -129,8 +163,9 @@ public class HairValleyBidController {
 	 * 
 	 * 사용자 이미지와 사용자 참고 이미지 업로드 관련 함수
 	 */
-	void FileUpload(String realPath, List<MultipartFile> mf){
+	List<String> FileUpload(String realPath, List<MultipartFile> mf){
 		
+		List<String> url_list = new ArrayList<String>();
 		try{
 			File dir = new File(realPath);
 	        if (!dir.isDirectory()) {
@@ -140,7 +175,8 @@ public class HairValleyBidController {
 	 
 	    if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
 	        
-	    } else {
+	    } 
+	    else {
 	        for (int i = 0; i < mf.size(); i++) {
 	            // 파일 중복명 처리
 	            String genId = UUID.randomUUID().toString(); 
@@ -153,13 +189,17 @@ public class HairValleyBidController {
 	            String savePath = realPath + saveFileName; // 저장 될 파일 경로
 	
 	            byte[] fileData = mf.get(i).getBytes();
-	            FileOutputStream output = new FileOutputStream(realPath + saveFileName);
+	            FileOutputStream output = new FileOutputStream(savePath);
 	            output.write(fileData);
+	            
+	            url_list.add(savePath);
 	        }
 	    }
 		}catch(Exception ex){
 			System.out.println("FileUpload()에러 \n" + ex.getMessage());
 		}
+		
+		return url_list;
 	}
 
 	

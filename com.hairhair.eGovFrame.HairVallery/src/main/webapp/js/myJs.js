@@ -48,3 +48,64 @@ function clearFileInput(ctrl) {
 	    ctrl.parentNode.replaceChild(ctrl.cloneNode(true), ctrl);
 	  }
 	}
+
+
+
+
+
+function openContent(idx){
+
+	 $('.mw_layer').addClass('open');
+
+	 $.ajax({
+
+		   type:'post',
+
+		   url:'content.do',
+
+		   data: ({idx:idx}),
+
+		   success:function(data){
+
+			 $('#layer').html(data);
+
+		   }
+
+	});
+
+}
+function closeContent(){$('.mw_layer').removeClass('open');}
+
+jQuery(function($){
+
+	 var layerWindow = $('.mw_layer');
+
+	
+
+	 // ESC Event
+
+	 $(document).keydown(function(event){
+
+	  if(event.keyCode != 27) return true;
+
+	  if (layerWindow.hasClass('open')) {
+
+	   layerWindow.removeClass('open');
+
+	  }
+
+	  return false;
+
+	 });
+
+	 // Hide Window
+
+	 layerWindow.find('>.bg').mousedown(function(event){
+
+	  layerWindow.removeClass('open');
+
+	  return false;
+
+	 });
+
+	});

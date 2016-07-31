@@ -3,6 +3,7 @@ package egovframework.hairhair.hairvalley.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper("hairvalleyBidMapper")
@@ -12,5 +13,9 @@ public interface HairValleyBidMapper {
 	
 	int selectBidBoardListCount();
 	
-	int insertBidBoardData(List<?> bidBoardContent);
+	int insertBidBoardData(HairValleyBidInsertVO bidBoardContent);
+	
+	int insertBidBoardUserFaceImage(String url);
+	
+	int insertBidBoardUserRefImage(String url);
 }

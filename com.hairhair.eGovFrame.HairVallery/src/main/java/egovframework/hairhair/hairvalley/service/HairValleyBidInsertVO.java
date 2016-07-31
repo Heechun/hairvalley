@@ -8,13 +8,11 @@ public class HairValleyBidInsertVO {
 	String title;
 	String user_id;
 	int req_price;
-	MultipartFile user_faceImg;
-	MultipartFile user_refImg;
 	String perm;
 	String cut;
 	String dye;
 	String add_request;
-	
+	int hit;
 	
 	public String getTitle() {
 		return title;
@@ -41,21 +39,6 @@ public class HairValleyBidInsertVO {
 		this.req_price = req_price;
 	}
 	
-	public MultipartFile getUser_faceImg() {
-		return user_faceImg;
-	}
-
-	public void setUser_faceImg(MultipartFile user_faceImg) {
-		this.user_faceImg = user_faceImg;
-	}
-
-	public MultipartFile getUser_refImg() {
-		return user_refImg;
-	}
-
-	public void setUser_refImg(MultipartFile user_refImg) {
-		this.user_refImg = user_refImg;
-	}
 	
 	public String getPerm() {
 		return perm;
@@ -89,7 +72,15 @@ public class HairValleyBidInsertVO {
 		this.add_request = add_request;
 	}
 
+	public int getHit() {
+		return hit;
+	}
 
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+	
 
 	
 }

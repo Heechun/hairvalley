@@ -29,6 +29,15 @@
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		.mw_layer{display:none;position:fixed;_position:absolute;top:0;left:0;z-index:10000;width:100%;height:100%}
+		
+		.mw_layer.open{display:block}
+		
+		.mw_layer .bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;filter:alpha(opacity=50)}
+		
+		#layer{position:absolute;top:40%;left:40%;width:400px;height:400px;margin:-150px 0 0 -194px;padding:28px 28px 0 28px;border:2px solid #555;background:#fff;font-size:12px;font-family:Tahoma, Geneva, sans-serif;color:#767676;line-height:normal;white-space:normal}
+	</style>
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -91,7 +100,7 @@
 					
 									<td>${bidBoardList.text_num}</td><!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
 									
-									<td>${bidBoardList.title}
+									<td><a href="#layer" onclick="openContent('${bidBoardList.title}')">${bidBoardList.title}</a></td>
 					
 									<td>${bidBoardList.user_id}</td>
 					
@@ -152,6 +161,10 @@
                     		<input class="btn btn-blue" type="button" value="글쓰기"  onclick="move('/sample/bid_writeBoardData.do');" style="float:right"/>
                     		<input class="btn btn-aqua" type="button" value="처음으로"  onclick="move('/sample/bid_boardList.do');" style="float:right; margin-right:2px;"/>
                     	</div>
+                    	<div class="mw_layer">
+							<div class="bg"></div>
+							<div id="layer"></div>	
+						</div>
                     	</div>
                 </div>
             </div>
