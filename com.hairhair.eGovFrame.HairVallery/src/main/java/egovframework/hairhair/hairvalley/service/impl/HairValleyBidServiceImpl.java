@@ -40,9 +40,9 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	}
 
 	@Override
-	public int insertBidBoardData() throws Exception {
+	public int insertBidBoardData(List<?> bidBoardContent) throws Exception {
 		// TODO Auto-generated method stub
-		return hairvalleyBidMapper.insertBidBoardData();
+		return hairvalleyBidMapper.insertBidBoardData(bidBoardContent);
 	}
 	
 }

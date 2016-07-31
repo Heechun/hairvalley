@@ -16,4 +16,13 @@
 	<update id="updateBidBoardContentCount">
       update hairvalley_bid_board_list set hit= (hit+1) where text_num = #text_num#
 	</update>
+	
+	<insert id="insertBidBoardContent" parameterType="hairvalleyBidVO">
+ 
+    INSERT INTO hairvalley_bid_board_list 
+    		(text_num, user_id, reg_date, req_price, perm, cut, dye, add_request, title, hit))
+	VALUES (BID_BOARD_LIST_SEQ.nextval, #{user_id}, #{reg_date},#{req_price},#{perm},#{cut},#{dye},#{add_request},#{title},#{hit})
+
+	</insert>
+
 </mapper>

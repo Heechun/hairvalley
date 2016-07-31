@@ -1,9 +1,10 @@
 package egovframework.hairhair.hairvalley.service;
 
+import java.io.File;
+
 public class HairValleyBidVO {
 
 	int rnum;
-
 	int text_num;
 	String user_id;
 	String reg_date;
@@ -14,7 +15,9 @@ public class HairValleyBidVO {
 	String add_request;
 	String title;
 	int hit;
+	
 
+	
 	public int getHit() {
 		return hit;
 	}

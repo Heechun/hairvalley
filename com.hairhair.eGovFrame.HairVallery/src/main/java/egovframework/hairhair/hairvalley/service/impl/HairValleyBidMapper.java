@@ -12,5 +12,5 @@ public interface HairValleyBidMapper {
 	
 	int selectBidBoardListCount();
 	
-	int insertBidBoardData();
+	int insertBidBoardData(List<?> bidBoardContent);
 }

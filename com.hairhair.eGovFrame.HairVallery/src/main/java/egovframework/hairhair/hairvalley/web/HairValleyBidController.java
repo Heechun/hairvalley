@@ -1,14 +1,22 @@
 package egovframework.hairhair.hairvalley.web;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 
@@ -18,7 +26,19 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 
 
+
+
+
+
+
+
+
+
+
+
+import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
+import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
@@ -72,14 +92,75 @@ public class HairValleyBidController {
 		model.addAttribute("page", page);
 		model.addAttribute("totalpage", totalpage);
 		
+
 		return "hairvalley/bid_board/bid_boardList";
 	}
 	
-	@RequestMapping(value = "/bid_insertBoardData.do")
-	public String insertBidBoardData(ModelMap model) throws Exception {
-		
-		System.out.println("insert 진입-------------------------");
-		//int retval = hairvalleyBidService.insertBidBoardData();
-		return "hairvalley/bid_board/bid_boardSelect";
+	
+	
+	/*
+	 *	글쓰기 버튼 클릭 시 화면 전환
+	 * 
+	 */
+	@RequestMapping(value = "/bid_writeBoardData.do")
+	public String writeBidBoardData(ModelMap model) throws Exception {
+
+
+		return "hairvalley/bid_board/bid_boardWrite";
 	}
+	
+	/*
+	 *	입찰 등록 폼에서 등록 완료 시 insert 쿼리 수행을 위한 메서드
+	 * 
+	 */
+	@RequestMapping(value = "/bid_insertBoardData.do", method = RequestMethod.POST)
+	public String insertBidBoardData(MultipartHttpServletRequest multiRequest, ModelMap model) throws Exception {
+		
+		System.out.println("VO에서 얻어온 값 : " + multiRequest.getParameter("title"));
+		
+		FileUpload("C:\\HairValley/upload/user_face_images/", multiRequest.getFiles("user_faceImg"));
+		FileUpload("C:\\HairValley/upload/user_ref_images/", multiRequest.getFiles("user_refImg"));
+		
+		return "hairvalley/bid_board/bid_boardWrite";
+	}
+	
+	/*
+	 * insertBidBoardData에서 사용하는 업로드 함수
+	 * 
+	 * 사용자 이미지와 사용자 참고 이미지 업로드 관련 함수
+	 */
+	void FileUpload(String realPath, List<MultipartFile> mf){
+		
+		try{
+			File dir = new File(realPath);
+	        if (!dir.isDirectory()) {
+	            dir.mkdirs();
+	    }
+	        
+	 
+	    if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+	        
+	    } else {
+	        for (int i = 0; i < mf.size(); i++) {
+	            // 파일 중복명 처리
+	            String genId = UUID.randomUUID().toString(); 
+	            // 본래 파일명
+	            String originalfileName = mf.get(i).getOriginalFilename(); 
+	             
+	            String saveFileName = genId + "." + originalfileName;
+	            // 저장되는 파일 이름
+	
+	            String savePath = realPath + saveFileName; // 저장 될 파일 경로
+	
+	            byte[] fileData = mf.get(i).getBytes();
+	            FileOutputStream output = new FileOutputStream(realPath + saveFileName);
+	            output.write(fileData);
+	        }
+	    }
+		}catch(Exception ex){
+			System.out.println("FileUpload()에러 \n" + ex.getMessage());
+		}
+	}
+
+	
 }
