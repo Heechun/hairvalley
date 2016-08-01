@@ -44,7 +44,7 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="/sample/hairvalley_main.do">Home</a></li>
-						<li><a href="/sample/bid_boardList.do">Bid Board</a></li>
+						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
 						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="#">고객센터</a></li>

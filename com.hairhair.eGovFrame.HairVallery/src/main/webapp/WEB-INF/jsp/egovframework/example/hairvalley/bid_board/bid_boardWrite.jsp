@@ -55,12 +55,10 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="/sample/hairvalley_main.do">Home</a></li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">F.A.Q.</a></li>
-						<li><a href="#">3 Column</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="#">서비스안내</a></li>
+						<li><a href="#">고객센터</a></li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +81,7 @@
 				<hr>
 				<div class="row margin-vert-40">
 				 	<div class="col-md-4">
-					 	<h3 class="margin-bottom-10">My Pictures</h3>
+					 	<h3 class="margin-bottom-10">My Face Images</h3>
 					 		<img src="assets/img/blog/image1.jpg" id="myFace_main">
 							<div class="thumbs-gallery" style="max-width:80%">
 								
@@ -121,7 +119,44 @@
 							
 							<div class="clearfix"></div>
 							<p><em>* 사진이 등록되면 표시됩니다.</em></p>
+							<h3 class="margin-bottom-10">My Reference Images</h3>
+					 		<img src="assets/img/blog/image1.jpg" id="myRef_main">
+							<div class="thumbs-gallery" style="max-width:80%">
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image1.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
+								<i></i></a>
+								
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image2.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
+								<i></i></a>
+								
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image3.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
+								<i></i></a>
+								
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image4.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
+								<i></i></a>
+								
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image6.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
+								<i></i></a>
+								
+								
+								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image7.jpg">
+									<img src="assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
+								<i></i></a>
+	
+								
+							</div>	
 							
+							<div class="clearfix"></div>
+							<p><em>* 사진이 등록되면 표시됩니다.</em></p>
 						</div>
 							<!-- End Thumbs Gallery -->
 				 	
@@ -152,7 +187,7 @@
 									<label><strong>내 사진 등록</strong>
 										<span class="color-red">*</span>
 									</label>
-									<input name="user_faceImg" type="file" multiple="multiple"  onchange="readURL(this);" />
+									<input name="user_faceImg" type="file" multiple="multiple"  onchange="readFaceImageURL(this);" />
 								</div>
 							</div>
 							<hr>
@@ -161,7 +196,7 @@
 									<label><strong>참고 사진 등록</strong>
 										<span class="color-red">*</span>
 									</label>
-									<input name="user_refImg" type="file"  multiple="multiple" onchange="readURL(this);" />
+									<input name="user_refImg" type="file"  multiple="multiple" onchange="readRefImageURL(this);" />
 								</div>
 							</div>
 							<hr>

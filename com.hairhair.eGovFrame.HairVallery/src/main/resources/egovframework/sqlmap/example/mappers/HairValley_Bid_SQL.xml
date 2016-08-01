@@ -13,8 +13,8 @@
 		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list
 	</select>
 	
-	<update id="updateBidBoardContentCount">
-      update hairvalley_bid_board_list set hit= (hit+1) where text_num = #text_num#
+	<update id="updateBidBoardContentCount" parameterType="java.lang.Integer" >
+      update hairvalley_bid_board_list set hit= (hit+1) where text_num = #{text_num}
 	</update>
 	
 	<insert id="insertBidBoardData" parameterType="hairvalleyBidInsertVO">
@@ -27,14 +27,28 @@
 	<insert id="insertBidBoardUserFaceImage" parameterType="java.lang.String">
 
 	insert into hairvalley_user_face_images (idx, text_num, image_url)
-	values (HAIRVALLEY_USER_FACE_IMAG_SEQ.nextval,( select last_number-1 from user_sequences where sequence_name = 'BID_BOARD_LIST_SEQ'),#{url});
+	values (HAIRVALLEY_USER_FACE_IMAG_SEQ.nextval,( select last_number-1 from user_sequences where sequence_name = 'BID_BOARD_LIST_SEQ'),#{url})
 
 	</insert>
 	<insert id="insertBidBoardUserRefImage" parameterType="java.lang.String">
  
    insert into hairvalley_user_ref_images (idx, text_num, image_url)
-	values (HAIRVALLEY_USER_REF_IMAGE_SEQ.nextval,( select last_number-1 from user_sequences where sequence_name = 'BID_BOARD_LIST_SEQ'),#{url});
+	values (HAIRVALLEY_USER_REF_IMAGE_SEQ.nextval,( select last_number-1 from user_sequences where sequence_name = 'BID_BOARD_LIST_SEQ'),#{url})
 
 	</insert>
+	
+	
+	<select id="selectBidBoardContent" parameterType="java.lang.Integer" resultType="hairvalleyBidVO">
+		select * from hairvalley_bid_board_list where text_num = #{text_num}
+	</select>
+	
+	<select id="selectBidBoardContentFaceImages" parameterType="java.lang.Integer" resultType="HairValleyBidImagesVO">
+		select * from hairvalley_user_face_images where text_num = #{text_num}
+	</select>
+	
+	<select id="selectBidBoardContentRefImages" parameterType="java.lang.Integer" resultType="HairValleyBidImagesVO">
+		select * from hairvalley_user_ref_images where text_num = #{text_num}
+	</select>
+	
 	
 </mapper>

@@ -37,6 +37,9 @@
 		.mw_layer .bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;filter:alpha(opacity=50)}
 		
 		#layer{position:absolute;top:40%;left:40%;width:400px;height:400px;margin:-150px 0 0 -194px;padding:28px 28px 0 28px;border:2px solid #555;background:#fff;font-size:12px;font-family:Tahoma, Geneva, sans-serif;color:#767676;line-height:normal;white-space:normal}
+	
+		.table {text-align:center;}
+		.table thead tr th {text-align:center;}
 	</style>
 </head>
 <body>
@@ -55,12 +58,10 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="/sample/hairvalley_main.do">Home</a></li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">F.A.Q.</a></li>
-						<li><a href="#">3 Column</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="#">서비스안내</a></li>
+						<li><a href="#">고객센터</a></li>
 					</ul>				
 				</div>
 			</div>
@@ -87,11 +88,11 @@
                     <table class="table table-bordered">
 					    <thead>
 					      <tr>
-					        <th>번 호</th>
-					        <th>제 목</th>
-					        <th>작성자</th>
-					        <th>작성일</th>
-					        <th>조회수</th>
+					        <th><strong>번 호</strong></th>
+					        <th><strong>제 목</strong></th>
+					        <th><strong>작성자</strong></th>
+					        <th><strong>작성일</strong></th>
+					        <th><strong>조회수</strong></th>
 					      </tr>
 					    </thead>
 					    <tbody>
@@ -100,7 +101,7 @@
 					
 									<td>${bidBoardList.text_num}</td><!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
 									
-									<td><a href="#layer" onclick="openContent('${bidBoardList.title}')">${bidBoardList.title}</a></td>
+									<td><a href="/sample/bid_selectBoardContent.do?text_num=${bidBoardList.text_num}">${bidBoardList.title}</a></td>
 					
 									<td>${bidBoardList.user_id}</td>
 					

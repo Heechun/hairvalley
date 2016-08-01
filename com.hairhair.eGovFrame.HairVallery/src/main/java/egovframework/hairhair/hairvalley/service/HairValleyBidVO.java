@@ -38,8 +38,8 @@ public class HairValleyBidVO {
 		return text_num;
 	}
 
-	public void setText_num(int rownum) {
-		this.text_num = rownum;
+	public void setText_num(int text_num) {
+		this.text_num = text_num;
 	}
 
 	public String getUser_id() {

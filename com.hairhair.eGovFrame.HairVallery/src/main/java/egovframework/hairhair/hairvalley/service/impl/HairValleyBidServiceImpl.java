@@ -54,5 +54,20 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	public int insertBidBoardUserRefImage(String url) throws Exception {
 		return hairvalleyBidMapper.insertBidBoardUserRefImage(url);
 	}
+	@Override
+	public HairValleyBidVO selectBidBoardContent(int text_num) throws Exception{
+		return hairvalleyBidMapper.selectBidBoardContent(text_num);
+		
+	}
+	
+	public List<?> selectBidBoardContentFaceImages(int text_num) throws Exception{
+		return hairvalleyBidMapper.selectBidBoardContentFaceImages(text_num);
+		
+	}
+	
+	public List<?> selectBidBoardContentRefImages(int text_num) throws Exception{
+		return hairvalleyBidMapper.selectBidBoardContentRefImages(text_num);
+		
+	}
 	
 }

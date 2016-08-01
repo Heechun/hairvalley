@@ -100,6 +100,8 @@ public class HairValleyBidController {
 	
 	
 	
+	
+
 	/*
 	 *	글쓰기 버튼 클릭 시 화면 전환
 	 * 
@@ -111,6 +113,9 @@ public class HairValleyBidController {
 		return "hairvalley/bid_board/bid_boardWrite";
 	}
 	
+	
+	
+	
 	/*
 	 *	입찰 등록 폼에서 등록 완료 시 insert 쿼리 수행을 위한 메서드
 	 * 
@@ -118,10 +123,7 @@ public class HairValleyBidController {
 	@RequestMapping(value = "/bid_insertBoardData.do", method = RequestMethod.POST)
 	public String insertBidBoardData(MultipartHttpServletRequest multiRequest, ModelMap model) throws Exception {
 		
-		try{
-			System.out.println("VO에서 얻어온 값 : " + multiRequest.getParameter("title"));
-			
-			
+		try{	
 			List<String> user_faceImg = FileUpload("C:\\HairValley/upload/user_face_images/", multiRequest.getFiles("user_faceImg"));
 			List<String> user_refImg = FileUpload("C:\\HairValley/upload/user_ref_images/", multiRequest.getFiles("user_refImg"));
 			
@@ -141,12 +143,12 @@ public class HairValleyBidController {
 			System.out.println("boardlist결과 : " + boardlist_retval);
 			
 			for(int i=0; i< user_faceImg.size(); i++){
-				int userFace_retval = hairvalleyBidService.insertBidBoardUserFaceImage(user_faceImg.get(i));
+				int userFace_retval = hairvalleyBidService.insertBidBoardUserFaceImage(user_faceImg.get(i).toString());
 				System.out.println("face image 결과 : ["+i+"] ==> " + userFace_retval);
 			}
 			
 			for(int i=0; i< user_refImg.size(); i++){
-				int userRef_retval = hairvalleyBidService.insertBidBoardUserRefImage(user_refImg.get(i));
+				int userRef_retval = hairvalleyBidService.insertBidBoardUserRefImage(user_refImg.get(i).toString());
 				System.out.println("ref image 결과 :: ["+i+"] ==> " + userRef_retval);
 			}
 		}catch(Exception ex){
@@ -157,6 +159,33 @@ public class HairValleyBidController {
 		
 		return "hairvalley/bid_board/bid_boardWrite";
 	}
+
+	
+	
+	/*
+	 * 입찰 게시판
+	 * --> 게시물 조회
+	 */
+	@RequestMapping(value = "/bid_selectBoardContent.do")
+	public String selectBidBoardContent(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+
+		
+		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
+		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
+		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
+
+		
+		model.addAttribute("bidBoardContent", bidBoardContent);
+		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
+		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
+		
+		
+		return "hairvalley/bid_board/bid_boardContent";
+	}
+	
+	
 	
 	/*
 	 * insertBidBoardData에서 사용하는 업로드 함수
