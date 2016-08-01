@@ -53,62 +53,52 @@
 			</div>
 		</div>
 		<!-- === END HEADER === -->
-<!-- === BEGIN CONTENT === -->
+		<!-- === BEGIN CONTENT === -->
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
+				<!-- Main Column -->
 				<div class="col-md-12">
-					<h2>업체 소개</h2>
-					<!-- Filter Buttons -->
-					<div class="portfolio-filter-container margin-top-20">
-						<ul class="portfolio-filter">
-							<li class="portfolio-filter-label label label-primary">
-								filter by:
-							</li>
-							<li>
-								<a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-default" data-filter=".code">Coding</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".design">Design</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".audio">Audio</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".video">Video</a>
-							</li>
-						</ul>
+					<div class="col-md-3">
+						<br/><br/>
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 업체소개
+						</button><br/><br/>
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 포토폴리오
+						</button><br/><br/>
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 조직구성원
+						</button><br/><br/>
+						<a href="companyReview.do">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 이용 후기
+						</button></a><br/><br/>
 					</div>
-					<!-- End Filter Buttons -->
-				</div>
-				<div class="portfolio-group col-md-12 margin-top-30 no-padding">
-					<div class="row">
-						<!-- Portfolio Item -->
-						<c:forEach var="companyList" items="${companyList}">
-							<div class="portfolio-item col-md-4 design">
-								<div class="image-hover">
-									<a href="/sample/companyContent.do?company_name=${companyList.company_name}">
-										<figure>
-											<img src="assets/img/portfolio/image2.jpg" alt="image2">
-											<div class="overlay">
-	<!-- 											<a class="expand" href="#">Image Link</a> -->
-											</div>
-										</figure>
-										<h3 class="margin-top-20">${companyList.company_name}</h3>
-										<p class="margin-top-10">${companyList.company_location}</p>
-									</a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</c:forEach>
-						<!-- //Portfolio Item// -->
-					</div>
+					<form action="companyContentUpdateImpl.do" method="post" id="myForm" enctype="multipart/form-data">
+						<div class="col-md-9">
+							<h2>업체소개 수정</h2><br />
+							<label for="title">제목</label>
+							<br />
+							<input type="text" name="title" id="title" value="${title}"/>
+							<br />
+							<label for="content">내용</label>
+							<br />
+							<textarea name="content" id="content" cols="70" rows="20">${content}</textarea>
+							<br />
+				        	<label for="company_intro_img">이미지 첨부(1개)</label>
+				        	<input name="company_intro_img" type="file"/>
+		<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
+							<button type="submit" class="btn btn-blue pull-right" >수정하기</button>
+				            <a href="javascript:history.go(-1)">
+				            	<button id="backBtn" type="button" class="btn btn-aqua pull-right" >뒤로가기</button>
+				            </a>
+			            </div>
+		            </form>  
 				</div>
 			</div>
+			<!-- End Main Column -->
 		</div>
-		<!-- === END CONTENT === -->
+	<!-- === END CONTENT === -->
 
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
