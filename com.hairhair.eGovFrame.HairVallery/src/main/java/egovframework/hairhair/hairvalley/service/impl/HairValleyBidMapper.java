@@ -25,4 +25,7 @@ public interface HairValleyBidMapper {
 	List<?> selectBidBoardContentFaceImages(int text_num);
 	
 	List<?> selectBidBoardContentRefImages(int text_num);
+	
+	int deleteBidBoardContent(int text_num);
+	
 }

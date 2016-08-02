@@ -11,15 +11,19 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
+
 
 
 
@@ -198,6 +202,26 @@ public class HairValleyBidController {
 		
 		return "hairvalley/bid_board/bid_boardContent";
 	}
+	
+	/*
+	 * 입찰 게시판
+	 * --> 게시물 조회
+	 */
+	@RequestMapping(value = "/bid_deleteBoardData.do")
+	public String deleteBidBoardContent(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+		
+		int retval = hairvalleyBidService.deleteBidBoardContent(text_num);
+		
+		request.setAttribute("retval", retval);
+		
+		System.out.println("삭제 리턴 값 : " + retval);
+		return "hairvalley/bid_board/deleteSuccess";
+	}
+	
+	
+	
 	
 	
 	

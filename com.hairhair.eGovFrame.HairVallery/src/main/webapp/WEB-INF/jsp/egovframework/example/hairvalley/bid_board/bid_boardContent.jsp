@@ -43,9 +43,12 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.pgwSlideshow').pgwSlideshow();
-});
+	$(document).ready(function() {
+	    $('.pgwSlideshow').pgwSlideshow();
+	});
+	
+	
+	
 </script>
 </head>
 <body>
@@ -106,14 +109,15 @@ $(document).ready(function() {
 												</c:forEach>
 											</ul>
 										</div>
+										<div id="textnum" style="display:none;">${bidBoardContent.text_num}</div>
 										<div class="col-md-6">
 											<div class="table-responsive">
 										<table class="table table-bordered">
 											<tr>
-
+												
 												<th width="15%" id="contentHead">번호</th>
 
-												<td width="15%">${bidBoardContent.content_num}</td>
+												<td width="15%" id="data">${bidBoardContent.content_num}</td>
 
 												<th width="20%" id="contentHead">작성일</th>
 
@@ -152,11 +156,16 @@ $(document).ready(function() {
 
 												<th colspan="2" id="contentHead">참고 사진 목록</th>
 
-												<td colspan="8" style="text-align: left;"><button class="btn btn-aqua" id="userRefImgBtn">확인하기</button></td>
-
+												<td colspan="8" style="text-align: left;">
+													<button class="btn btn-primary" type="button" id="userRefImgBtn">
+														<i class="fa fa-picture-o"></i> 확인하기
+													</button>
 											</tr>
 										</table>
 									</div>
+										<button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do');" style="float:right; margin-top:10px;">글수정</button>
+										<button class="btn btn-red" id="deleteContentBtn"  onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-right:10px; margin-top:10px;">글삭제</button>
+										<button class="btn btn-blue" onclick="javascript:history.back();" style="float:right; margin-right:10px; margin-top:10px;">목록으로</button>
 										</div>
 									</div>
 									

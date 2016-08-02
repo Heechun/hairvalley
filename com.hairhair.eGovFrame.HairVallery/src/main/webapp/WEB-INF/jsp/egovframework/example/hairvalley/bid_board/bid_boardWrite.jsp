@@ -80,6 +80,7 @@
 				</div>
 				<hr>
 				<div class="row margin-vert-40">
+				<!--
 				 	<div class="col-md-4">
 					 	<h3 class="margin-bottom-10">My Face Images</h3>
 					 		<img src="assets/img/blog/image1.jpg" id="myFace_main">
@@ -159,7 +160,7 @@
 							<p><em>* 사진이 등록되면 표시됩니다.</em></p>
 						</div>
 							<!-- End Thumbs Gallery -->
-				 	
+				 	 <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <form class="signup-page" enctype="multipart/form-data" action="/sample/bid_insertBoardData.do"  method="POST" >
                             <label><strong>제 목</strong>
@@ -187,7 +188,7 @@
 									<label><strong>내 사진 등록</strong>
 										<span class="color-red">*</span>
 									</label>
-									<input name="user_faceImg" type="file" multiple="multiple"  onchange="readFaceImageURL(this);" />
+									<input class="multi with-preview" name="user_faceImg" type="file" multiple="multiple"   onchange="readFaceImageURL(this);" />
 								</div>
 							</div>
 							<hr>
@@ -246,7 +247,7 @@
                             </div>
                         </form>
                        
-                    </div>
+                    </div><div class="col-md-2"></div>
                     <!-- End Register Box -->
                 </div>
 				

@@ -65,5 +65,11 @@
 		select * from hairvalley_user_ref_images where text_num = #{text_num}
 	</select>
 	
+	<delete id="deleteBidBoardContent" parameterType="java.lang.Integer" >
+
+			DELETE FROM hairvalley_bid_board_list
+			WHERE text_num=#{text_num}
+
+	</delete>
 	
 </mapper>
