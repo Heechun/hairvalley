@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
+
+
+
 
 
 
@@ -121,11 +126,13 @@ public class HairValleyBidController {
 	 * 
 	 */
 	@RequestMapping(value = "/bid_insertBoardData.do", method = RequestMethod.POST)
-	public String insertBidBoardData(MultipartHttpServletRequest multiRequest, ModelMap model) throws Exception {
+	public String insertBidBoardData(MultipartHttpServletRequest multiRequest, ModelMap model, HttpServletRequest request) throws Exception {
 		
 		try{	
-			List<String> user_faceImg = FileUpload("C:\\HairValley/upload/user_face_images/", multiRequest.getFiles("user_faceImg"));
-			List<String> user_refImg = FileUpload("C:\\HairValley/upload/user_ref_images/", multiRequest.getFiles("user_refImg"));
+
+			List<String> user_faceImg = FileUpload(request.getSession().getServletContext().getRealPath("/uploads/UserFaceImages/"), multiRequest.getFiles("user_faceImg"), true);
+
+			List<String> user_refImg = FileUpload(request.getSession().getServletContext().getRealPath("/uploads/UserRefImages/"), multiRequest.getFiles("user_refImg") ,false);
 			
 			
 			HairValleyBidInsertVO hairvalley_bid_insertVO = new HairValleyBidInsertVO(); 
@@ -169,6 +176,7 @@ public class HairValleyBidController {
 	@RequestMapping(value = "/bid_selectBoardContent.do")
 	public String selectBidBoardContent(ModelMap model, HttpServletRequest request) throws Exception{
 		
+
 		int text_num = Integer.parseInt(request.getParameter("text_num"));
 
 		
@@ -192,7 +200,7 @@ public class HairValleyBidController {
 	 * 
 	 * 사용자 이미지와 사용자 참고 이미지 업로드 관련 함수
 	 */
-	List<String> FileUpload(String realPath, List<MultipartFile> mf){
+	List<String> FileUpload(String realPath, List<MultipartFile> mf, boolean isFaceImage){
 		
 		List<String> url_list = new ArrayList<String>();
 		try{
@@ -220,8 +228,13 @@ public class HairValleyBidController {
 	            byte[] fileData = mf.get(i).getBytes();
 	            FileOutputStream output = new FileOutputStream(savePath);
 	            output.write(fileData);
-	            
-	            url_list.add(savePath);
+	            if(isFaceImage){
+	            	url_list.add("uploads/UserFaceImages/"+ saveFileName);
+	            }
+	            else
+	            {
+	            	url_list.add("uploads/UserRefImages/"+ saveFileName);
+	            }
 	        }
 	    }
 		}catch(Exception ex){

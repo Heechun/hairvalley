@@ -39,7 +39,7 @@
 	
 	
 	<select id="selectBidBoardContent" parameterType="java.lang.Integer" resultType="hairvalleyBidVO">
-		select * from hairvalley_bid_board_list where text_num = #{text_num}
+		select text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, req_price, perm, cut, dye, add_request, title, hit from hairvalley_bid_board_list where text_num = #{text_num}
 	</select>
 	
 	<select id="selectBidBoardContentFaceImages" parameterType="java.lang.Integer" resultType="HairValleyBidImagesVO">
