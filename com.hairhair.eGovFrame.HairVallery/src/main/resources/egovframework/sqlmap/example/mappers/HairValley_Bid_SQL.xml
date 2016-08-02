@@ -2,9 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyBidMapper">
 
+	
+	<resultMap id="bidBoardContent" type="hairvalleyBidVO" >
+		<result property="text_num" column="text_num" />
+		<result property="user_id" column="user_id"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="req_price" column="req_price"/>
+		<result property="perm" column="perm"/>
+		<result property="cut" column="cut"/>
+		<result property="dye" column="dye"/>
+		<result property="add_request" column="add_request" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="title" column="title"/>
+		<result property="hit" column="hit"/>
+	</resultMap>
+	
+	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow}
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select>
 
@@ -38,7 +53,7 @@
 	</insert>
 	
 	
-	<select id="selectBidBoardContent" parameterType="java.lang.Integer" resultType="hairvalleyBidVO">
+	<select id="selectBidBoardContent" parameterType="java.lang.Integer" resultMap="bidBoardContent">
 		select text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, req_price, perm, cut, dye, add_request, title, hit from hairvalley_bid_board_list where text_num = #{text_num}
 	</select>
 	

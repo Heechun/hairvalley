@@ -31,16 +31,12 @@
 <link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tableDesign.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Lato:400,300"
 	rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
 	rel="stylesheet" type="text/css">
-<style type="text/css">
-	table tr td{
-		text-align:center;
-	}
-</style>
 <link href="assets/css/pgwslideshow.css" rel="stylesheet">
 <link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
 <script
@@ -102,35 +98,42 @@ $(document).ready(function() {
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-12">
-									<ul class="pgwSlideshow" style="padding:0px; margin:0px">
-										<c:forEach items="${bidBoardContentFaceImages}" var="images">
-											<li><img src="${images.image_url}"></li>
-										</c:forEach>
-									</ul>
-									<div class="table-responsive">
+									<div class="row">
+										<div class="col-md-6">
+											<ul class="pgwSlideshow" style="padding:0px; margin:0px">
+												<c:forEach items="${bidBoardContentFaceImages}" var="images">
+													<li><img src="${images.image_url}"></li>
+												</c:forEach>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<div class="table-responsive">
 										<table class="table table-bordered">
 											<tr>
 
-												<th>번호</th>
+												<th width="15%" id="contentHead">번호</th>
 
-												<td>${bidBoardContent.text_num}</td>
+												<td width="15%">${bidBoardContent.content_num}</td>
 
-												<th>작성자</th>
+												<th width="20%" id="contentHead">작성일</th>
+
+												<td width="50%">${bidBoardContent.reg_date}</td>
+
+											</tr>
+											<tr>
+												<th id="contentHead">작성자</th>
 
 												<td>${bidBoardContent.user_id}</td>
+												
 
-												<th>작성일</th>
-
-												<td>${bidBoardContent.reg_date}</td>
-
-												<th>조회수</th>
+												<th id="contentHead">조회수</th>
 
 												<td>${bidBoardContent.hit}</td>
 
 
 											</tr>
 											<tr>
-												<th colspan="2">요구 사항</th>
+												<th colspan="2" id="contentHead">요구 사항</th>
 												<td colspan="8">커트 : ${bidBoardContent.cut} <br /> 펌 :
 													${bidBoardContent.perm} <br /> 염색 : ${bidBoardContent.dye}
 												</td>
@@ -140,13 +143,23 @@ $(document).ready(function() {
 
 											<tr>
 
-												<th colspan="2">추가 요청 사항</th>
+												<th colspan="2" id="contentHead">추가 요청 사항</th>
 
 												<td colspan="8" style="text-align: left;">${bidBoardContent.add_request}</td>
 
 											</tr>
+											<tr>
+
+												<th colspan="2" id="contentHead">참고 사진 목록</th>
+
+												<td colspan="8" style="text-align: left;"><button class="btn btn-aqua" id="userRefImgBtn">확인하기</button></td>
+
+											</tr>
 										</table>
 									</div>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 						</div>

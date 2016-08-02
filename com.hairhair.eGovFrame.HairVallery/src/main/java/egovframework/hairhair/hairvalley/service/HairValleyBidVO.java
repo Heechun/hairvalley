@@ -15,6 +15,7 @@ public class HairValleyBidVO {
 	String add_request;
 	String title;
 	int hit;
+	int content_num;
 	
 
 	
@@ -106,4 +107,13 @@ public class HairValleyBidVO {
 		this.title = title;
 	}
 
+	public int getContent_num() {
+		return content_num;
+	}
+
+	public void setContent_num(int content_num) {
+		this.content_num = content_num;
+	}
+	
+	
 }

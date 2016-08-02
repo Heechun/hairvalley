@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/tableDesign.css" rel="stylesheet">
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
@@ -38,8 +39,6 @@
 		
 		#layer{position:absolute;top:40%;left:40%;width:400px;height:400px;margin:-150px 0 0 -194px;padding:28px 28px 0 28px;border:2px solid #555;background:#fff;font-size:12px;font-family:Tahoma, Geneva, sans-serif;color:#767676;line-height:normal;white-space:normal}
 	
-		.table {text-align:center;}
-		.table thead tr th {text-align:center;}
 	</style>
 </head>
 <body>
@@ -99,9 +98,9 @@
 					      	<c:forEach items="${bidBoardList}" var="bidBoardList">
 								<tr>
 					
-									<td>${bidBoardList.text_num}</td><!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
+									<td>${bidBoardList.content_num}</td><!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
 									
-									<td><a href="/sample/bid_selectBoardContent.do?text_num=${bidBoardList.text_num}">${bidBoardList.title}</a></td>
+									<td><a href="/sample/bid_selectBoardContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">${bidBoardList.title}</a></td>
 					
 									<td>${bidBoardList.user_id}</td>
 					

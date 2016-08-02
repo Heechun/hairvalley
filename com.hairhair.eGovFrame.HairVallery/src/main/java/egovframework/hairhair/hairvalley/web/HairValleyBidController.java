@@ -65,7 +65,6 @@ public class HairValleyBidController {
 	protected DefaultBeanValidator beanValidator;
 	
 	
-	
 	@RequestMapping(value = "/bid_boardList.do")
 	public String selectBidBoardList(ModelMap model, HttpServletRequest request)
 			throws Exception {
@@ -86,6 +85,11 @@ public class HairValleyBidController {
 
 		List<?> bidBoardList = hairvalleyBidService.selectBidBoardList(map);
 		int totalnum = hairvalleyBidService.selectBidBoardListCount();
+
+		for(int i=0; i< bidBoardList.size(); i++){
+			HairValleyBidVO vo = (HairValleyBidVO)bidBoardList.get(i);
+			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
 
 		int totalpage = totalnum / 10;
 		if (totalpage == 0) {
@@ -178,13 +182,15 @@ public class HairValleyBidController {
 		
 
 		int text_num = Integer.parseInt(request.getParameter("text_num"));
-
+		int content_num = Integer.parseInt(request.getParameter("content_num"));
 		
 		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
 		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
 		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
-
 		
+		bidBoardContent.setContent_num(content_num);
+		
+		System.out.println(bidBoardContent.getAdd_request());
 		model.addAttribute("bidBoardContent", bidBoardContent);
 		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
 		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
