@@ -11,5 +11,11 @@
 		SELECT seq, company_id, company_name, company_location, SALESMAN_NUM
 		FROM hairValley_company_list
 	</select>
-
+	
+	<select id="companySelectIntro" parameterType="String" resultType="HairValleyCompanyContentVO">
+		SELECT INTRO_TITLE as title, INTRO_CONTENT as content, COMPANY_NAME, COMPANY_ID
+		FROM hairValley_company_content
+		WHERE company_name = #{company_name}
+	</select>
+	
 </mapper>

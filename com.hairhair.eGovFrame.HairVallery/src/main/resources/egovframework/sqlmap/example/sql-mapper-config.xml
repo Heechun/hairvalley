@@ -10,8 +10,8 @@
 		<typeAlias alias="hairvalleyBidVO" type="egovframework.hairhair.hairvalley.service.HairValleyBidVO"/>
 		<typeAlias alias="hairvalleyBidInsertVO" type="egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO"/>
 		<typeAlias alias="HairValleyBidImagesVO" type="egovframework.hairhair.hairvalley.service.HairValleyBidImagesVO"/>
-		
 		<typeAlias alias="HairValleyCompanyReviewVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyReviewVO"/>
 		<typeAlias alias="HairValleyCompanyListVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO"/>
+		<typeAlias alias="HairValleyCompanyContentVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyContentVO"/>
     </typeAliases>
 </configuration>
