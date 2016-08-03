@@ -41,9 +41,9 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
-						<li><a href="pages-about-us.html">서비스 안내</a></li>
+						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
 						<li><a href="companyMain.do">업체 소개</a></li>
-						<li><a href="pages-faq.html">입찰게시판</a></li>
+						<li><a href="#">서비스안내</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
 				</div>
@@ -57,29 +57,15 @@
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
 				<div class="col-md-12">
-					<h2>업체 소개</h2>
+					<h2>업체 목록</h2>
 					<!-- Filter Buttons -->
-					<div class="portfolio-filter-container margin-top-20">
-						<ul class="portfolio-filter">
-							<li class="portfolio-filter-label label label-primary">
-								filter by:
-							</li>
-							<li>
-								<a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-default" data-filter=".code">Coding</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".design">Design</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".audio">Audio</a>
-							</li>
-							<li>
-								<a href="#"  class="btn btn-default"data-filter=".video">Video</a>
-							</li>
-						</ul>
+					<div>
+						<div class="input-group input-group-lg">
+					      <input type="text" class="form-control" placeholder="주소 검색" id="searchInput">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button" id="searchBtn"><i class="fa-search"></i>검색</button>
+					      </span>
+					    </div><!-- /input-group -->
 					</div>
 					<!-- End Filter Buttons -->
 				</div>
@@ -91,7 +77,7 @@
 								<div class="image-hover">
 									<a href="/sample/companyContent.do?company_name=${companyList.company_name}">
 										<figure>
-											<img src="assets/img/portfolio/image2.jpg" alt="image2">
+											<img src="${companyList.company_image}">
 											<div class="overlay">
 	<!-- 											<a class="expand" href="#">Image Link</a> -->
 											</div>
@@ -125,5 +111,18 @@
 <!-- Modernizr -->
 <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
+<script>
+$("#searchBtn").on("click", function(){
+	var msg = $("#searchInput").val();
+	location.href = "companySearchAddr.do?query="+msg;
+	
+	var alertMsg = "검색어 '"+msg+"'을(를) 검색합니다.";
+	
+	alert(alertMsg);
+	
+	$("#searchInput").val("");
+});
+</script>
+
 </body>
 </html>

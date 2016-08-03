@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- Title -->
-	<title>HairValley-업체소개</title>
+	<title>포트폴리오</title>
 	<!-- Meta -->
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="">
@@ -26,17 +26,6 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<link href="assets/css/pgwslideshow.css" rel="stylesheet">
 	<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
-<style>
-	hr { 
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-}
-</style>
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -69,51 +58,85 @@
 		<!-- === BEGIN CONTENT === -->
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
-				<!-- Side Column -->
-				<!-- Begin Sidebar Menu -->
-				<div class="col-md-3">
-					<ul class="list-group sidebar-nav" id="sidebar-nav">
-						<li class="list-group-item list-toggle">
-							<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
-								<ul id="collapse-typography" class="collapse">
-									<li><a href="companyContent.do?company_name=${company_name}">
-									<i class="fa-info-circle"></i>업체소개</a></li>
-									<li><a href="companyGroup.do">
-									<i class="fa-group"></i>조직구성원</a></li>
-								</ul>
-						</li>
-						<li class="list-group-item">
-							<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
-						</li>
-						<li class="list-group-item">
-							<a href="companyReview.do"><i class="fa-camera-retro"></i>이용후기</a>
-						</li>
-					</ul>
-				</div>
-				<!-- End Sidebar Menu -->
-				<!-- End Side Column -->
-					<!-- Main Column -->
-					<div class="row col-md-9">
-						<!-- Main Content -->
-						<h2><strong><i class="fa-asterisk"></i>${companyIntro.company_name}?</strong></h2>
-						<hr>
-						<h4>${companyIntro.title}</h4><br />
-						 <ul class="pgwSlideshow" style="padding:0px; margin:0px">
-							<c:forEach items="${companyIntroImageList}" var="images">
-								<li><img src="${images.image_url}"></li>
-							</c:forEach>
+				<!-- Main Column -->
+				<div class="col-md-12">
+					<!-- Side Column -->
+					<!-- Begin Sidebar Menu -->
+					<div class="col-md-3">
+						<ul class="list-group sidebar-nav" id="sidebar-nav">
+							<li class="list-group-item list-toggle">
+								<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
+									<ul id="collapse-typography" class="collapse">
+										<li><a href="companyContent.do?company_name=${company_name}">
+										<i class="fa-info-circle"></i>업체소개</a></li>
+										<li><a href="#">
+										<i class="fa-group"></i>조직구성원</a></li>
+									</ul>
+							</li>
+							<li class="list-group-item">
+								<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
+							</li>
+							<li class="list-group-item">
+								<a href="companyReview.do"><i class="fa-camera-retro"></i>이용후기</a>
+							</li>
 						</ul>
-						<br />
-						<p class="lead">${companyIntro.content}</p>
-						<!-- End Main Content -->
 					</div>
-					<a href="companyContentUpdate.do?title=${companyIntro.title}&content=${companyIntro.content}">
-		            	<button type="button" class="btn btn-blue pull-right" >수정하기</button>
-		            </a>
-					<!-- End Main Column -->
-				</div>
+					<!-- End Sidebar Menu -->
+					<!-- End Side Column -->
+					<!-- === BEGIN CONTENT === -->
+					<div class="col-md-7">
+						<h2>${company_name}의 포트폴리오</h2>
+						<!-- Filter Buttons -->
+						<div class="portfolio-filter-container margin-top-20">
+							<ul class="portfolio-filter">
+								<li class="portfolio-filter-label label label-primary">
+									필터 :
+								</li>
+								<li>
+									<a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
+								</li>
+								<li>
+									<a href="#" class="btn btn-default" data-filter=".man">남자</a>
+								</li>
+								<li>
+									<a href="#"  class="btn btn-default"data-filter=".woman">여자</a>
+								</li>
+							</ul>
+						</div>
+						<!-- End Filter Buttons -->
+					
+							<div class="portfolio-group col-md-10 margin-top-30 no-padding">
+								<div class="row">
+									<!-- Portfolio Item -->
+									<c:forEach var="portfolioList" items="${portfolioList}">
+										<div class="portfolio-item col-md-4 man">
+											<div class="image-hover">
+												<a href="/sample/companyPortfolioContent.do?company_name=${portfolioList.company_name}
+												&portfolio_title=${portfolioList.portfolio_title}
+												&portfolio_content=${portfolioList.portfolio_content}">
+													<figure>
+														<img src="${portfolioList.portfolio_image}">
+														<div class="overlay">
+														</div>
+													</figure>
+													<h3 class="margin-top-20">${portfolioList.portfolio_title}</h3>
+													<p class="margin-top-10">${portfolioList.portfolio_content}</p>
+												</a>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</c:forEach>
+									<!-- //Portfolio Item// -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- === END CONTENT === -->
 			</div>
+		</div>
 		<!-- === END CONTENT === -->
+
+<!-- <script type="text/javascript" src="js/myJs.js" type="text/javascript"></script> -->
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>

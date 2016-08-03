@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- Title -->
-	<title>HairValley-업체소개</title>
+	<title>Substance - Professional Bootstrap Template</title>
 	<!-- Meta -->
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="">
@@ -26,17 +26,6 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<link href="assets/css/pgwslideshow.css" rel="stylesheet">
 	<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
-<style>
-	hr { 
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-}
-</style>
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -54,9 +43,9 @@
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
-						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
-						<li><a href="companyMain.do">업체 소개</a></li>
-						<li><a href="#">서비스안내</a></li>
+						<li><a href="pages-about-us.html">서비스 안내</a></li>
+						<li><a href="companyMain.do">업체 목록</a></li>
+						<li><a href="pages-faq.html">입찰게시판</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
 				</div>
@@ -69,51 +58,73 @@
 		<!-- === BEGIN CONTENT === -->
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
-				<!-- Side Column -->
-				<!-- Begin Sidebar Menu -->
-				<div class="col-md-3">
-					<ul class="list-group sidebar-nav" id="sidebar-nav">
-						<li class="list-group-item list-toggle">
-							<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
-								<ul id="collapse-typography" class="collapse">
-									<li><a href="companyContent.do?company_name=${company_name}">
-									<i class="fa-info-circle"></i>업체소개</a></li>
-									<li><a href="companyGroup.do">
-									<i class="fa-group"></i>조직구성원</a></li>
-								</ul>
-						</li>
-						<li class="list-group-item">
-							<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
-						</li>
-						<li class="list-group-item">
-							<a href="companyReview.do"><i class="fa-camera-retro"></i>이용후기</a>
-						</li>
-					</ul>
-				</div>
-				<!-- End Sidebar Menu -->
-				<!-- End Side Column -->
-					<!-- Main Column -->
-					<div class="row col-md-9">
-						<!-- Main Content -->
-						<h2><strong><i class="fa-asterisk"></i>${companyIntro.company_name}?</strong></h2>
-						<hr>
-						<h4>${companyIntro.title}</h4><br />
-						 <ul class="pgwSlideshow" style="padding:0px; margin:0px">
-							<c:forEach items="${companyIntroImageList}" var="images">
-								<li><img src="${images.image_url}"></li>
-							</c:forEach>
-						</ul>
-						<br />
-						<p class="lead">${companyIntro.content}</p>
-						<!-- End Main Content -->
+				<!-- Main Column -->
+				<div class="col-md-12">
+					<div class="col-md-2">
+						<br/><br/>
+						<a href="companyContent.do?company_name=${company_name}">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 업체소개
+						</button>
+						</a><br/><br/>
+						<a href="companyPortfolio.do?company_name=${company_name}">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 포트폴리오
+						</button></a><br/><br/>
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 조직구성원
+						</button><br/><br/>
+						<a href="companyReview.do">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-picture-o"></i> 이용 후기
+						</button></a><br/><br/>
 					</div>
-					<a href="companyContentUpdate.do?title=${companyIntro.title}&content=${companyIntro.content}">
-		            	<button type="button" class="btn btn-blue pull-right" >수정하기</button>
-		            </a>
-					<!-- End Main Column -->
+					<div class="col-md-10">
+						<div id="accordion" class="panel-group">
+			                <div class="panel panel-default">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                        <a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse">
+			                            <b>${companyIntro.company_name}</b><br/>작성자 : ${companyIntro.company_id}
+			                        </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapse-One" class="accordion-body collapse in">
+			                        <div class="panel-body">
+			                            <div class="row">
+			                                <div class="col-md-5">
+				                                <ul class="pgwSlideshow" style="padding:0px; margin:0px">
+													<c:forEach items="${companyIntroImageList}" var="images">
+														<li><img src="${images.image_url}"></li>
+													</c:forEach>
+												</ul>
+			                                </div>
+			                                <div class="col-md-7">
+			                                	<div id="title">
+			                                		<h3 class="no-margin no-padding">${companyIntro.title}</h3>
+			                                	</div>
+			                                    <div id="content">
+			                                    	<p>${companyIntro.content}</p>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			            
+<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
+			            <a href="companyContentUpdate.do?title=${companyIntro.title}&content=${companyIntro.content}">
+			            	<button type="button" class="btn btn-blue pull-right" >수정하기</button>
+			            </a>
+					</div>
 				</div>
+				<!-- End Main Column -->
 			</div>
+		</div>
 		<!-- === END CONTENT === -->
+
+<!-- <script type="text/javascript" src="js/myJs.js" type="text/javascript"></script> -->
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>
