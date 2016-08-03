@@ -16,6 +16,7 @@ public class HairValleyBidVO {
 	String title;
 	int hit;
 	int content_num;
+	String regip;
 	
 
 	
@@ -114,6 +115,15 @@ public class HairValleyBidVO {
 	public void setContent_num(int content_num) {
 		this.content_num = content_num;
 	}
+
+	public String getRegip() {
+		return regip;
+	}
+
+	public void setRegip(String regip) {
+		this.regip = regip;
+	}
+	
 	
 	
 }

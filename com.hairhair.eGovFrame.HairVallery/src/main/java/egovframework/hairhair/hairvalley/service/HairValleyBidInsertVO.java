@@ -13,6 +13,7 @@ public class HairValleyBidInsertVO {
 	String dye;
 	String add_request;
 	int hit;
+	String regip;
 	
 	public String getTitle() {
 		return title;
@@ -78,6 +79,14 @@ public class HairValleyBidInsertVO {
 
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+
+	public String getRegip() {
+		return regip;
+	}
+
+	public void setRegip(String regip) {
+		this.regip = regip;
 	}
 
 	

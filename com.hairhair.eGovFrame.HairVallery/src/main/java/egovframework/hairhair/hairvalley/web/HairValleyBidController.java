@@ -152,7 +152,7 @@ public class HairValleyBidController {
 			hairvalley_bid_insertVO.setAdd_request(multiRequest.getParameter("add_request"));
 			hairvalley_bid_insertVO.setUser_id(multiRequest.getParameter("user_id"));
 			hairvalley_bid_insertVO.setHit(0);
-			
+			hairvalley_bid_insertVO.setRegip(request.getRemoteAddr());
 			int boardlist_retval = hairvalleyBidService.insertBidBoardData(hairvalley_bid_insertVO);
 			
 			System.out.println("boardlist결과 : " + boardlist_retval);
@@ -166,13 +166,17 @@ public class HairValleyBidController {
 				int userRef_retval = hairvalleyBidService.insertBidBoardUserRefImage(user_refImg.get(i).toString());
 				System.out.println("ref image 결과 :: ["+i+"] ==> " + userRef_retval);
 			}
+			
+			request.setAttribute("retval", boardlist_retval);
+			request.setAttribute("methodName", "insertBidContent");
+			
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
 		}
 	
 		
 		
-		return "hairvalley/bid_board/bid_boardWrite";
+		return "hairvalley/bid_board/isSuccess";
 	}
 
 	
@@ -187,10 +191,18 @@ public class HairValleyBidController {
 		
 		int text_num = Integer.parseInt(request.getParameter("text_num"));
 		int content_num = Integer.parseInt(request.getParameter("content_num"));
+		String regip = request.getRemoteAddr();
 		
-		hairvalleyBidService.updateBidBoardContentCount(text_num);
 		
 		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
+		
+		if(!regip.equals(bidBoardContent.getRegip())){         
+	        	
+			bidBoardContent.setRegip(regip);
+			bidBoardContent.setHit(bidBoardContent.getHit()+1);
+			hairvalleyBidService.updateBidBoardContentCount(bidBoardContent);
+	    }
+		
 		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
 		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
 		
@@ -218,9 +230,11 @@ public class HairValleyBidController {
 		int retval = hairvalleyBidService.deleteBidBoardContent(text_num);
 		
 		request.setAttribute("retval", retval);
+		request.setAttribute("methodName", "deleteBidContent");
+		
 		
 		System.out.println("삭제 리턴 값 : " + retval);
-		return "hairvalley/bid_board/deleteSuccess";
+		return "hairvalley/bid_board/isSuccess";
 	}
 	
 	

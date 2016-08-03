@@ -28,6 +28,6 @@ public interface HairValleyBidMapper {
 	
 	int deleteBidBoardContent(int text_num);
 	
-	int updateBidBoardContentCount(int text_num);
+	int updateBidBoardContentCount(HairValleyBidVO hairvallybidvo);
 	
 }
