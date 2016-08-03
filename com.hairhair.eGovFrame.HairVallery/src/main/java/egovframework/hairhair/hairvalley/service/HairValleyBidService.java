@@ -23,4 +23,6 @@ public interface HairValleyBidService {
 	List<?> selectBidBoardContentRefImages(int text_num) throws Exception;
 	
 	int deleteBidBoardContent(int text_num) throws Exception;
+
+	int updateBidBoardContentCount(int text_num)throws Exception;
 }

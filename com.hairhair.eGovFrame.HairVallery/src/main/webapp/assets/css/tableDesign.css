@@ -32,3 +32,12 @@ table tfoot td, table tfoot th, table tfoot tr {text-align: left; font: 120%  "L
     text-align: left;
     font-weight: normal;
 }
+
+
+
+
+#refImageList{
+	
+	    max-width: 17%;
+    border-radius: 30px;
+}

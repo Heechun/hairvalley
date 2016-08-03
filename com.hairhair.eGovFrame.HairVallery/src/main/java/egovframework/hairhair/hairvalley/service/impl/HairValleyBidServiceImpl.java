@@ -75,5 +75,11 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.deleteBidBoardContent(text_num);
 	}
+
+	@Override
+	public int updateBidBoardContentCount(int text_num) throws Exception{
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.updateBidBoardContentCount(text_num);
+	}
 	
 }
