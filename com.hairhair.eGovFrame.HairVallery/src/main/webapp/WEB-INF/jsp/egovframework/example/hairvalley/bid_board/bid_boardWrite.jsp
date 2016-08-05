@@ -163,6 +163,8 @@
 				 	 <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <form class="signup-page" enctype="multipart/form-data" action="/sample/bid_insertBoardData.do"  method="POST" >
+                        	<div class="color-red glyphicon glyphicon-info-sign"><strong> 수정이 불가능하므로 신중히 작성하시기 바랍니다.</strong></div>
+                            <br/><hr/>
                             <label><strong>제 목</strong>
                             	<span class="color-red">*</span>
                             </label>
@@ -189,6 +191,7 @@
 										<span class="color-red">*</span>
 									</label>
 									<input class="multi with-preview" name="user_faceImg" type="file" multiple="multiple"   onchange="readFaceImageURL(this);" />
+									<!--  <br/><button class="btn btn-aqua" id="myFaceImageCheckBtn">미리보기</button> -->
 								</div>
 							</div>
 							<hr>

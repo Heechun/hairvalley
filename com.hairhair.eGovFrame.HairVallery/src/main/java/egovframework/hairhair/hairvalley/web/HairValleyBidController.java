@@ -238,7 +238,21 @@ public class HairValleyBidController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/bid_updateBoardData.do")
+	public String updateBidBoardContent(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
+		
+		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
+		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
+		
+		model.addAttribute("bidBoardContent", bidBoardContent);
+		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
+		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
+		
+		return "hairvalley/bid_board/bid_boardUpdate";
+	}
 	
 	
 	

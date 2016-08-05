@@ -102,84 +102,96 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="row">
-										<div class="col-md-6">
-											<ul class="pgwSlideshow" style="padding:0px; margin:0px">
-												<c:forEach items="${bidBoardContentFaceImages}" var="images">
-													<li><img src="${images.image_url}"></li>
-												</c:forEach>
-											</ul>
-										</div>
 										<div id="textnum" style="display:none;">${bidBoardContent.text_num}</div>
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="table-responsive">
-										<table class="table table-bordered">
-											<tr>
-												
-												<th width="15%" id="contentHead">번호</th>
-
-												<td width="15%" id="data">${bidBoardContent.content_num}</td>
-
-												<th width="20%" id="contentHead">작성일</th>
-
-												<td width="50%">${bidBoardContent.reg_date}</td>
-
-											</tr>
-											<tr>
-												<th id="contentHead">작성자</th>
-
-												<td>${bidBoardContent.user_id}</td>
-												
-
-												<th id="contentHead">조회수</th>
-
-												<td>${bidBoardContent.hit}</td>
-
-
-											</tr>
-											<tr>
-												<th rowspan="3"  id="contentHead">요구 사항</th>
-												<th id="contentHead">커트</th>
-												<td colspan="8">${bidBoardContent.cut}</td>
-		
-											</tr>
-											<tr>
-												<th id="contentHead">펌</th>
-												<td colspan="8">${bidBoardContent.perm}</td>
-											</tr>
-											<tr>
-												<th id="contentHead">염색</th>
-												<td colspan="8">${bidBoardContent.dye}</td>
-												
-											</tr>
-											<tr>
-
-												<th colspan="2" id="contentHead">추가 요청 사항</th>
-
-												<td colspan="8" style="text-align: left;">${bidBoardContent.add_request}</td>
-
-											</tr>
-											<tr>
-
-												<th colspan="2" id="contentHead">참고 사진 목록</th>
-
-												<td colspan="8" style="text-align: left;">
-													<div class="row">
-														<div class="col-md-12">
-															<c:forEach items="${bidBoardContentRefImages}" var="images">
-																<a class="thumbBox" rel="lightbox-thumbs" href="${images.image_url}">
-																	<img id="refImageList" src="${images.image_url}" alt="">
-																	<i style="opacity: 0;"></i>
-																</a>
-															</c:forEach>
-															<br/><small>*사진을 클릭하면 확대됩니다.</small>
-														</div>														
-													</div>
-									
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th colspan="2" id="contentHead"></th>
+														</tr>
+														<tr>
+															<th><strong>고객사진 목록</strong></th>
+															<th><strong>참고사진 목록</strong></th>
+														</tr>
+													</thead>
+													<tbody>
+														
+														<tr>
+															<td width="35%" colspan="1" style="text-align: left; padding:0px;">
+																<ul class="pgwSlideshow" style="padding:0px; margin:0px">
+																	<c:forEach items="${bidBoardContentFaceImages}" var="images">
+																		<li><img src="${images.image_url}"></li>
+																	</c:forEach>
+																</ul>
+															</td>
+															<td width="35%" colspan="1" style="text-align: left; padding:0px;">
+																<ul class="pgwSlideshow" style="padding:0px; margin:0px">
+																	<c:forEach items="${bidBoardContentRefImages}" var="images">
+																		<li><img src="${images.image_url}"></li>
+																	</c:forEach>
+																</ul>
+															</td>
+														</tr>
+														<tr>
+															<th colspan="2" id="contentHead"></th>
+														</tr>
+													</tbody>
 													
-											</tr>
-										</table>
-									</div>
-										<button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do');" style="float:right; margin-top:10px;">글수정</button>
+												</table>
+											</div>
+										
+												<table class="table table-bordered">
+													<tr>
+
+														<th width="20%" id="contentHead">번호</th>
+
+														<td width="30%" id="data">${bidBoardContent.content_num}</td>
+
+														<th width="20%" id="contentHead">작성일</th>
+
+														<td width="30%">${bidBoardContent.reg_date}</td>
+
+													</tr>
+													<tr>
+														<th id="contentHead">작성자</th>
+
+														<td>${bidBoardContent.user_id}</td>
+
+
+														<th id="contentHead">조회수</th>
+
+														<td>${bidBoardContent.hit}</td>
+
+
+													</tr>
+													<tr>
+														<th rowspan="3" id="contentHead">요구 사항</th>
+														<th id="contentHead">커트</th>
+														<td colspan="8">${bidBoardContent.cut}</td>
+
+													</tr>
+													<tr>
+														<th id="contentHead">펌</th>
+														<td colspan="8">${bidBoardContent.perm}</td>
+													</tr>
+													<tr>
+														<th id="contentHead">염색</th>
+														<td colspan="8">${bidBoardContent.dye}</td>
+
+													</tr>
+													<tr>
+
+														<th colspan="2"  id="contentHead">추가 요청 사항</th>
+													
+														<td colspan="8"  style="text-align: left;">${bidBoardContent.add_request}</td>
+												
+													</tr>
+							
+												</table>
+											</div>
+
+											<!--  <button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-top:10px;">글수정</button>-->
 										<button class="btn btn-red" id="deleteContentBtn"  onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-right:10px; margin-top:10px;">글삭제</button>
 										<button class="btn btn-blue" onclick="move('/sample/bid_boardList.do');" style="float:right; margin-right:10px; margin-top:10px;">목록으로</button>
 										</div>
@@ -193,7 +205,7 @@
 						<div
 							class="blog-recent-comments panel panel-default margin-bottom-30">
 							<div class="panel-heading">
-								<h3>Comments</h3>
+								<h3>업체 제안 목록</h3>
 							</div>
 							<ul class="list-group">
 								<li class="list-group-item">

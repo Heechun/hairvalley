@@ -15,7 +15,7 @@ table thead th {background: #3A4856; padding: 15px 10px; color: #fff; text-align
 table tbody, table thead {border-left: 1px solid #EAECEE; border-right: 1px solid #EAECEE;}
 
 table tbody {border-bottom: 1px solid #EAECEE;}
-                      
+
 table tbody td, table tbody th {padding: 10px; background: url("td_back.gif") repeat-x; text-align: left;}
 
 table tbody tr {background: #F3F5F7;}
