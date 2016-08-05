@@ -42,7 +42,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
 						<li><a href="pages-about-us.html">서비스 안내</a></li>
-						<li><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="companyMain.do">업체 목록</a></li>
 						<li><a href="pages-faq.html">입찰게시판</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
@@ -57,24 +57,31 @@
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
-				<div class="col-md-12">
-					<div class="col-md-2">
-						<br/><br/>
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 업체소개
-						</button><br/><br/>
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 포토폴리오
-						</button><br/><br/>
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 조직구성원
-						</button><br/><br/>
-						<a href="companyReview.do">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 이용 후기
-						</button></a><br/><br/>
-					</div>
-					<div class="col-md-10">
+				
+					<!-- Side Column -->
+				<!-- Begin Sidebar Menu -->
+				<div class="col-md-3">
+					<ul class="list-group sidebar-nav" id="sidebar-nav">
+						<li class="list-group-item list-toggle">
+							<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
+								<ul id="collapse-typography" class="collapse">
+									<li><a href="companyContent.do?company_name=${company_name}">
+									<i class="fa-info-circle"></i>업체소개</a></li>
+									<li><a href="#">
+									<i class="fa-group"></i>조직구성원</a></li>
+								</ul>
+						</li>
+						<li class="list-group-item">
+							<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
+						</li>
+						<li class="list-group-item">
+							<a href="companyReview.do"><i class="fa-camera-retro"></i>이용후기</a>
+						</li>
+					</ul>
+				</div>
+				<!-- End Sidebar Menu -->
+				<!-- End Side Column -->
+					<div class="col-md-9">
 						<table border="1" width="700" cellpadding="2" cellspacing="2" align="center" bgcolor="gray" bordercolor="skyblue">
 							<tr height="30">
 								<td align="center" width="50">번 호</td>
@@ -107,7 +114,7 @@
 					</div>
 				</div>
 				<!-- End Main Column -->
-			</div>
+			
 		</div>
 		<!-- === END CONTENT === -->
 

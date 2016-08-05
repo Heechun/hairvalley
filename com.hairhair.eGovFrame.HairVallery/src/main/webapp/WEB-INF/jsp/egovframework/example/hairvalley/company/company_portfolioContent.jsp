@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- Title -->
-	<title>Substance - Professional Bootstrap Template</title>
+	<title>포트폴리오</title>
 	<!-- Meta -->
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="">
@@ -24,6 +24,8 @@
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+	<link href="assets/css/pgwslideshow.css" rel="stylesheet">
+	<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -58,13 +60,12 @@
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
 				<div class="col-md-12">
-					<div class="col-md-3">
+					<div class="col-md-2">
 						<br/><br/>
 						<a href="companyContent.do?company_name=${company_name}">
 						<button class="btn btn-primary" type="button">
 							<i class="fa fa-picture-o"></i> 업체소개
-						</button>
-						</a><br/><br/>
+						</button></a><br/><br/>
 						<a href="companyPortfolio.do?company_name=${company_name}">
 						<button class="btn btn-primary" type="button">
 							<i class="fa fa-picture-o"></i> 포트폴리오
@@ -77,31 +78,77 @@
 							<i class="fa fa-picture-o"></i> 이용 후기
 						</button></a><br/><br/>
 					</div>
-					<form action="companyContentUpdateImpl.do" method="post" id="myForm" enctype="multipart/form-data">
-						<div class="col-md-9">
-							<h2>업체소개 수정</h2><br />
-							<label for="title">제목</label>
-							<br />
-							<input type="text" name="title" id="title" value="${title}"/>
-							<br />
-							<label for="content">내용</label>
-							<br />
-							<textarea name="content" id="content" cols="70" rows="20">${content}</textarea>
-							<br />
-				        	<label for="company_intro_imgList">이미지 첨부</label>
-				        	<input name="company_intro_imgList" type="file" multiple="multiple"/>
-		<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
-							<button type="submit" class="btn btn-blue pull-right" >수정하기</button>
-				            <a href="javascript:history.go(-1)">
-				            	<button id="backBtn" type="button" class="btn btn-aqua pull-right" >뒤로가기</button>
-				            </a>
-			            </div>
-		            </form>  
+			<!-- Thumbs Gallery -->
+				<div class="col-md-10 margin-bottom-20">
+					<h3 class="margin-bottom-10">포트폴리오</h3>
+					<div class="thumbs-gallery">
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image1.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image2.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image3.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image4.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image6.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image7.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image8.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image8.jpg" alt="image8.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image9.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image9.jpg" alt="image9.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image92.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image92.jpg" alt="image92.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image94.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image94.jpg" alt="image94.jpg">
+						<i></i></a>
+						
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image95.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image95.jpg" alt="image95.jpg">
+						<i></i></a>
+						
+						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image96.jpg">
+							<img src="assets/img/thumbsgallery/thumbs/image96.jpg" alt="image96.jpg">
+						<i></i></a>
+						
+						</div>			<div class="clearfix"></div>
+					</div>
+					<!-- End Thumbs Gallery -->
 				</div>
 			</div>
-			<!-- End Main Column -->
 		</div>
-	<!-- === END CONTENT === -->
+		<!-- === END CONTENT === -->
+
 
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
@@ -118,5 +165,6 @@
 <!-- Modernizr -->
 <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
+
 </body>
 </html>

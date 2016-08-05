@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="egovframework.hairhair.hairvalley.service.impl.CompanyMapper">
+<mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyCompanyMapper">
 
 	<select id="reviewSelectList" resultType="HairValleyCompanyReviewVO">
 		SELECT *
@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="companySelectList" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, SALESMAN_NUM
+		SELECT seq, company_id, company_name, company_location, company_image
 		FROM hairValley_company_list
 	</select>
 	
@@ -16,6 +16,40 @@
 		SELECT INTRO_TITLE as title, INTRO_CONTENT as content, COMPANY_NAME, COMPANY_ID
 		FROM hairValley_company_content
 		WHERE company_name = #{company_name}
+	</select>
+	<update id="companyIntroUpdate" parameterType="HairValleyCompanyContentVO">
+		UPDATE hairValley_company_content
+		SET INTRO_TITLE=#{title}, INTRO_CONTENT=#{content}
+		WHERE COMPANY_NAME=#{company_name}
+	</update>
+	
+	<insert id="companyIntroImageInsert" parameterType="HairValleyCompanyImagesVO">
+		insert into hairvalley_company_images
+		values (COMPANY_IMAGE_SEQ.nextval, #{company_name}, #{image_type}, #{image_url}, 0)
+	</insert>
+	
+	<update id="companyFirstImageUpdate" parameterType="HairValleyCompanyListVO">
+		UPDATE hairValley_company_list
+		SET COMPANY_IMAGE = #{company_image}
+		WHERE COMPANY_NAME = #{company_name}
+	</update>
+	
+	<select id="companyIntroImageSelect" parameterType="String" resultType="HairValleyCompanyImagesVO">
+		SELECT company_name, image_type, image_url
+		FROM hairValley_company_images
+		WHERE company_name = #{company_name} AND IMAGE_TYPE = 'intro'
+	</select>
+	
+	<select id="companyPortfolioSelect" parameterType="String" resultType="HairValleyCompanyPortfolioVO">
+		SELECT idx, company_name, portfolio_title, portfolio_content, portfolio_image
+		FROM hairValley_company_portfolio
+		where COMPANY_NAME =#{company_name} 
+	</select>
+	
+	<select id="companySearchList" parameterType="String" resultType="HairValleyCompanyListVO">
+		SELECT seq, company_id, company_name, company_location, company_image
+		FROM hairValley_company_list
+		WHERE COMPANY_LOCATION LIKE '%'||#{query}||'%'
 	</select>
 	
 </mapper>
