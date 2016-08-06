@@ -52,17 +52,20 @@
 
 					<form class="navbar-form" action="/sample/hairvalley_login.do" method="post">
 						<div class="form-group" style="margin-bottom:1px;">
-							<input type="text" name="user_id" placeholder="ID or 사업자번호" class="form-control">
+							<input type="text" name="user_id" placeholder="ID or 사업자번호" class="form-control" style="width:auto;">
 						</div>
 						<div class="form-group">
-							<input type="password" name="user_pw" placeholder="Password" class="form-control">
+							<input type="password" name="user_pw" placeholder="Password" class="form-control" style="width:auto;">
 						</div>
 						<button class="btn btn-sm btn-blue" type="submit">
 							<i class="fa fa-user"></i> Login
 						</button>
-						<button class="btn btn-sm btn-aqua" onclick="move('/sample/hairvalley_register.do');">
-							<i class="fa fa-sign-in"></i> Register
+						<button class="btn btn-sm btn-aqua" type="button"
+							onclick="move('/sample/hairvalley_register.do');">
+							<i class="fa fa-sign-in"></i> Join
 						</button>
+
+
 					</form>
 					
 				</div>
