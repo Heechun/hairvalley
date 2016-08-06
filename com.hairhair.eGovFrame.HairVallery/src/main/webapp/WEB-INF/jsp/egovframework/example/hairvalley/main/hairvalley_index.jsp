@@ -33,7 +33,7 @@
 	<div id="header" class="container">
 		<div class="row">
 			<!-- Logo -->
-			<div class="logo">
+			<div class="col-md-2">
 				<a href="/sample//hairvalley_main.do" title=""> <img
 					src="assets/hairvalley_images/logo.PNG" alt="Logo"
 					style="padding-top: 26px;" />
@@ -41,17 +41,31 @@
 			</div>
 			<!-- End Logo -->
 			<!-- Top Menu -->
-			<div class="col-md-12 margin-top-30">
-				<div id="hornav" class="pull-right visible-lg">
+			<div class="col-md-10 margin-top-30">
+				<div id="hornav" class="visible-lg">
 					<ul class="nav navbar-nav">
-						<li><a href="/sample/hairvalley_main.do">Home</a></li>
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
 						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="#">고객센터</a></li>
-						<!-- 						<li><a href="#">Blog</a></li> -->
-						<!-- 						<li><a href="#">Contact</a></li> -->
 					</ul>
+
+					<form class="navbar-form">
+						<div class="form-group" style="margin-bottom:1px;">
+							<input type="text" placeholder="ID or 사업자번호" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="password" placeholder="Password"
+								class="form-control">
+						</div>
+						<button class="btn btn-sm btn-blue" type="submit">
+							<i class="fa fa-user"></i> Login
+						</button>
+						<button class="btn btn-sm btn-aqua">
+							<i class="fa fa-sign-in"></i> Register
+						</button>
+					</form>
+					
 				</div>
 			</div>
 			<div class="clear"></div>

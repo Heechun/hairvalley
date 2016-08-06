@@ -31,7 +31,8 @@
 <link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tableDesign.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tableDesign.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Lato:400,300"
 	rel="stylesheet" type="text/css">
@@ -40,15 +41,12 @@
 <link href="assets/css/pgwslideshow.css" rel="stylesheet">
 <link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
 <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $('.pgwSlideshow').pgwSlideshow();
+		$('.pgwSlideshow').pgwSlideshow();
 	});
-	
-	
-	
 </script>
 </head>
 <body>
@@ -79,11 +77,11 @@
 			<!-- End Top Menu -->
 		</div>
 	</div>
-		<!-- === BEGIN CONTENT === -->
+	<!-- === BEGIN CONTENT === -->
 	<div id="content" class="container">
 		<div class="row margin-vert-30">
 			<!-- Side Column -->
-			
+
 			<!-- Main Column -->
 			<div class="col-md-12">
 				<div class="blog-post">
@@ -102,7 +100,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="row">
-										<div id="textnum" style="display:none;">${bidBoardContent.text_num}</div>
+										<div id="textnum" style="display: none;">${bidBoardContent.text_num}</div>
 										<div class="col-md-12">
 											<div class="table-responsive">
 												<table class="table table-bordered">
@@ -116,18 +114,24 @@
 														</tr>
 													</thead>
 													<tbody>
-														
+
 														<tr>
-															<td width="35%" colspan="1" style="text-align: left; padding:0px;">
-																<ul class="pgwSlideshow" style="padding:0px; margin:0px">
-																	<c:forEach items="${bidBoardContentFaceImages}" var="images">
+															<td width="35%" colspan="1"
+																style="text-align: left; padding: 0px;">
+																<ul class="pgwSlideshow"
+																	style="padding: 0px; margin: 0px">
+																	<c:forEach items="${bidBoardContentFaceImages}"
+																		var="images">
 																		<li><img src="${images.image_url}"></li>
 																	</c:forEach>
 																</ul>
 															</td>
-															<td width="35%" colspan="1" style="text-align: left; padding:0px;">
-																<ul class="pgwSlideshow" style="padding:0px; margin:0px">
-																	<c:forEach items="${bidBoardContentRefImages}" var="images">
+															<td width="35%" colspan="1"
+																style="text-align: left; padding: 0px;">
+																<ul class="pgwSlideshow"
+																	style="padding: 0px; margin: 0px">
+																	<c:forEach items="${bidBoardContentRefImages}"
+																		var="images">
 																		<li><img src="${images.image_url}"></li>
 																	</c:forEach>
 																</ul>
@@ -137,201 +141,154 @@
 															<th colspan="2" id="contentHead"></th>
 														</tr>
 													</tbody>
-													
-												</table>
-											</div>
-										
-												<table class="table table-bordered">
-													<tr>
 
-														<th width="20%" id="contentHead">번호</th>
-
-														<td width="30%" id="data">${bidBoardContent.content_num}</td>
-
-														<th width="20%" id="contentHead">작성일</th>
-
-														<td width="30%">${bidBoardContent.reg_date}</td>
-
-													</tr>
-													<tr>
-														<th id="contentHead">작성자</th>
-
-														<td>${bidBoardContent.user_id}</td>
-
-
-														<th id="contentHead">조회수</th>
-
-														<td>${bidBoardContent.hit}</td>
-
-
-													</tr>
-													<tr>
-														<th rowspan="3" id="contentHead">요구 사항</th>
-														<th id="contentHead">커트</th>
-														<td colspan="8">${bidBoardContent.cut}</td>
-
-													</tr>
-													<tr>
-														<th id="contentHead">펌</th>
-														<td colspan="8">${bidBoardContent.perm}</td>
-													</tr>
-													<tr>
-														<th id="contentHead">염색</th>
-														<td colspan="8">${bidBoardContent.dye}</td>
-
-													</tr>
-													<tr>
-
-														<th colspan="2"  id="contentHead">추가 요청 사항</th>
-													
-														<td colspan="8"  style="text-align: left;">${bidBoardContent.add_request}</td>
-												
-													</tr>
-							
 												</table>
 											</div>
 
-											<!--  <button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-top:10px;">글수정</button>-->
-										<button class="btn btn-red" id="deleteContentBtn"  onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-right:10px; margin-top:10px;">글삭제</button>
-										<button class="btn btn-blue" onclick="move('/sample/bid_boardList.do');" style="float:right; margin-right:10px; margin-top:10px;">목록으로</button>
+											<table class="table table-bordered">
+												<tr>
+
+													<th width="20%" id="contentHead">번호</th>
+
+													<td width="30%" id="data">${bidBoardContent.content_num}</td>
+
+													<th width="20%" id="contentHead">작성일</th>
+
+													<td width="30%">${bidBoardContent.reg_date}</td>
+
+												</tr>
+												<tr>
+													<th id="contentHead">작성자</th>
+
+													<td>${bidBoardContent.user_id}</td>
+
+
+													<th id="contentHead">조회수</th>
+
+													<td>${bidBoardContent.hit}</td>
+
+
+												</tr>
+												<tr>
+													<th rowspan="3" id="contentHead">요구 사항</th>
+													<th id="contentHead">커트</th>
+													<td colspan="8">${bidBoardContent.cut}</td>
+
+												</tr>
+												<tr>
+													<th id="contentHead">펌</th>
+													<td colspan="8">${bidBoardContent.perm}</td>
+												</tr>
+												<tr>
+													<th id="contentHead">염색</th>
+													<td colspan="8">${bidBoardContent.dye}</td>
+
+												</tr>
+												<tr>
+
+													<th colspan="2" id="contentHead">추가 요청 사항</th>
+
+													<td colspan="8" style="text-align: left;">${bidBoardContent.add_request}</td>
+
+												</tr>
+
+											</table>
 										</div>
+
+										<!--  <button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-top:10px;">글수정</button>-->
+										<button class="btn btn-red" id="deleteContentBtn"
+											onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');"
+											style="float: right; margin-right: 10px; margin-top: 10px;">글삭제</button>
+										<button class="btn btn-blue"
+											onclick="move('/sample/bid_boardList.do');"
+											style="float: right; margin-right: 10px; margin-top: 10px;">목록으로</button>
 									</div>
-									
 								</div>
+
 							</div>
 						</div>
-						<!-- End About the Author -->
-						<!-- Comments -->
-						<div
-							class="blog-recent-comments panel panel-default margin-bottom-30">
-							<div class="panel-heading">
-								<h3>업체 제안 목록</h3>
-							</div>
-							<ul class="list-group">
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-md-2 profile-thumb">
-											<a href="#"> <img class="media-object"
-												src="assets/img/profiles/99.jpg" alt="">
-											</a>
-										</div>
-										<div class="col-md-10">
-											<h4>Great Article</h4>
-											<p>Donec id erum quidem rerumd facilis est et expedita
-												distinctio lorem ipsum dolorlit non mi portas sats eget
-												metus. Fusce dapibus, tellus ac cursus commodo, tortor
-												mauris condimentum nibh, ut fermentum massa justo sit amet
-												risus. Etiam porta sem malesuada magna..</p>
-											<span class="date"><i class="fa fa-clock-o"></i> 5
-												hours ago</span>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-md-2 profile-thumb">
-											<a href="#"> <img class="media-object"
-												src="assets/img/profiles/53.jpg" alt="">
-											</a>
-										</div>
-										<div class="col-md-10">
-											<h4>A quick question</h4>
-											<p>At vero eos et accusam et justo duo dolores et ea
-												rebum. Stet clita kasd gubergren, no sea takimata sanctus
-												est Lorem ipsum dolor sit amet.</p>
-											<p>Donec id erum quidem rerumd facilis est et expedita
-												distinctio lorem ipsum dolorlit non mi portas sats eget
-												metus. Fusce dapibus, tellus ac cursus commodo, tortor
-												mauris condimentum nibh, ut fermentum massa justo sit amet
-												risus. Etiam porta sem malesuada magna.</p>
-											<span class="date"><i class="fa fa-clock-o"></i> 12
-												May 2013</span>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-md-2 profile-thumb">
-											<a href="#"> <img class="media-object"
-												src="assets/img/profiles/37.jpg" alt="">
-											</a>
-										</div>
-										<div class="col-md-10">
-											<h4>Thank you!</h4>
-											<p>At vero eos et accusam et justo duo dolores et ea
-												rebum. Stet clita kasd gubergren, no sea takimata sanctus
-												est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-												consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-												invidunt ut labore et dolore magna aliquyam erat, sed diam
-												voluptua.</p>
-											<span class="date"><i class="fa fa-clock-o"></i> 10
-												May 2013</span>
-										</div>
-									</div>
-								</li>
-
-
-								<!-- Comment Form -->
-								<li class="list-group-item">
-									<div class="blog-comment-form">
-										<div class="row margin-top-20">
-											<div class="col-md-12">
-												<div class="pull-left">
-													<h3>Leave a Comment</h3>
-												</div>
-											</div>
-										</div>
-										<div class="row margin-top-20">
-											<div class="col-md-12">
-												<form>
-													<label>Name</label>
-													<div class="row margin-bottom-20">
-														<div class="col-md-7 col-md-offset-0">
-															<input class="form-control" type="text">
-														</div>
-													</div>
-
-													<label>Email <span>*</span></label>
-													<div class="row margin-bottom-20">
-														<div class="col-md-7 col-md-offset-0">
-															<input class="form-control" type="text">
-														</div>
-													</div>
-
-													<label>Message</label>
-													<div class="row margin-bottom-20">
-														<div class="col-md-11 col-md-offset-0">
-															<textarea class="form-control" rows="8"></textarea>
-														</div>
-													</div>
-
-													<p>
-														<button class="btn btn-primary" type="submit">Send
-															Message</button>
-													</p>
-												</form>
-											</div>
-										</div>
-									</div>
-								</li>
-								<!-- End Comment Form -->
-							</ul>
-
-						</div>
-						<!-- End Comments -->
 					</div>
+					<!-- End About the Author -->
+					<!-- Comments -->
+					<div
+						class="blog-recent-comments panel panel-default margin-bottom-30">
+						<div class="panel-heading">
+							<h3>업체 제안 목록</h3>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-md-2 profile-thumb">
+										<a href="#"> <img class="media-object"
+											src="assets/img/profiles/99.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-md-10">
+										<h4>Great Article</h4>
+										<p>Donec id erum quidem rerumd facilis est et expedita
+											distinctio lorem ipsum dolorlit non mi portas sats eget
+											metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+											condimentum nibh, ut fermentum massa justo sit amet risus.
+											Etiam porta sem malesuada magna..</p>
+										<span class="date"><i class="fa fa-clock-o"></i> 5
+											hours ago</span>
+									</div>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-md-2 profile-thumb">
+										<a href="#"> <img class="media-object"
+											src="assets/img/profiles/53.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-md-10">
+										<h4>A quick question</h4>
+										<p>At vero eos et accusam et justo duo dolores et ea
+											rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+											Lorem ipsum dolor sit amet.</p>
+										<p>Donec id erum quidem rerumd facilis est et expedita
+											distinctio lorem ipsum dolorlit non mi portas sats eget
+											metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+											condimentum nibh, ut fermentum massa justo sit amet risus.
+											Etiam porta sem malesuada magna.</p>
+										<span class="date"><i class="fa fa-clock-o"></i> 12 May
+											2013</span>
+									</div>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-md-2 profile-thumb">
+										<a href="#"> <img class="media-object"
+											src="assets/img/profiles/37.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-md-10">
+										<h4>Thank you!</h4>
+										<p>At vero eos et accusam et justo duo dolores et ea
+											rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+											Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+											consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+											invidunt ut labore et dolore magna aliquyam erat, sed diam
+											voluptua.</p>
+										<span class="date"><i class="fa fa-clock-o"></i> 10 May
+											2013</span>
+									</div>
+								</div>
+							</li>
 
+						</ul>
+					</div>
 				</div>
 			</div>
-			<!-- End Blog Post -->
-
-		
 		</div>
 	</div>
+
 	<!-- End Main Column -->
 
 	<!-- === END CONTENT === -->
-	
+
 	<!-- Footer Menu -->
 	<div id="footer">
 		<div class="container">
