@@ -29,6 +29,21 @@
 			alert("게시물이 등록되지 못했습니다.");
 			history.back();
 		</script>
+		<% 
+	}
+	
+	
+	if(retval == 1 && methodName.equals("login")){%>
+		<script>
+			alert("로그인 되었습니다.");
+			location.href="/sample/hairvalley_main.do";
+		</script>
+
+	}else{%>
+		<script>
+			alert("아이디 혹은 비밀번호를 확인하세요.");
+			history.back();
+		</script>
 	
 <% 
 }

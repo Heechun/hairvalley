@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyCommonMapper">
+
+
+	<select id="selectUserLogin" parameterType="HairValleyUserVO" resultType="java.lang.Integer">
+		select count(*) from hairvalley_user_list where user_id = #{user_id} and user_pw = #{user_pw}
+	</select>
+	
+	<insert id="insertUserRegister" parameterType="HairValleyUserVO" >
+ 
+    INSERT INTO hairvalley_user_list 
+    		(idx, user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex)
+	VALUES (HAIRVALLEY_USER_LIST_SEQ.nextval, #{user_id}, #{user_pw} ,#{user_name},#{user_email},#{user_phone},#{user_loc},#{user_sex})
+
+	</insert>
+</mapper>

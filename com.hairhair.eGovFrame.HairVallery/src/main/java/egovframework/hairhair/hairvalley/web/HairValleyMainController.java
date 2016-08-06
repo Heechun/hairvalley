@@ -1,16 +1,25 @@
 package egovframework.hairhair.hairvalley.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidService;
+import egovframework.hairhair.hairvalley.service.HairValleyCommonService;
+import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
+import egovframework.hairhair.hairvalley.service.impl.HairValleyCommonServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 @Controller
 public class HairValleyMainController {
+
+	/** EgovSampleService */
+	@Resource(name = "hairvalleyCommonService")
+	private HairValleyCommonService hairvalleyCommonService = new HairValleyCommonServiceImpl();
 
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
@@ -25,5 +34,43 @@ public class HairValleyMainController {
 
 		return "hairvalley/main/hairvalley_index";
 	}
+	
+	@RequestMapping(value = "/hairvalley_login.do")
+	public String login(ModelMap model, HttpServletRequest request) throws Exception {
 
+		
+		String user_id, user_pw;
+		user_id = request.getParameter("user_id");
+		user_pw = request.getParameter("user_pw");
+		
+		int retval = hairvalleyCommonService.selectUserLogin(user_id, user_pw);
+		
+		request.setAttribute("methodName", "login");
+		request.setAttribute("retval", retval);
+		
+		return "hairvalley/bid_board/isSuccess";
+	}
+	
+	@RequestMapping(value = "/hairvalley_register.do")
+	public String register(ModelMap model, HttpServletRequest request) throws Exception {
+
+		String user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex;
+		user_id = request.getParameter("user_id");
+		user_pw = request.getParameter("user_pw");
+		user_name = request.getParameter("user_name");
+		user_email = request.getParameter("user_email");
+		user_phone = request.getParameter("user_phone");
+		user_loc = request.getParameter("user_loc");
+		user_sex = request.getParameter("user_sex");
+
+		
+		int retval = hairvalleyCommonService.insertUserRegister(user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex);
+		
+		
+		request.setAttribute("methodName", "login");
+		request.setAttribute("retval", retval);
+		
+		return "hairvalley/bid_board/isSuccess";
+	}
+	
 }
