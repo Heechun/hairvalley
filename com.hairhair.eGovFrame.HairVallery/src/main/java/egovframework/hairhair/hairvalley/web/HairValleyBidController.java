@@ -149,7 +149,7 @@ public class HairValleyBidController {
 			hairvalley_bid_insertVO.setPerm(multiRequest.getParameter("perm"));
 			hairvalley_bid_insertVO.setCut(multiRequest.getParameter("cut"));
 			hairvalley_bid_insertVO.setDye(multiRequest.getParameter("dye"));
-			hairvalley_bid_insertVO.setAdd_request(multiRequest.getParameter("add_request"));
+			hairvalley_bid_insertVO.setAdd_request(multiRequest.getParameter("add_request").replace("\r\n", "<br>"));
 			hairvalley_bid_insertVO.setUser_id(multiRequest.getParameter("user_id"));
 			hairvalley_bid_insertVO.setHit(0);
 			hairvalley_bid_insertVO.setRegip(request.getRemoteAddr());

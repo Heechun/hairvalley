@@ -19,7 +19,7 @@
 	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select>
 
