@@ -153,15 +153,9 @@
 							<h3 class="panel-title">입찰 게시판</h3>
 						</div>
 						<div class="panel-body">
-							<div class="row margin-vert-40">
+							<div class="row margin-vert-10">
 								<div class="col-md-12">
-									<form class="form-search" action="#">
-										<div class="input-append pull-right">
-											<input type="text" class="span2 search-query"
-												style="color: black;">
-											<button type="submit" class="btn btn-primary">Search</button>
-										</div>
-									</form>
+									
 									<div class="table-responsive">
 										<table class="table table-bordered" style="margin-top:44px;">
 											<thead>

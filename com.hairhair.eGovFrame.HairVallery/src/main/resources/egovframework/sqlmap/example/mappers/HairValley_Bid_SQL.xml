@@ -74,13 +74,12 @@
 	
 	<insert id="insertBidOffer" parameterType="HairValleyBidOfferVO" >
 
-		insert into hairvalley_bid_offer_list (idx, company_id, text_num, offer_price, add_offer)
-		values (HAIRVALLEY_BID_OFFER_LIST_SEQ.nextval, #{company_id}, #{text_num}, #{offer_price}, #{add_offer})
-
+		insert into hairvalley_bid_offer_list (idx, company_id, text_num, offer_price, add_offer, reg_date)
+		values (HAIRVALLEY_BID_OFFER_LIST_SEQ.nextval, #{company_id}, #{text_num}, #{offer_price}, #{add_offer}, SYSDATE)
 	</insert>
 	
 	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultType="HairValleyBidOfferVO">
-		select company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer 
+		select company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
 		from hairvalley_bid_offer_list offer, hairvalley_company_list company
 		where offer.text_num = #{text_num} and offer.company_id = company.company_id
 	</select>

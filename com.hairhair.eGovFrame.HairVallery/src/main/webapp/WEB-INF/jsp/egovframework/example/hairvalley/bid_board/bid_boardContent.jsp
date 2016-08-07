@@ -279,7 +279,7 @@
 													</div>
 												</div>	
 												<span class="label label-lg label-primary" type="span">
-													<i class="fa fa-clock-o"> 5 hours ago</i>
+													<i class="fa fa-clock-o">${bidBoardOffers.reg_date}</i>
 												</span>
 											</div>
 										</div>

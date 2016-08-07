@@ -7,7 +7,8 @@ public class HairValleyBidOfferVO {
 	int text_num;
 	int offer_price;
 	String add_offer;
-		
+	String reg_date;
+	
 	public String getCompany_name() {
 		return company_name;
 	}
@@ -43,6 +44,12 @@ public class HairValleyBidOfferVO {
 	}
 	public void setAdd_offer(String add_offer) {
 		this.add_offer = add_offer;
+	}
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 	
 		
