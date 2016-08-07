@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -80,6 +81,18 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	public int updateBidBoardContentCount(HairValleyBidVO hairvallybidvo) throws Exception{
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.updateBidBoardContentCount(hairvallybidvo);
+	}
+
+	@Override
+	public int insertBidOffer(HairValleyBidOfferVO hairvalley_bid_offer_vo) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.insertBidOffer(hairvalley_bid_offer_vo);
+	}
+
+	@Override
+	public List<?> selectBidContentOffers(int text_num) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectBidContentOffers(text_num);
 	}
 	
 }

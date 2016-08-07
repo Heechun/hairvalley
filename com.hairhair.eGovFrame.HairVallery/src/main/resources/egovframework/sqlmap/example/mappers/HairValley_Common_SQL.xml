@@ -10,8 +10,8 @@
 	<insert id="insertUserRegister" parameterType="HairValleyUserVO" >
  
     INSERT INTO hairvalley_user_list 
-    		(idx, user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex)
-	VALUES (HAIRVALLEY_USER_LIST_SEQ.nextval, #{user_id}, #{user_pw} ,#{user_name},#{user_email},#{user_phone},#{user_loc},#{user_sex})
+    		(idx, user_id, user_pw, user_name, user_email, user_phone, user_loc)
+	VALUES (HAIRVALLEY_USER_LIST_SEQ.nextval, #{user_id}, #{user_pw} ,#{user_name},#{user_email},#{user_phone},#{user_loc})
 
 	</insert>
 </mapper>

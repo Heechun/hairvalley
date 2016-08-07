@@ -26,5 +26,8 @@ public interface HairValleyBidService {
 
 	int updateBidBoardContentCount(HairValleyBidVO hairvallybidvo)throws Exception;
 	
+	int insertBidOffer(HairValleyBidOfferVO hairvalley_bid_offer_vo) throws Exception;
+	
+	List<?> selectBidContentOffers(int text_num) throws Exception;
 	
 }

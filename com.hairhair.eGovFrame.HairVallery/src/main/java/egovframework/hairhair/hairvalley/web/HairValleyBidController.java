@@ -47,7 +47,9 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 
 
+
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
@@ -206,14 +208,15 @@ public class HairValleyBidController {
 		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
 		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
 		
-		
+		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentOffers(text_num);
+				
 		bidBoardContent.setContent_num(content_num);
 		
-		System.out.println(bidBoardContent.getAdd_request());
+	
 		model.addAttribute("bidBoardContent", bidBoardContent);
 		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
 		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
-		
+		model.addAttribute("bidBoardOffers", bidBoardOffers);		
 		
 		return "hairvalley/bid_board/bid_boardContent";
 	}
@@ -232,8 +235,7 @@ public class HairValleyBidController {
 		request.setAttribute("retval", retval);
 		request.setAttribute("methodName", "deleteBidContent");
 		
-		
-		System.out.println("삭제 리턴 값 : " + retval);
+	
 		return "hairvalley/bid_board/isSuccess";
 	}
 	
@@ -255,6 +257,37 @@ public class HairValleyBidController {
 	}
 	
 	
+
+	@RequestMapping(value = "/bid_boardOffer.do")
+	public String bidBoardOffer(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		request.setAttribute("text_num", request.getParameter("text_num"));
+		request.setAttribute("content_num", request.getParameter("content_num"));
+		
+		return "hairvalley/bid_board/bid_boardOffer";
+	}
+	
+	@RequestMapping(value = "/bid_boardOfferInsert.do")
+	public String bidBoardOfferInsert(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+	
+		
+		HairValleyBidOfferVO hairvalley_bid_offer_vo = new HairValleyBidOfferVO();
+		hairvalley_bid_offer_vo.setCompany_id(request.getParameter("company_id"));
+		hairvalley_bid_offer_vo.setText_num(text_num);
+		hairvalley_bid_offer_vo.setOffer_price(Integer.parseInt(request.getParameter("offer_price")));
+		hairvalley_bid_offer_vo.setAdd_offer(request.getParameter("add_offer").replace("\r\n", "<br>"));
+		
+		int retval = hairvalleyBidService.insertBidOffer(hairvalley_bid_offer_vo);
+		
+		request.setAttribute("retval", retval);
+		request.setAttribute("methodName", "insertOffer");
+		request.setAttribute("text_num", text_num);
+		request.setAttribute("content_num", request.getParameter("content_num"));
+		
+		return "hairvalley/bid_board/isSuccess";
+	}
 	
 	/*
 	 * insertBidBoardData에서 사용하는 업로드 함수

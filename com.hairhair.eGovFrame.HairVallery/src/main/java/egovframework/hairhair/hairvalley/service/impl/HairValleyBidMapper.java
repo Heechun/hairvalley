@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
@@ -30,4 +31,7 @@ public interface HairValleyBidMapper {
 	
 	int updateBidBoardContentCount(HairValleyBidVO hairvallybidvo);
 	
+	int insertBidOffer(HairValleyBidOfferVO hairvalley_bid_offer_vo);
+	
+	List<?> selectBidContentOffers(int text_num);
 }

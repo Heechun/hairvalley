@@ -51,15 +51,46 @@
 			</div>
 			<!-- End Logo -->
 			<!-- Top Menu -->
-			<div class="col-md-12 margin-top-30">
-				<div id="hornav" class="pull-right visible-lg">
-					<ul class="nav navbar-nav">
-						<li><a href="/sample/hairvalley_main.do">Home</a></li>
+			<div class="col-md-10 col-md-offset-2 margin-top-10">
+				<div id="hornav" class="visible-lg">
+					<ul class="nav navbar-nav" style="padding-top: 20px;">
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
 						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="#">고객센터</a></li>
 					</ul>
+					<%-- 
+					<div class="nav navbar-nav navbar-right panel-sm panel-primary invert" style="margin-top:0;">
+						<div class="panel-heading">
+							<i class="fa fa-user"></i>wonjong님 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-sm btn-blue" type="button" onclick="move('/sample/hairvalley_register.do');">
+								<i class="fa fa-sign-out"></i>로그아웃
+							</button>
+						</div>
+						<div class="panel-body">Lorem...</div>
+					</div>
+
+--%>
+
+					<form class="navbar-form" action="/sample/hairvalley_login.do"
+						method="post" style="margin-top: 20px;">
+						<div class="form-group" style="margin-bottom: 1px;">
+							<input type="text" name="user_id" placeholder="ID or 사업자번호"
+								class="form-control" style="width: auto;">
+						</div>
+						<div class="form-group">
+							<input type="password" name="user_pw" placeholder="Password"
+								class="form-control" style="width: auto;">
+						</div>
+						<button class="btn btn-sm btn-blue" type="submit">
+							<i class="fa fa-user"></i> Login
+						</button>
+						<button class="btn btn-sm btn-aqua" type="button"
+							onclick="move('/sample/hairvalley_register.do');">
+							<i class="fa fa-sign-in"></i> Join
+						</button>
+					</form>
+
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -68,7 +99,7 @@
 	</div>
 	<!-- === END HEADER === -->
 	<!-- === BEGIN CONTENT === -->
-	<div id="content" class="container">
+	<div id="content" class="container" style="padding-top: 30px;">
 		<div id="welcome" class="background-white">
 			<div class="container">
 				<div class="row margin-vert-40">
@@ -80,201 +111,119 @@
 				</div>
 				<hr>
 				<div class="row margin-vert-40">
-				<!--
-				 	<div class="col-md-4">
-					 	<h3 class="margin-bottom-10">My Face Images</h3>
-					 		<img src="assets/img/blog/image1.jpg" id="myFace_main">
-							<div class="thumbs-gallery" style="max-width:80%">
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image1.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image2.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image3.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image4.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image6.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image7.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
-								<i></i></a>
-	
-								
-							</div>	
-							
-							<div class="clearfix"></div>
-							<p><em>* 사진이 등록되면 표시됩니다.</em></p>
-							<h3 class="margin-bottom-10">My Reference Images</h3>
-					 		<img src="assets/img/blog/image1.jpg" id="myRef_main">
-							<div class="thumbs-gallery" style="max-width:80%">
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image1.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image2.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image3.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image4.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image6.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
-								<i></i></a>
-								
-								
-								<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image7.jpg">
-									<img src="assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
-								<i></i></a>
-	
-								
-							</div>	
-							
-							<div class="clearfix"></div>
-							<p><em>* 사진이 등록되면 표시됩니다.</em></p>
-						</div>
-							<!-- End Thumbs Gallery -->
-				 	 <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <form class="signup-page" enctype="multipart/form-data" action="/sample/bid_insertBoardData.do"  method="POST" >
-                        	<div class="color-red glyphicon glyphicon-info-sign"><strong> 수정이 불가능하므로 신중히 작성하시기 바랍니다.</strong></div>
-                            <br/><hr/>
-                            <label><strong>제 목</strong>
-                            	<span class="color-red">*</span>
-                            </label>
-                            <input name="title" class="form-control margin-bottom-20"  placeholder="ex) *제목을 입력해주세요." />
-                            <hr>  
-                            <div class="row">
+
+					<div class="col-md-8 col-md-offset-2">
+						<form class="signup-page" enctype="multipart/form-data"
+							action="/sample/bid_insertBoardData.do" method="POST">
+							<div class="color-red glyphicon glyphicon-info-sign">
+								<strong> 수정이 불가능하므로 신중히 작성하시기 바랍니다.</strong>
+							</div>
+							<br />
+							<hr />
+							<label><strong>제 목</strong> <span class="color-red">*</span>
+							</label> <input name="title" class="form-control margin-bottom-20"
+								placeholder="ex) *제목을 입력해주세요." />
+							<hr>
+							<div class="row">
 								<div class="col-sm-6">
-									<label><strong>이 름</strong>
-		                            	<span class="color-red">*</span>
-		                            </label>
-		                            <input name="user_id"  class="form-control margin-bottom-20"  placeholder="ex) 홍길동" />
+									<label><strong>이 름</strong> <span class="color-red">*</span>
+									</label> <input name="user_id" class="form-control margin-bottom-20"
+										placeholder="ex) 홍길동" />
 								</div>
 								<div class="col-sm-6">
-									 <label><strong>예상 가격</strong>
-                                		<span class="color-red">*</span>
-		                            </label>
-		                   			<input name="req_price"  class="form-control margin-bottom-20"  placeholder="* ex) 40,000" />
+									<label><strong>예상 가격</strong> <span class="color-red">*</span>
+									</label> <input name="req_price" class="form-control margin-bottom-20"
+										placeholder="* ex) 40,000" />
 								</div>
 							</div>
-							<hr>  
+							<hr>
 							<div class="row">
 								<div class="col-md-12">
-									<label><strong>내 사진 등록</strong>
-										<span class="color-red">*</span>
-									</label>
-									<input class="multi with-preview" name="user_faceImg" type="file" multiple="multiple"   onchange="readFaceImageURL(this);" />
+									<label><strong>내 사진 등록</strong> <span class="color-red">*</span>
+									</label> <input class="multi with-preview" name="user_faceImg"
+										type="file" multiple="multiple"
+										onchange="readFaceImageURL(this);" />
 									<!--  <br/><button class="btn btn-aqua" id="myFaceImageCheckBtn">미리보기</button> -->
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-md-12">
-									<label><strong>참고 사진 등록</strong>
-										<span class="color-red">*</span>
-									</label>
-									<input name="user_refImg" type="file"  multiple="multiple" onchange="readRefImageURL(this);" />
+									<label><strong>참고 사진 등록</strong> <span
+										class="color-red">*</span> </label> <input name="user_refImg"
+										type="file" multiple="multiple"
+										onchange="readRefImageURL(this);" />
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-md-12">
-									<label><strong>펌 종류</strong>
-										<span class="color-red">*</span>
-									</label><br>
-									<input name="perm"  class="form-control margin-bottom-20"  placeholder="ex) 일반펌" />
-								</div>      
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-md-12">
-									<label><strong>커트 종류</strong>
-										<span class="color-red">*</span>
-									</label><br>
-									<input name="cut"  class="form-control margin-bottom-20"  placeholder="ex) 투블럭컷" />
+									<label><strong>펌 종류</strong> <span class="color-red">*</span>
+									</label><br> <input name="perm"
+										class="form-control margin-bottom-20" placeholder="ex) 일반펌" />
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-md-12">
-									<label><strong>염색 색상</strong>
-										<span class="color-red">*</span>
-									</label><br>
-									<input name="dye"  class="form-control margin-bottom-20"  placeholder="ex) 갈색" />
+									<label><strong>커트 종류</strong> <span class="color-red">*</span>
+									</label><br> <input name="cut"
+										class="form-control margin-bottom-20" placeholder="ex) 투블럭컷" />
 								</div>
 							</div>
 							<hr>
-                            <label><strong>추가 요청 사항</strong>
-                            	<span class="color-red">*</span>
-                            </label>
-                            <div class="row margin-bottom-20">
-                                <div class="col-md-12 col-md-offset-0">
-                                    <textarea name="add_request"  rows="8" class="form-control" placeholder="* 문의하실 내용을 입력해주세요." ></textarea>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                </div>
-                                <div class="col-lg-6 text-right">
-                                	<input type="button" class="btn btn-aqua" type="button" value="되돌아가기"  onclick="move('/sample/bid_boardList.do');"/>
-                                    <input type="submit" class="btn btn-blue" value="작성 완료" />
-                                </div>
-                            </div>
-                        </form>
-                       
-                    </div><div class="col-md-2"></div>
-                    <!-- End Register Box -->
-                </div>
-				
+							<div class="row">
+								<div class="col-md-12">
+									<label><strong>염색 색상</strong> <span class="color-red">*</span>
+									</label><br> <input name="dye"
+										class="form-control margin-bottom-20" placeholder="ex) 갈색" />
+								</div>
+							</div>
+							<hr>
+							<label><strong>추가 요청 사항</strong> <span class="color-red">*</span>
+							</label>
+							<div class="row margin-bottom-20">
+								<div class="col-md-12 col-md-offset-0">
+									<textarea name="add_request" rows="8" class="form-control"
+										placeholder="* 문의하실 내용을 입력해주세요."></textarea>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-lg-6"></div>
+								<div class="col-lg-6 text-right">
+									<input type="button" class="btn btn-aqua" type="button"
+										value="되돌아가기" onclick="move('/sample/bid_boardList.do');" /> <input
+										type="submit" class="btn btn-blue" value="작성 완료" />
+								</div>
+							</div>
+						</form>
+
+					</div>
+					<!-- End Register Box -->
+				</div>
+
 			</div>
 		</div>
-		</div>
-		<!-- Footer Menu -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div id="copyright" class="col-md-4">
-						<p>(c) 2014 Your Copyright Info</p>
-					</div>
-					<div id="footermenu" class="col-md-8">
-						<ul class="list-unstyled list-inline pull-right">
-							<li><a href="#" target="_blank">Sample Link</a></li>
-							<li><a href="#" target="_blank">Sample Link</a></li>
-							<li><a href="#" target="_blank">Sample Link</a></li>
-							<li><a href="#" target="_blank">Sample Link</a></li>
-						</ul>
-					</div>
+	</div>
+	<!-- Footer Menu -->
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div id="copyright" class="col-md-4">
+					<p>(c) 2014 Your Copyright Info</p>
+				</div>
+				<div id="footermenu" class="col-md-8">
+					<ul class="list-unstyled list-inline pull-right">
+						<li><a href="#" target="_blank">Sample Link</a></li>
+						<li><a href="#" target="_blank">Sample Link</a></li>
+						<li><a href="#" target="_blank">Sample Link</a></li>
+						<li><a href="#" target="_blank">Sample Link</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
 
 	<!-- End Footer Menu -->
 

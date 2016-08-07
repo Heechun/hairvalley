@@ -8,7 +8,6 @@ public class HairValleyUserVO {
 	String user_email;
 	String user_phone;
 	String user_loc;
-	String user_sex;
 	
 	public String getUser_id() {
 		return user_id;
@@ -46,12 +45,5 @@ public class HairValleyUserVO {
 	public void setUser_loc(String user_loc) {
 		this.user_loc = user_loc;
 	}
-	public String getUser_sex() {
-		return user_sex;
-	}
-	public void setUser_sex(String user_sex) {
-		this.user_sex = user_sex;
-	}
 		
-			
 }

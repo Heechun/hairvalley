@@ -33,7 +33,7 @@ public class HairValleyCommonServiceImpl extends EgovAbstractServiceImpl impleme
 	}
 
 	@Override
-	public int insertUserRegister(String user_id, String user_pw, String user_name, String user_email, String user_phone, String user_loc, String user_sex) throws Exception {
+	public int insertUserRegister(String user_id, String user_pw, String user_name, String user_email, String user_phone, String user_loc) throws Exception {
 		// TODO Auto-generated method stub
 		HairValleyUserVO hairvalleyUserVO = new HairValleyUserVO();
 		hairvalleyUserVO.setUser_id(user_id);
@@ -42,7 +42,6 @@ public class HairValleyCommonServiceImpl extends EgovAbstractServiceImpl impleme
 		hairvalleyUserVO.setUser_email(user_email);
 		hairvalleyUserVO.setUser_phone(user_phone);
 		hairvalleyUserVO.setUser_loc(user_loc);
-		hairvalleyUserVO.setUser_sex(user_sex);
 		
 		return hairvalleyCommonMapper.insertUserRegister(hairvalleyUserVO);
 	}

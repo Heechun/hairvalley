@@ -16,5 +16,6 @@
 		<typeAlias alias="HairValleyCompanyImagesVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyImagesVO"/>
 		<typeAlias alias="HairValleyCompanyPortfolioVO" type="egovframework.hairhair.hairvalley.service.HairValleyCompanyPortfolioVO"/>
 		<typeAlias alias="HairValleyUserVO" type="egovframework.hairhair.hairvalley.service.HairValleyUserVO"/>
+		<typeAlias alias="HairValleyBidOfferVO" type="egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO"/>
     </typeAliases>
 </configuration>

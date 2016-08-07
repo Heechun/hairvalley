@@ -62,23 +62,55 @@
 			</div>
 			<!-- End Logo -->
 			<!-- Top Menu -->
-			<div class="col-md-12 margin-top-30">
-				<div id="hornav" class="pull-right visible-lg">
-					<ul class="nav navbar-nav">
-						<li><a href="/sample/hairvalley_main.do">Home</a></li>
+			<div class="col-md-10 col-md-offset-2 margin-top-10">
+				<div id="hornav" class="visible-lg">
+					<ul class="nav navbar-nav" style="padding-top: 20px;">
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
 						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="#">고객센터</a></li>
 					</ul>
+					<%-- 
+					<div class="nav navbar-nav navbar-right panel-sm panel-primary invert" style="margin-top:0;">
+						<div class="panel-heading">
+							<i class="fa fa-user"></i>wonjong님 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-sm btn-blue" type="button" onclick="move('/sample/hairvalley_register.do');">
+								<i class="fa fa-sign-out"></i>로그아웃
+							</button>
+						</div>
+						<div class="panel-body">Lorem...</div>
+					</div>
+
+--%>
+
+					<form class="navbar-form" action="/sample/hairvalley_login.do"
+						method="post" style="margin-top: 20px;">
+						<div class="form-group" style="margin-bottom: 1px;">
+							<input type="text" name="user_id" placeholder="ID or 사업자번호"
+								class="form-control" style="width: auto;">
+						</div>
+						<div class="form-group">
+							<input type="password" name="user_pw" placeholder="Password"
+								class="form-control" style="width: auto;">
+						</div>
+						<button class="btn btn-sm btn-blue" type="submit">
+							<i class="fa fa-user"></i> Login
+						</button>
+						<button class="btn btn-sm btn-aqua" type="button"
+							onclick="move('/sample/hairvalley_register.do');">
+							<i class="fa fa-sign-in"></i> Join
+						</button>
+					</form>
+
 				</div>
 			</div>
 			<div class="clear"></div>
 			<!-- End Top Menu -->
 		</div>
 	</div>
+	<!-- === END HEADER === -->
 	<!-- === BEGIN CONTENT === -->
-	<div id="content" class="container">
+	<div id="content" class="container" style="padding-top: 30px;">
 		<div class="row margin-vert-30">
 			<!-- Side Column -->
 
@@ -92,9 +124,9 @@
 					</div>
 					<br />
 
-					<div class="blog-author panel panel-default margin-bottom-30">
+					<div class="blog-author panel panel-primary margin-bottom-30">
 						<div class="panel-heading">
-							<h3>${bidBoardContent.title}</h3>
+							<h3 style="color:#fff;">${bidBoardContent.title}</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -211,74 +243,87 @@
 					<!-- End About the Author -->
 					<!-- Comments -->
 					<div
-						class="blog-recent-comments panel panel-default margin-bottom-30">
+						class="blog-recent-comments panel panel-primary margin-bottom-30">
 						<div class="panel-heading">
-							<h3>업체 제안 목록</h3>
+							<div class="row">
+								<div class="col-md-10">
+									<h3 style="color:#fff;">업체 제안 목록</h3>
+								</div>
+								<div class="col-md-2">
+									<button class="btn btn-blue btn-sm pull-right" onclick="move('/sample/bid_boardOffer.do?text_num=${bidBoardContent.text_num}&content_num=${bidBoardContent.content_num}');">제안 등록</button>
+								</div>
+							</div>
+						
 						</div>
-						<ul class="list-group">
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-md-2 profile-thumb">
-										<a href="#"> <img class="media-object"
-											src="assets/img/profiles/99.jpg" alt="">
-										</a>
-									</div>
-									<div class="col-md-10">
-										<h4>Great Article</h4>
-										<p>Donec id erum quidem rerumd facilis est et expedita
-											distinctio lorem ipsum dolorlit non mi portas sats eget
-											metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-											condimentum nibh, ut fermentum massa justo sit amet risus.
-											Etiam porta sem malesuada magna..</p>
-										<span class="date"><i class="fa fa-clock-o"></i> 5
-											hours ago</span>
+						<div class="panel-body">
+							<ul class="list-group">
+								<c:forEach items="${bidBoardOffers}" var="bidBoardOffers">
+									<li class="list-group-item">
+										<div class="row">
+											<div class="col-md-2 profile-thumb">
+												<a href="#"> <img class="media-object"
+													src="${bidBoardOffers.company_image}" alt="">
+												</a>
+											</div>
+											<div class="col-md-10">
+												<h3><strong>${bidBoardOffers.company_name}</strong></h3><br/>
+												
+												<label><strong>제안 가격 </strong> <span class="color-white">*</span></label>
+												<input class="form-control" type="text" readonly="readonly" value="&nbsp;&nbsp;${bidBoardOffers.offer_price}" style="color:black; border-radius:7px; max-width:17%;"/>
+												<br/>
+												<label><strong>제안 내용 </strong> <span class="color-white">*</span></label><br/>
+												<div class="row margin-bottom-20">
+													<div class="col-md-12 col-md-offset-0">
+														<textarea name="add_request" rows="3" class="form-control"
+															readonly="readonly">${bidBoardOffers.add_offer}</textarea>
+													</div>
+												</div>	
+												<span class="label label-lg label-primary" type="span">
+													<i class="fa fa-clock-o"> 5 hours ago</i>
+												</span>
+											</div>
+										</div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+						<%-- 
+						<div class="panel-body">
+							<div class="row margin-vert-10">
+								<div class="col-md-12">
+									<div class="tab-content">
+										<div class="tab-pane active in fade" id="faq">
+											<div class="panel-group" id="accordion">
+												<c:forEach items="${bidBoardOffers}" var="bidBoardOffers">
+													<div class="panel panel-primary invert panel-faq">
+														<div class="panel-heading">
+															<a data-toggle="collapse" data-parent="#accordion" href="#${bidBoardOffers.company_name}">
+																<h4 class="panel-title" style="color:#fff;">
+																${bidBoardOffers.company_name}
+																<span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+																</h4>
+															</a>
+														</div>
+														<div id="${bidBoardOffers.company_name}" class="panel-collapse collapse">
+															<div class="panel-body" style="color:#fff;">
+																<p>제안 가격 : ${bidBoardOffers.offer_price}</p><br/>
+																<p>제안 내용 :<br/>${bidBoardOffers.add_offer}</p>
+																<span class="date"><i class="fa fa-clock-o"></i> 5 hours ago</span>
+															</div>
+														</div>
+													</div>
+												</c:forEach>
+						
+											</div>
+										</div>
 									</div>
 								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-md-2 profile-thumb">
-										<a href="#"> <img class="media-object"
-											src="assets/img/profiles/53.jpg" alt="">
-										</a>
-									</div>
-									<div class="col-md-10">
-										<h4>A quick question</h4>
-										<p>At vero eos et accusam et justo duo dolores et ea
-											rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-											Lorem ipsum dolor sit amet.</p>
-										<p>Donec id erum quidem rerumd facilis est et expedita
-											distinctio lorem ipsum dolorlit non mi portas sats eget
-											metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-											condimentum nibh, ut fermentum massa justo sit amet risus.
-											Etiam porta sem malesuada magna.</p>
-										<span class="date"><i class="fa fa-clock-o"></i> 12 May
-											2013</span>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-md-2 profile-thumb">
-										<a href="#"> <img class="media-object"
-											src="assets/img/profiles/37.jpg" alt="">
-										</a>
-									</div>
-									<div class="col-md-10">
-										<h4>Thank you!</h4>
-										<p>At vero eos et accusam et justo duo dolores et ea
-											rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-											Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-											consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-											invidunt ut labore et dolore magna aliquyam erat, sed diam
-											voluptua.</p>
-										<span class="date"><i class="fa fa-clock-o"></i> 10 May
-											2013</span>
-									</div>
-								</div>
-							</li>
-
-						</ul>
+							</div>
+						</div>
+						--%>
+						<%-- 
+						
+						--%>
 					</div>
 				</div>
 			</div>

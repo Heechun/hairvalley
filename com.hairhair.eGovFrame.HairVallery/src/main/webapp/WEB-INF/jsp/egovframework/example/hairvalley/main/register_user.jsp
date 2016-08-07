@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!-- === BEGIN HEADER === -->
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -30,57 +31,12 @@
 <link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tableDesign.css"
-	rel="stylesheet">
 <!-- Google Fonts-->
 <link href="http://fonts.googleapis.com/css?family=Lato:400,300"
 	rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
 	rel="stylesheet" type="text/css">
-<style type="text/css">
-.mw_layer {
-	display: none;
-	position: fixed;
-	_position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 10000;
-	width: 100%;
-	height: 100%
-}
 
-.mw_layer.open {
-	display: block
-}
-
-.mw_layer .bg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	opacity: .5;
-	filter: alpha(opacity = 50)
-}
-
-#layer {
-	position: absolute;
-	top: 40%;
-	left: 40%;
-	width: 400px;
-	height: 400px;
-	margin: -150px 0 0 -194px;
-	padding: 28px 28px 0 28px;
-	border: 2px solid #555;
-	background: #fff;
-	font-size: 12px;
-	font-family: Tahoma, Geneva, sans-serif;
-	color: #767676;
-	line-height: normal;
-	white-space: normal
-}
-</style>
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -144,123 +100,82 @@
 	<!-- === END HEADER === -->
 	<!-- === BEGIN CONTENT === -->
 	<div id="content" class="container" style="padding-top: 30px;">
-		<div id="welcome" class="background-white">
-			<div class="container">
-				<div class="row margin-vert-40">
-					<div
-						class="panel panel-primary margin-bottom-30 margin-top-30">
-						<div class="panel-heading">
-							<h3 class="panel-title">입찰 게시판</h3>
+			<div class="row margin-vert-30">
+				<!-- Register Box -->
+				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+					<form class="signup-page" action="/sample/hairvalley_insertUser.do" method="post">
+						<div class="signup-header">
+							<h2>회원가입</h2>
 						</div>
-						<div class="panel-body">
-							<div class="row margin-vert-40">
-								<div class="col-md-12">
-									<form class="form-search" action="#">
-										<div class="input-append pull-right">
-											<input type="text" class="span2 search-query"
-												style="color: black;">
-											<button type="submit" class="btn btn-primary">Search</button>
-										</div>
-									</form>
-									<div class="table-responsive">
-										<table class="table table-bordered" style="margin-top:44px;">
-											<thead>
-												<tr>
-													<th><strong>번 호</strong></th>
-													<th><strong>제 목</strong></th>
-													<th><strong>작성자</strong></th>
-													<th><strong>작성일</strong></th>
-													<th><strong>조회수</strong></th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${bidBoardList}" var="bidBoardList">
-													<tr>
-
-														<td>${bidBoardList.content_num}</td>
-														<!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
-
-														<td><a
-															href="/sample/bid_selectBoardContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">${bidBoardList.title}</a></td>
-
-														<td>${bidBoardList.user_id}</td>
-
-														<td>${bidBoardList.reg_date}</td>
-
-														<td>${bidBoardList.hit}</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-									<div class="row margin-vert-10">
-										<div class="col-md-8">
-											<ul class="pagination">
-												<c:if test="${page > 1}">
-													<li><a href="bid_boardList.do?page=${page-1}">&laquo;</a>
-													</li>
-												</c:if>
-												<c:if test="${page == 1}">
-													<li class="disabled"><a href="#">&laquo;</a></li>
-												</c:if>
-												<c:forEach var="num" begin="1" end="${totalpage}" step="1">
-													<c:if test="${page == num}">
-														<li class="active"><a
-															href="bid_boardList.do?page=${num}">${num}</a></li>
-													</c:if>
-													<c:if test="${page != num}">
-														<li><a href="bid_boardList.do?page=${num}">${num}</a>
-														</li>
-													</c:if>
-												</c:forEach>
-												<li><c:if test="${fn:length( bidBoardList ) < 10}">
-														<li class="disabled"><a href="#">&raquo;</a></li>
-													</c:if> <c:if test="${fn:length( bidBoardList ) == 10}">
-														<li><a href="bid_boardList.do?page=${page+1}">&raquo;</a>
-														</li>
-													</c:if></li>
-											</ul>
-										</div>
-										<div class="col-md-4">
-											<input class="btn btn-blue" type="button" value="글쓰기"
-												onclick="move('/sample/bid_writeBoardData.do');"
-												style="float: right" /> <input class="btn btn-aqua"
-												type="button" value="처음으로"
-												onclick="move('/sample/bid_boardList.do');"
-												style="float: right; margin-right: 2px;" />
-										</div>
-										<div class="mw_layer">
-											<div class="bg"></div>
-											<div id="layer"></div>
-										</div>
-									</div>
-								</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-9">
+								<label>ID <span class="color-red">*</span></label>
+								<input class="form-control margin-bottom-20" type="text" name="user_id">
+							</div>
+							<div class="col-sm-3">
+								<label>&nbsp;</label><br/>
+								<button class="btn btn-sm btn-primary margin-bottom-20">중복확인</button>
 							</div>
 						</div>
+						
+						
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Password <span class="color-red">*</span></label>
+								<input class="form-control margin-bottom-20" type="password" name="user_pw1">
+							</div>
+							<div class="col-sm-6">
+								<label>Confirm Password <span class="color-red">*</span></label>
+								<input class="form-control margin-bottom-20" type="password" name="user_pw2">
+							</div>
+						</div>
+						
+						<label>Name </label>
+						<input class="form-control margin-bottom-20" type="text" name="user_name"  placeholder="홍길동">
+
+						<label>Email Address <span class="color-red">*</span></label>
+						<input class="form-control margin-bottom-20" type="text" name="user_email"  placeholder="cc123@naver.com">
+
+						<label>Phone <span class="color-red">*</span></label>
+						<input class="form-control margin-bottom-20" type="text" name="user_phone"  placeholder="010-0000-0000">
+						
+						<label>Location <span class="color-red">*</span></label>
+						<input class="form-control margin-bottom-20" type="text" name="user_loc"  placeholder="OO시 OO구 OO동">
+						
+						<hr>
+						
+						<div class="row">
+							<div class="col-lg-8">
+								
+							</div>
+							<div class="col-lg-4 text-right">
+								<button class="btn btn-primary" type="submit">회원 등록</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- End Register Box -->
+			</div>
+		</div>
+		<!-- Footer Menu -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div id="copyright" class="col-md-4">
+						<p>(c) 2014 Your Copyright Info</p>
+					</div>
+					<div id="footermenu" class="col-md-8">
+						<ul class="list-unstyled list-inline pull-right">
+							<li><a href="#" target="_blank">Sample Link</a></li>
+							<li><a href="#" target="_blank">Sample Link</a></li>
+							<li><a href="#" target="_blank">Sample Link</a></li>
+							<li><a href="#" target="_blank">Sample Link</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<!-- Footer Menu -->
-	<div id="footer">
-		<div class="container">
-			<div class="row">
-				<div id="copyright" class="col-md-4">
-					<p>(c) 2014 Your Copyright Info</p>
-				</div>
-				<div id="footermenu" class="col-md-8">
-					<ul class="list-unstyled list-inline pull-right">
-						<li><a href="#" target="_blank">Sample Link</a></li>
-						<li><a href="#" target="_blank">Sample Link</a></li>
-						<li><a href="#" target="_blank">Sample Link</a></li>
-						<li><a href="#" target="_blank">Sample Link</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- End Footer Menu -->
 

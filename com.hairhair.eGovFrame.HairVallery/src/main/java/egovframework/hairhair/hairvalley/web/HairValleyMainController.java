@@ -31,7 +31,7 @@ public class HairValleyMainController {
 
 	@RequestMapping(value = "/hairvalley_main.do")
 	public String main(ModelMap model) throws Exception {
-
+		
 		return "hairvalley/main/hairvalley_index";
 	}
 	
@@ -45,6 +45,7 @@ public class HairValleyMainController {
 		
 		int retval = hairvalleyCommonService.selectUserLogin(user_id, user_pw);
 		
+		request.setAttribute("user_id", user_id);
 		request.setAttribute("methodName", "login");
 		request.setAttribute("retval", retval);
 		
@@ -54,20 +55,27 @@ public class HairValleyMainController {
 	@RequestMapping(value = "/hairvalley_register.do")
 	public String register(ModelMap model, HttpServletRequest request) throws Exception {
 
-		String user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex;
+		
+		return "hairvalley/main/register_user";
+	}
+	
+	@RequestMapping(value = "/hairvalley_insertUser.do")
+	public String insertUser(ModelMap model, HttpServletRequest request) throws Exception {
+
+		String user_id, user_pw1, user_pw2, user_name, user_email, user_phone, user_loc, user_sex;
 		user_id = request.getParameter("user_id");
-		user_pw = request.getParameter("user_pw");
+		user_pw1 = request.getParameter("user_pw1");
+		user_pw1 = request.getParameter("user_pw2");
 		user_name = request.getParameter("user_name");
 		user_email = request.getParameter("user_email");
 		user_phone = request.getParameter("user_phone");
 		user_loc = request.getParameter("user_loc");
-		user_sex = request.getParameter("user_sex");
 
 		
-		int retval = hairvalleyCommonService.insertUserRegister(user_id, user_pw, user_name, user_email, user_phone, user_loc, user_sex);
+		int retval = hairvalleyCommonService.insertUserRegister(user_id, user_pw1, user_name, user_email, user_phone, user_loc);
 		
 		
-		request.setAttribute("methodName", "login");
+		request.setAttribute("methodName", "register");
 		request.setAttribute("retval", retval);
 		
 		return "hairvalley/bid_board/isSuccess";
