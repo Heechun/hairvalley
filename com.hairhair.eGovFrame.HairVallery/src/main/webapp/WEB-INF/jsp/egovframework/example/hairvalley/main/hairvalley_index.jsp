@@ -82,7 +82,7 @@
 							<i class="fa fa-user"></i> Login
 						</button>
 						<button class="btn btn-sm btn-aqua" type="button"
-							onclick="move('/sample/hairvalley_register.do');">
+							onclick="location.href='/sample/beforeSignup.do'">
 							<i class="fa fa-sign-in"></i> Join
 						</button>
 					</form>

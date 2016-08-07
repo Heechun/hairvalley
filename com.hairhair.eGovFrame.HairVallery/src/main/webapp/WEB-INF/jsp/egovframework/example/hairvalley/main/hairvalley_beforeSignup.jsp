@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- Title -->
-	<title>Substance - Professional Bootstrap Template</title>
+	<title>회원가입</title>
 	<!-- Meta -->
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="">
@@ -42,7 +42,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
-						<li class="active"><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
@@ -55,76 +55,32 @@
 		<!-- === END HEADER === -->
 		<!-- === BEGIN CONTENT === -->
 		<div id="content" class="container">
-			<div class="row margin-vert-30">
-				<!-- Main Column -->
-				
-					<!-- Side Column -->
-				<!-- Begin Sidebar Menu -->
-				<div class="col-md-3">
-					<ul class="list-group sidebar-nav" id="sidebar-nav">
-						<li class="list-group-item list-toggle">
-							<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
-								<ul id="collapse-typography" class="collapse">
-									<li><a href="companyContent.do?company_name=${company_name}">
-									<i class="fa-info-circle"></i>업체소개</a></li>
-									<li><a href="companyStaff.do">
-									<i class="fa-group"></i>조직구성원</a></li>
-								</ul>
-						</li>
-						<li class="list-group-item">
-							<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
-						</li>
-						<li class="list-group-item">
-							<a href="companyReview.do?company_name=${company_name}"><i class="fa-camera-retro"></i>이용후기</a>
-						</li>
-					</ul>
-				</div>
-				<!-- End Sidebar Menu -->
-				<!-- End Side Column -->
-					<div class="col-md-9">
-						<div class="company-content-header">
-							<h2><i class="glyphicon glyphicon-camera"></i> ${company_name}의 후기</h2>
-						</div>
-						<table class=" table table-bordered table-hover table-striped" >
-							<tr height="30">
-								<td align="center" width="50">번 호</td>
-								<td align="center" width="250">제  목</td>
-								<td align="center" width="100">작성자</td>
-								<td align="center" width="150">작성일</td>
-								<td align="center" width="50">조회수</td>
-							</tr>
-							<c:forEach var="reviewList" items="${reviewList}">
-								<tr height="30">
-									<td align="center" width="50">
-										<c:out value="${reviewList.review_idx}"/>
-									</td>
-									<td width="250">
-										<a href="companyReviewContent.do?review_total_idx=${reviewList.review_total_idx}">
-										${reviewList.review_title}
-										</a>
-									</td>
-									<td align="center"  width="100">${reviewList.review_id}</td>
-									<td align="center"  width="150">${reviewList.review_write_date}</td>
-									<td align="center"  width="50">${reviewList.review_hit}</td>
-								</tr>
-							</c:forEach>
-							<tr>	  
-								<td colspan="5" align="center" height="40">	 
-<%-- 								${pageCode} --%>
-								</td>
-							</tr>
-						</table>
-						<div class="btn-group pull-right" role="group">
-							<a href="companyReviewInsert.do">
-								<button type="button" class="btn btn-primary">글쓰기</button>
-							</a>
+			<div class="container">
+				<div class="row margin-vert-30">
+					<!-- Login Box -->
+					<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+						<div class="login-page">
+							<div class="login-header margin-bottom-30">
+								<h2 class="text-center">회원가입</h2>
+							</div>
+							<div class="row text-center">
+								<div class="col-md-6">
+									<button type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='/sample/hairvalley_register.do'">
+									<i class="fa fa-user fa-5x"></i><br />개인 회원</button>
+								</div>
+								<div class="col-md-6">
+									<button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='/sample/companySignup.do'">
+									<i class="fa fa-group fa-5x"></i><br />기업 회원</button>
+								</div>
+							</div>
 						</div>
 					</div>
+					<!-- End Login Box -->
 				</div>
-				<!-- End Main Column -->
-			
+			</div>
 		</div>
 		<!-- === END CONTENT === -->
+
 
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
@@ -141,5 +97,7 @@
 <!-- Modernizr -->
 <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
+
+
 </body>
 </html>

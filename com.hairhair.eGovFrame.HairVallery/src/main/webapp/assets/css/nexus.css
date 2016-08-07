@@ -2614,6 +2614,13 @@ ul.posts-list li {
   text-align: center;
   margin: 0;
 }
+.company-details-icons {
+  background: #C8C8C8;
+  padding: 10px;
+  text-align: center;
+  font-size: 85%;
+  margin: 0;
+}
 .person-details-icons [class^="fa-"]:before,
 .person-details-icons [class*=" fa-"]:before {
   color: rgba(255, 255, 255, 0.2);

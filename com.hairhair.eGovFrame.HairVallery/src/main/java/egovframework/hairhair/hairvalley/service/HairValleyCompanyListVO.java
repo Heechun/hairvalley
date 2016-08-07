@@ -7,6 +7,7 @@ public class HairValleyCompanyListVO {
 	private String salesman_num;
 	private String company_location;
 	private String company_image;
+	private String company_hit;
 	public int getSeq() {
 		return seq;
 	}
@@ -43,16 +44,19 @@ public class HairValleyCompanyListVO {
 	public void setCompany_image(String company_image) {
 		this.company_image = company_image;
 	}
+	public String getCompany_hit() {
+		return company_hit;
+	}
+	public void setCompany_hit(String company_hit) {
+		this.company_hit = company_hit;
+	}
 	@Override
 	public String toString() {
 		return "HairValleyCompanyListVO [seq=" + seq + ", company_id="
 				+ company_id + ", company_name=" + company_name
 				+ ", salesman_num=" + salesman_num + ", company_location="
-				+ company_location + ", company_image=" + company_image + "]";
+				+ company_location + ", company_image=" + company_image
+				+ ", company_hit=" + company_hit + "]";
 	}
-
-	
-	
-	
 	
 }

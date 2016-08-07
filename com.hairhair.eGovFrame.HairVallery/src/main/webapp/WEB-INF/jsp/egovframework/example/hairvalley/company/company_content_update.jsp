@@ -58,25 +58,29 @@
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
 				<div class="col-md-12">
+					<!-- Side Column -->
+					<!-- Begin Sidebar Menu -->
 					<div class="col-md-3">
-						<br/><br/>
-						<a href="companyContent.do?company_name=${company_name}">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 업체소개
-						</button>
-						</a><br/><br/>
-						<a href="companyPortfolio.do?company_name=${company_name}">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 포트폴리오
-						</button></a><br/><br/>
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 조직구성원
-						</button><br/><br/>
-						<a href="companyReview.do">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 이용 후기
-						</button></a><br/><br/>
+						<ul class="list-group sidebar-nav" id="sidebar-nav">
+							<li class="list-group-item list-toggle">
+								<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
+									<ul id="collapse-typography" class="collapse">
+										<li><a href="companyContent.do?company_name=${company_name}">
+										<i class="fa-info-circle"></i>업체소개</a></li>
+										<li><a href="companyStaff.do">
+										<i class="fa-group"></i>조직구성원</a></li>
+									</ul>
+							</li>
+							<li class="list-group-item">
+								<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
+							</li>
+							<li class="list-group-item">
+								<a href="companyReview.do?company_name=${company_name}"><i class="fa-camera-retro"></i>이용후기</a>
+							</li>
+						</ul>
 					</div>
+					<!-- End Sidebar Menu -->
+					<!-- End Side Column -->
 					<form action="companyContentUpdateImpl.do" method="post" id="myForm" enctype="multipart/form-data">
 						<div class="col-md-9">
 							<h2>업체소개 수정</h2><br />

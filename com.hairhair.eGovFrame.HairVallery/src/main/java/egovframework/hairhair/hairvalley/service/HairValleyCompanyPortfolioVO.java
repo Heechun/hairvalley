@@ -6,6 +6,7 @@ public class HairValleyCompanyPortfolioVO {
 	private String portfolio_title;
 	private String portfolio_content;
 	private String portfolio_image;
+	private String portfolio_filter;
 	
 	public int getIdx() {
 		return idx;
@@ -37,14 +38,21 @@ public class HairValleyCompanyPortfolioVO {
 	public void setPortfolio_image(String portfolio_image) {
 		this.portfolio_image = portfolio_image;
 	}
+	public String getPortfolio_filter() {
+		return portfolio_filter;
+	}
+	public void setPortfolio_filter(String portfolio_filter) {
+		this.portfolio_filter = portfolio_filter;
+	}
 	@Override
 	public String toString() {
 		return "HairValleyCompanyPortfolioVO [idx=" + idx + ", company_name="
 				+ company_name + ", portfolio_title=" + portfolio_title
 				+ ", portfolio_content=" + portfolio_content
-				+ ", portfolio_image=" + portfolio_image + "]";
+				+ ", portfolio_image=" + portfolio_image
+				+ ", portfolio_filter=" + portfolio_filter + "]";
 	}
-	
+
 	
 	
 	

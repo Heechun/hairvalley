@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyCompanyMapper">
-
-	<select id="reviewSelectList" resultType="HairValleyCompanyReviewVO">
-		SELECT *
-		FROM review
-	</select>
 	
 	<select id="companySelectList" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, company_image
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit
 		FROM hairValley_company_list
 	</select>
 	
@@ -41,15 +36,119 @@
 	</select>
 	
 	<select id="companyPortfolioSelect" parameterType="String" resultType="HairValleyCompanyPortfolioVO">
-		SELECT idx, company_name, portfolio_title, portfolio_content, portfolio_image
+		SELECT idx, company_name, portfolio_title, portfolio_content, portfolio_image, portfolio_filter
 		FROM hairValley_company_portfolio
 		where COMPANY_NAME =#{company_name} 
 	</select>
 	
 	<select id="companySearchList" parameterType="String" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, company_image
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit
 		FROM hairValley_company_list
-		WHERE COMPANY_LOCATION LIKE '%'||#{query}||'%'
+		WHERE COMPANY_LOCATION LIKE '%'||#{query}||'%' OR COMPANY_NAME LIKE '%'||#{query}||'%'
 	</select>
 	
+	<select id="companySelectInfo" parameterType="String" resultType="HairValleyCompanyListVO">
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit
+		FROM hairValley_company_list
+		WHERE COMPANY_NAME = #{company_name}
+	</select>
+	
+	<update id="companyHitUpdate" parameterType="String">
+		UPDATE hairValley_company_list
+		SET COMPANY_HIT = COMPANY_HIT+1
+		WHERE COMPANY_NAME = #{company_name}
+	</update>
+	
+	<select id="companyStaffSelect" parameterType="String" resultType="HairValleyCompanyStaffVO">
+		SELECT staff_name, staff_job, staff_count, staff_intro, staff_image
+		FROM hairValley_company_staff
+		WHERE COMPANY_NAME = #{company_name}
+	</select>
+	
+	<select id="companyStaffContentSelect" parameterType="String" resultType="String">
+		SELECT staff_content
+		FROM hairValley_company_content
+		WHERE COMPANY_NAME =#{company_name}
+	</select>
+	
+	<insert id="companyPortfolioImageInsert" parameterType="HairValleyCompanyImagesVO">
+		insert into hairvalley_company_images
+		values (COMPANY_IMAGE_SEQ.nextval, #{company_name}, #{image_type}, #{image_url}, COMPANY_PORTFOLIO_SEQ.currval)
+	</insert>
+	
+	<insert id="companyPortfolioInsert" parameterType="HairValleyCompanyPortfolioVO">
+		insert into hairvalley_company_portfolio
+		values (COMPANY_PORTFOLIO_SEQ.nextval, #{company_name}, #{portfolio_title}, #{portfolio_content}, #{portfolio_image}, #{portfolio_filter})
+	</insert>
+	
+	<select id="companyPortfolioSelectOne" parameterType="HairValleyCompanyPortfolioVO" resultType="HairValleyCompanyPortfolioVO" >
+		SELECT idx, company_name, portfolio_title, portfolio_content, portfolio_image, portfolio_filter
+		FROM hairValley_company_portfolio
+		where COMPANY_NAME =#{company_name} AND IDX=#{idx}
+	</select>
+	
+	<select id="companyPortfolioImageSelect" parameterType="Int" resultType="HairValleyCompanyImagesVO">
+		SELECT idx, company_name, image_type, image_url, parent_num
+		FROM hairValley_company_images
+		WHERE PARENT_NUM = #{idx} AND IMAGE_TYPE = 'portfolio'
+	</select>
+	
+	<delete id="companyPortfolioImageDelete" parameterType="Int">
+		DELETE
+		FROM hairValley_company_images
+		WHERE PARENT_NUM = #{idx}
+	</delete>
+	
+	<delete id="companyPortfolioDelete" parameterType="Int">
+		DELETE
+		FROM hairValley_company_portfolio
+		WHERE idx = #{idx}
+	</delete>
+	
+	<select id="companyReviewSelectList" parameterType="String" resultType="HairValleyCompanyReviewVO">
+		SELECT *
+		FROM HAIRVALLEY_COMPANY_REVIEW
+		WHERE COMPANY_NAME =#{company_name}
+		ORDER BY REVIEW_TOTAL_IDX DESC
+	</select>
+	
+	<insert id="companyReviewInsert" parameterType="HairValleyCompanyReviewVO">
+		insert into hairvalley_company_review
+		values (#{company_name}, COMPANY_REVIEW_TOTAL_SEQ.nextval, COMPANY_REVIEW_TOTAL_SEQ.currval, #{review_id}, #{review_title}, #{review_content}, #{review_file_status}, 0, sysdate)
+	</insert>
+	
+	<insert id="companyReviewImageInsert" parameterType="HairValleyCompanyImagesVO">
+		insert into hairvalley_company_images
+		values (COMPANY_IMAGE_SEQ.nextval, #{company_name}, #{image_type}, #{image_url}, COMPANY_REVIEW_TOTAL_SEQ.currval)
+	</insert>
+	
+	<select id="companyReviewSelectContent" parameterType="Int" resultType="HairValleyCompanyReviewVO">
+		SELECT *
+		FROM HAIRVALLEY_COMPANY_REVIEW
+		WHERE REVIEW_TOTAL_IDX =#{review_total_idx}
+	</select>
+	
+	<select id="companyReviewImageSelect" parameterType="Int" resultType="HairValleyCompanyImagesVO">
+		SELECT idx, company_name, image_type, image_url, parent_num
+		FROM hairValley_company_images
+		WHERE PARENT_NUM = #{idx} AND IMAGE_TYPE = 'review'
+	</select>
+	
+	<delete id="companyReviewImageDelete" parameterType="Int">
+		DELETE
+		FROM hairValley_company_images
+		WHERE PARENT_NUM = #{review_total_idx}
+	</delete>
+	
+	<delete id="companyReviewDelete" parameterType="Int">
+		DELETE
+		FROM hairValley_company_review
+		WHERE review_total_idx = #{review_total_idx}
+	</delete>
+	
+	<update id="companyReviewHitUpdate" parameterType="Int">
+		UPDATE hairValley_company_review
+		SET REVIEW_HIT = REVIEW_HIT+1
+		WHERE REVIEW_TOTAL_IDX = #{review_total_idx}
+	</update>
 </mapper>

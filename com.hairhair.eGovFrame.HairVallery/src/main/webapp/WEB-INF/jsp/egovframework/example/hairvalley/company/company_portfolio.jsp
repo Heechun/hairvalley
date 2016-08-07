@@ -69,7 +69,7 @@
 									<ul id="collapse-typography" class="collapse">
 										<li><a href="companyContent.do?company_name=${company_name}">
 										<i class="fa-info-circle"></i>업체소개</a></li>
-										<li><a href="#">
+										<li><a href="companyStaff.do">
 										<i class="fa-group"></i>조직구성원</a></li>
 									</ul>
 							</li>
@@ -77,19 +77,21 @@
 								<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
 							</li>
 							<li class="list-group-item">
-								<a href="companyReview.do"><i class="fa-camera-retro"></i>이용후기</a>
+								<a href="companyReview.do?company_name=${company_name}"><i class="fa-camera-retro"></i>이용후기</a>
 							</li>
 						</ul>
 					</div>
 					<!-- End Sidebar Menu -->
 					<!-- End Side Column -->
 					<!-- === BEGIN CONTENT === -->
-					<div class="col-md-7">
-						<h2>${company_name}의 포트폴리오</h2>
+					<div class="col-md-9">
+						<div class="company-content-header">
+							<h2><i class="glyphicon glyphicon-picture"></i> ${company_name}의 포트폴리오</h2>
+						</div>
 						<!-- Filter Buttons -->
 						<div class="portfolio-filter-container margin-top-20">
 							<ul class="portfolio-filter">
-								<li class="portfolio-filter-label label label-primary">
+								<li class="portfolio-filter-label label label-warning">
 									필터 :
 								</li>
 								<li>
@@ -104,23 +106,21 @@
 							</ul>
 						</div>
 						<!-- End Filter Buttons -->
-					
-							<div class="portfolio-group col-md-10 margin-top-30 no-padding">
+						
+							<div class="portfolio-group col-md-10 margin-top-30 no-padding company-content-box">
 								<div class="row">
 									<!-- Portfolio Item -->
 									<c:forEach var="portfolioList" items="${portfolioList}">
-										<div class="portfolio-item col-md-4 man">
+										<div class="portfolio-item col-md-4 ${portfolioList.portfolio_filter}">
 											<div class="image-hover">
-												<a href="/sample/companyPortfolioContent.do?company_name=${portfolioList.company_name}
-												&portfolio_title=${portfolioList.portfolio_title}
-												&portfolio_content=${portfolioList.portfolio_content}">
+												<a href="companyPortfolioContent.do?idx=${portfolioList.idx}">
 													<figure>
 														<img src="${portfolioList.portfolio_image}">
 														<div class="overlay">
 														</div>
 													</figure>
 													<h3 class="margin-top-20">${portfolioList.portfolio_title}</h3>
-													<p class="margin-top-10">${portfolioList.portfolio_content}</p>
+<%-- 													<p class="margin-top-10">${portfolioList.portfolio_content}</p> --%>
 												</a>
 											</div>
 											<div class="clearfix"></div>
@@ -129,7 +129,11 @@
 									<!-- //Portfolio Item// -->
 								</div>
 							</div>
-						</div>
+							<div class="company-button-box">
+								<a href="companyPortfolioInsert.do">
+					            	<button type="button" class="btn btn-blue" >추가하기</button>
+					            </a>
+							</div>
 					</div>
 					<!-- === END CONTENT === -->
 			</div>

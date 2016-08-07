@@ -1,0 +1,28 @@
+.company-content-box {
+	background-color : #f3f3f3;
+    border: 1px solid #dddddd;
+    margin: 20px auto;
+    border-radius:10px;
+    padding: 2px;
+
+}
+.map {
+	 width:auto;
+	 height:480px;
+	 margin: 5px auto;
+}
+.company-content-header {
+
+	width: 80%;
+	background-color : #f3f3f3;
+    border: 1px solid #dddddd;
+    margin: 5px auto 10px;
+    border-radius:10px;
+    text-align: center;
+    padding: 10px;
+    
+}
+.review-table {
+	background-color : #f3f3f3;
+	border: 1px solid #dddddd;
+}

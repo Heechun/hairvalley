@@ -24,8 +24,9 @@
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
-	<link href="assets/css/pgwslideshow.css" rel="stylesheet">
-	<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
+	<link href="assets/css/pgwslider.css" rel="stylesheet">
+
+	
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -60,92 +61,60 @@
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
 				<div class="col-md-12">
-					<div class="col-md-2">
-						<br/><br/>
-						<a href="companyContent.do?company_name=${company_name}">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 업체소개
-						</button></a><br/><br/>
-						<a href="companyPortfolio.do?company_name=${company_name}">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 포트폴리오
-						</button></a><br/><br/>
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 조직구성원
-						</button><br/><br/>
-						<a href="companyReview.do">
-						<button class="btn btn-primary" type="button">
-							<i class="fa fa-picture-o"></i> 이용 후기
-						</button></a><br/><br/>
-					</div>
+				<!-- Side Column -->
+				<!-- Begin Sidebar Menu -->
+				<div class="col-md-3">
+					<ul class="list-group sidebar-nav" id="sidebar-nav">
+						<li class="list-group-item list-toggle">
+							<a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography"><i class="fa-info-circle"></i>업체소개</a>
+								<ul id="collapse-typography" class="collapse">
+									<li><a href="companyContent.do?company_name=${company_name}">
+									<i class="fa-info-circle"></i>업체소개</a></li>
+									<li><a href="companyStaff.do">
+									<i class="fa-group"></i>조직구성원</a></li>
+								</ul>
+						</li>
+						<li class="list-group-item">
+							<a href="companyPortfolio.do?company_name=${company_name}"><i class="fa-picture-o"></i>포트폴리오</a>
+						</li>
+						<li class="list-group-item">
+							<a href="companyReview.do?company_name=${company_name}"><i class="fa-camera-retro"></i>이용후기</a>
+						</li>
+					</ul>
+				</div>
+				<!-- End Sidebar Menu -->
+				<!-- End Side Column -->
 			<!-- Thumbs Gallery -->
-				<div class="col-md-10 margin-bottom-20">
-					<h3 class="margin-bottom-10">포트폴리오</h3>
-					<div class="thumbs-gallery">
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image1.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image2.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image3.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image4.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image6.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image7.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image8.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image8.jpg" alt="image8.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image9.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image9.jpg" alt="image9.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image92.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image92.jpg" alt="image92.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image94.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image94.jpg" alt="image94.jpg">
-						<i></i></a>
-						
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image95.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image95.jpg" alt="image95.jpg">
-						<i></i></a>
-						
-						<a class="thumbBox" rel="lightbox-thumbs" href="assets/img/thumbsgallery/image96.jpg">
-							<img src="assets/img/thumbsgallery/thumbs/image96.jpg" alt="image96.jpg">
-						<i></i></a>
-						
-						</div>			<div class="clearfix"></div>
+				<div class="col-md-9 margin-bottom-20">
+					<div class="company-content-header">
+						<h2><i class="glyphicon glyphicon-picture"></i> ${company_name}의 자세히 보기</h2>
+					</div>
+					<div>
+					
+						<ul class="pgwSlider">
+							<c:forEach items="${imageList}" var="imageList">
+								<li><img src="${imageList.image_url}"></li>
+							</c:forEach>
+						</ul>
+					</div>
+					
+					<div class="company-content-box">
+						<label for="content">자세한 소개</label>
+						<h3>${portfolioVO.portfolio_title}</h3>
+						<p class="lead" id="content">${portfolioVO.portfolio_content}</p>
 					</div>
 					<!-- End Thumbs Gallery -->
+					<div class=" btn btn-group" style="margin-top:20px">
+						<a href="companyPortfolioDelete.do?idx=${portfolioVO.idx}">
+						<button type="button" class="btn btn-red" >삭제하기</button>
+						</a>
+			            <a href="javascript:history.go(-1)">
+			            <button id="backBtn" type="button" class="btn btn-aqua" >뒤로가기</button>
+			            </a>
+		            </div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<!-- === END CONTENT === -->
 
@@ -165,6 +134,11 @@
 <!-- Modernizr -->
 <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
-
+<script src="assets/js/pgwslider.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    $('.pgwSlider').pgwSlider();
+});
+</script>
 </body>
 </html>

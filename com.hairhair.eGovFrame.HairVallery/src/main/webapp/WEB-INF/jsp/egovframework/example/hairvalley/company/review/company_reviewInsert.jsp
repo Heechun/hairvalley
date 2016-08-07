@@ -42,7 +42,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
-						<li class="active"><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
@@ -57,7 +57,7 @@
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
-				
+				<div class="col-md-12">
 					<!-- Side Column -->
 				<!-- Begin Sidebar Menu -->
 				<div class="col-md-3">
@@ -81,50 +81,51 @@
 				</div>
 				<!-- End Sidebar Menu -->
 				<!-- End Side Column -->
-					<div class="col-md-9">
-						<div class="company-content-header">
-							<h2><i class="glyphicon glyphicon-camera"></i> ${company_name}의 후기</h2>
-						</div>
-						<table class=" table table-bordered table-hover table-striped" >
-							<tr height="30">
-								<td align="center" width="50">번 호</td>
-								<td align="center" width="250">제  목</td>
-								<td align="center" width="100">작성자</td>
-								<td align="center" width="150">작성일</td>
-								<td align="center" width="50">조회수</td>
-							</tr>
-							<c:forEach var="reviewList" items="${reviewList}">
-								<tr height="30">
-									<td align="center" width="50">
-										<c:out value="${reviewList.review_idx}"/>
-									</td>
-									<td width="250">
-										<a href="companyReviewContent.do?review_total_idx=${reviewList.review_total_idx}">
-										${reviewList.review_title}
-										</a>
-									</td>
-									<td align="center"  width="100">${reviewList.review_id}</td>
-									<td align="center"  width="150">${reviewList.review_write_date}</td>
-									<td align="center"  width="50">${reviewList.review_hit}</td>
-								</tr>
-							</c:forEach>
-							<tr>	  
-								<td colspan="5" align="center" height="40">	 
-<%-- 								${pageCode} --%>
-								</td>
-							</tr>
-						</table>
-						<div class="btn-group pull-right" role="group">
-							<a href="companyReviewInsert.do">
-								<button type="button" class="btn btn-primary">글쓰기</button>
-							</a>
-						</div>
-					</div>
+					<form action="companyReviewInsertImpl.do" method="post" id="myForm" enctype="multipart/form-data">
+						<input type="hidden" name="company_name" value="${company_name}">
+						<div class="col-md-9">
+							<div class="company-content-header">
+								<h2><i class="glyphicon glyphicon-camera"></i> 후기 쓰기</h2>
+							</div>
+							<div class="col-md-12" style="margin: 5px auto;">
+								<label>글쓴이</label>
+								<div class="row margin-bottom-20">
+									<div class="col-md-12">
+										<input class="form-control" type="text" name="review_id" required>
+									</div>
+								</div>
+								<label>제목</label>
+								<div class="row margin-bottom-20">
+									<div class="col-md-12">
+										<input class="form-control" type="text" name="review_title" required>
+									</div>
+								</div>
+								<label>내용</label>
+								<div class="row margin-bottom-20">
+									<div class="col-md-12">
+										<textarea rows="12" class="form-control" name="review_content" required></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-12">
+										<label for="company_review_imgList">이미지 첨부(복수개 가능)</label>
+						        		<input name="company_review_imgList" type="file" multiple="multiple"/>
+									</div>
+									<div class=" btn btn-group" role="group" style="margin-top:20px">
+										<button type="submit" class="btn btn-blue">확인</button>
+							            <a href="javascript:history.go(-1)">
+							            <button id="backBtn" type="button" class="btn btn-aqua" >뒤로가기</button>
+							            </a>
+						            </div>
+								</div>
+				            </div>
+			            </div>
+		            </form>  
 				</div>
-				<!-- End Main Column -->
-			
+			</div>
+			<!-- End Main Column -->
 		</div>
-		<!-- === END CONTENT === -->
+	<!-- === END CONTENT === -->
 
 <!-- JS -->
 <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- Title -->
-	<title>Substance - Professional Bootstrap Template</title>
+	<title>HairValley-업체소개</title>
 	<!-- Meta -->
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="">
@@ -24,6 +24,8 @@
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+	<link href="assets/css/pgwslideshow.css" rel="stylesheet">
+	<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
 </head>
 <body>
 	<div id="pre_header" class="visible-lg"></div>
@@ -42,7 +44,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="hairvalley_main.do">Home</a></li>
 						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
-						<li class="active"><a href="companyMain.do">업체 소개</a></li>
+						<li><a href="companyMain.do">업체 소개</a></li>
 						<li><a href="#">서비스안내</a></li>
 						<li><a href="portfolio-3-column.html">고객센터</a></li>
 					</ul>				
@@ -56,9 +58,8 @@
 		<!-- === BEGIN CONTENT === -->
 		<div id="content" class="container">
 			<div class="row margin-vert-30">
-				<!-- Main Column -->
-				
-					<!-- Side Column -->
+				<div class="col-md-12">
+				<!-- Side Column -->
 				<!-- Begin Sidebar Menu -->
 				<div class="col-md-3">
 					<ul class="list-group sidebar-nav" id="sidebar-nav">
@@ -81,48 +82,51 @@
 				</div>
 				<!-- End Sidebar Menu -->
 				<!-- End Side Column -->
+					<!-- Our Experts -->
 					<div class="col-md-9">
-						<div class="company-content-header">
-							<h2><i class="glyphicon glyphicon-camera"></i> ${company_name}의 후기</h2>
+					<div class="company-content-header">
+							<h2><i class="glyphicon glyphicon-user"></i> ${company_name}의 직원 소개</h2>
 						</div>
-						<table class=" table table-bordered table-hover table-striped" >
-							<tr height="30">
-								<td align="center" width="50">번 호</td>
-								<td align="center" width="250">제  목</td>
-								<td align="center" width="100">작성자</td>
-								<td align="center" width="150">작성일</td>
-								<td align="center" width="50">조회수</td>
-							</tr>
-							<c:forEach var="reviewList" items="${reviewList}">
-								<tr height="30">
-									<td align="center" width="50">
-										<c:out value="${reviewList.review_idx}"/>
-									</td>
-									<td width="250">
-										<a href="companyReviewContent.do?review_total_idx=${reviewList.review_total_idx}">
-										${reviewList.review_title}
-										</a>
-									</td>
-									<td align="center"  width="100">${reviewList.review_id}</td>
-									<td align="center"  width="150">${reviewList.review_write_date}</td>
-									<td align="center"  width="50">${reviewList.review_hit}</td>
-								</tr>
+					<div class="row margin-bottom-30">
+						<div class="col-md-4">
+							<p id="p1">${staff_content}</p>
+							<label for="p1">평가 점수</label>
+							<c:forEach var="staffList" items="${companyStaffList}">
+								<h3 class="progress-label">${staffList.staff_name} <span class="pull-right">${staffList.staff_count }</span></h3>
+								<div class="progress progress-sm">
+									<div class="progress-bar progress-bar-primary" role="progressbar" style="width: ${staffList.staff_count }%">
+									</div>
+								</div>
 							</c:forEach>
-							<tr>	  
-								<td colspan="5" align="center" height="40">	 
-<%-- 								${pageCode} --%>
-								</td>
-							</tr>
-						</table>
-						<div class="btn-group pull-right" role="group">
-							<a href="companyReviewInsert.do">
-								<button type="button" class="btn btn-primary">글쓰기</button>
-							</a>
+						</div>
+						<div class="col-md-8">
+							<!-- Person Details -->
+							<c:forEach var="staffList" items="${companyStaffList}">
+								<div class="col-md-4 person-details margin-bottom-30">
+									<figure>
+										<img src="${staffList.staff_image}" alt="image1">
+										<figcaption>
+										<h3 class="margin-bottom-10">${staffList.staff_name}<small><br /> - ${staffList.staff_job}</small></h3>
+										<span>${staffList.staff_intro}</span>
+										</figcaption>
+										<ul class="list-inline person-details-icons">
+											<li><a href="#"><i class="fa-lg fa-twitter"></i></a></li>
+											<li><a href="#"><i class="fa-lg fa-linkedin"></i></a></li>
+											<li><a href="#"><i class="fa-lg fa-facebook"></i></a></li>
+											<li><a href="#"><i class="fa-lg fa-dribbble"></i></a></li>
+											<li><a href="#"><i class="fa-lg fa-google-plus"></i></a></li>
+										</ul>
+									</figure>
+								</div>
+							</c:forEach>
+							<!-- //Portfolio Item// -->
 						</div>
 					</div>
+					</div>
+					<hr class="margin-vert-30">
+					<!-- End Our Experts -->
 				</div>
-				<!-- End Main Column -->
-			
+			</div>
 		</div>
 		<!-- === END CONTENT === -->
 
