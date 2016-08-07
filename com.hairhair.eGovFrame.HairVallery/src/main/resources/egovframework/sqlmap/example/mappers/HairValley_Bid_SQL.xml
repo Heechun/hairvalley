@@ -16,6 +16,17 @@
 		<result property="hit" column="hit"/>
 	</resultMap>
 	
+	<resultMap id="bidOfferContent" type="HairValleyBidOfferVO" >
+		<result property="company_id" column="company_id" />
+		<result property="company_image" column="company_image"/>
+		<result property="company_name" column="company_name"/>
+		<result property="text_num" column="text_num"/>
+		<result property="offer_price" column="offer_price"/>
+		<result property="add_offer" column="add_offer"  jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="reg_date" column="reg_date"/>
+		
+	</resultMap>
+	
 	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
@@ -78,7 +89,7 @@
 		values (HAIRVALLEY_BID_OFFER_LIST_SEQ.nextval, #{company_id}, #{text_num}, #{offer_price}, #{add_offer}, SYSDATE)
 	</insert>
 	
-	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultType="HairValleyBidOfferVO">
+	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultMap="bidOfferContent">
 		select company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
 		from hairvalley_bid_offer_list offer, hairvalley_company_list company
 		where offer.text_num = #{text_num} and offer.company_id = company.company_id

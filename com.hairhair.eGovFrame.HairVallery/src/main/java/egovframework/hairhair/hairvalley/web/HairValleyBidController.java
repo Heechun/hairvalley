@@ -210,6 +210,7 @@ public class HairValleyBidController {
 		
 		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentOffers(text_num);
 				
+		
 		bidBoardContent.setContent_num(content_num);
 		
 	

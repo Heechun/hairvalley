@@ -107,6 +107,9 @@
 						<div class="signup-header">
 							<h2>제안 등록</h2>
 						</div>
+						<div class="color-red glyphicon glyphicon-info-sign">
+								<strong>수정이 불가능하므로 신중히 작성하시기 바랍니다.</strong>
+						</div>
 						<hr>
 						<label><strong>업체 ID</strong><span class="color-red">*</span></label>
 						<input class="form-control margin-bottom-20" type="text" name="company_id">
