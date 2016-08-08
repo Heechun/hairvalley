@@ -46,4 +46,14 @@ public class HairValleyCommonServiceImpl extends EgovAbstractServiceImpl impleme
 		return hairvalleyCommonMapper.insertUserRegister(hairvalleyUserVO);
 	}
 
+	@Override
+	public boolean checkId(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		int retval = hairvalleyCommonMapper.checkId(user_id);
+		if(retval > 0){
+			return true;
+		}
+		return false;
+	}
+
 }

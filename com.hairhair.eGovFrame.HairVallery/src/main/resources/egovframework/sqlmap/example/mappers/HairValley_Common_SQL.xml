@@ -14,4 +14,10 @@
 	VALUES (HAIRVALLEY_USER_LIST_SEQ.nextval, #{user_id}, #{user_pw} ,#{user_name},#{user_email},#{user_phone},#{user_loc})
 
 	</insert>
+	
+	
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from hairvalley_user_list where user_id = #{user_id}
+	</select>
+	
 </mapper>

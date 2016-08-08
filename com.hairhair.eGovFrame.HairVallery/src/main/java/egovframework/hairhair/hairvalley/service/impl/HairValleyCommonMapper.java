@@ -8,4 +8,5 @@ public interface HairValleyCommonMapper {
 	
 	int selectUserLogin(HairValleyUserVO hairvalleyUserVO);
 	int insertUserRegister(HairValleyUserVO hairvalleyUserVO);
+	int checkId(String user_id);
 }

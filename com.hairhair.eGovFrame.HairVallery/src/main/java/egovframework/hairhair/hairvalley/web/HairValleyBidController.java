@@ -210,7 +210,7 @@ public class HairValleyBidController {
 		
 		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentOffers(text_num);
 				
-		
+
 		bidBoardContent.setContent_num(content_num);
 		
 	
@@ -278,7 +278,7 @@ public class HairValleyBidController {
 		hairvalley_bid_offer_vo.setCompany_id(request.getParameter("company_id"));
 		hairvalley_bid_offer_vo.setText_num(text_num);
 		hairvalley_bid_offer_vo.setOffer_price(Integer.parseInt(request.getParameter("offer_price")));
-		hairvalley_bid_offer_vo.setAdd_offer(request.getParameter("add_offer").replace("\r\n", "<br>"));
+		hairvalley_bid_offer_vo.setAdd_offer(request.getParameter("add_offer"));
 		
 		int retval = hairvalleyBidService.insertBidOffer(hairvalley_bid_offer_vo);
 		

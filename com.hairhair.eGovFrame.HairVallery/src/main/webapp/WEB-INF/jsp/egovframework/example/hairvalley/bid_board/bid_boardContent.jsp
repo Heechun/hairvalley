@@ -4,111 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- === BEGIN HEADER === -->
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
-<head>
-<!-- Title -->
-<title>Welcome to HairValley</title>
-<!-- Meta -->
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<link href="favicon.html" rel="shortcut icon">
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="assets/css/bootstrap.css" rel="stylesheet">
-<!-- Template CSS -->
-<link rel="stylesheet" href="assets/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/font-awesome.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/tableDesign.css"
-	rel="stylesheet">
-<!-- Google Fonts-->
-<link href="http://fonts.googleapis.com/css?family=Lato:400,300"
-	rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
-	rel="stylesheet" type="text/css">
-<link href="assets/css/pgwslideshow.css" rel="stylesheet">
-<link href="assets/css/pgwslideshow_light.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.pgwSlideshow').pgwSlideshow();
-	});
-</script>
-</head>
-<body>
-	<div id="pre_header" class="visible-lg"></div>
-	<div id="header" class="container">
-		<div class="row">
-			<!-- Logo -->
-			<div class="logo">
-				<a href="/sample//hairvalley_main.do" title=""> <img
-					src="assets/hairvalley_images/logo.PNG" alt="Logo"
-					style="padding-top: 26px;" />
-				</a>
-			</div>
-			<!-- End Logo -->
-			<!-- Top Menu -->
-			<div class="col-md-10 col-md-offset-2 margin-top-10">
-				<div id="hornav" class="visible-lg">
-					<ul class="nav navbar-nav" style="padding-top: 20px;">
-						<li><a href="/sample/bid_boardList.do">입찰 게시판</a></li>
-						<li><a href="companyMain.do">업체 소개</a></li>
-						<li><a href="#">서비스안내</a></li>
-						<li><a href="#">고객센터</a></li>
-					</ul>
-					<%-- 
-					<div class="nav navbar-nav navbar-right panel-sm panel-primary invert" style="margin-top:0;">
-						<div class="panel-heading">
-							<i class="fa fa-user"></i>wonjong님 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-sm btn-blue" type="button" onclick="move('/sample/hairvalley_register.do');">
-								<i class="fa fa-sign-out"></i>로그아웃
-							</button>
-						</div>
-						<div class="panel-body">Lorem...</div>
-					</div>
 
---%>
 
-					<form class="navbar-form" action="/sample/hairvalley_login.do"
-						method="post" style="margin-top: 20px;">
-						<div class="form-group" style="margin-bottom: 1px;">
-							<input type="text" name="user_id" placeholder="ID or 사업자번호"
-								class="form-control" style="width: auto;">
-						</div>
-						<div class="form-group">
-							<input type="password" name="user_pw" placeholder="Password"
-								class="form-control" style="width: auto;">
-						</div>
-						<button class="btn btn-sm btn-blue" type="submit">
-							<i class="fa fa-user"></i> Login
-						</button>
-						<button class="btn btn-sm btn-aqua" type="button"
-							onclick="move('/sample/hairvalley_register.do');">
-							<i class="fa fa-sign-in"></i> Join
-						</button>
-					</form>
-
-				</div>
-			</div>
-			<div class="clear"></div>
-			<!-- End Top Menu -->
-		</div>
-	</div>
+	<!-- === BEGIN HEADER === -->
+	<jsp:include page="/hairvalley_page_header.do" flush="false"/>
 	<!-- === END HEADER === -->
+	
 	<!-- === BEGIN CONTENT === -->
 	<div id="content" class="container" style="padding-top: 30px;">
 		<div class="row margin-vert-30">
@@ -260,12 +161,12 @@
 								<c:forEach items="${bidBoardOffers}" var="bidBoardOffers">
 									<li class="list-group-item">
 										<div class="row">
-											<div class="col-md-2 profile-thumb">
+											<div class="col-md-4 profile-thumb">
 												<a href="#"> <img class="media-object"
 													src="${bidBoardOffers.company_image}" alt="">
 												</a>
 											</div>
-											<div class="col-md-10">
+											<div class="col-md-8">
 												<h3><strong>${bidBoardOffers.company_name}</strong></h3><br/>
 												
 												<label><strong>제안 가격 </strong> <span class="color-white">*</span></label>
@@ -273,9 +174,8 @@
 												<br/>
 												<label><strong>제안 내용 </strong> <span class="color-white">*</span></label><br/>
 												<div class="row margin-bottom-20">
-													<div class="col-md-12 col-md-offset-0">
-														<textarea name="add_request" rows="3" class="form-control"
-															readonly="readonly">${bidBoardOffers.add_offer}</textarea>
+													<div class="col-md-12">
+														<textarea name="add_request" rows="5" class="form-control" readonly="readonly">${bidBoardOffers.add_offer}</textarea>
 													</div>
 												</div>	
 												<span class="label label-lg label-primary" type="span">
