@@ -87,18 +87,35 @@ public class HairValleyBidController {
 		endRow = (int) (page * 10);
 		startRow = endRow - 9;
 
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 
-		List<?> bidBoardList = hairvalleyBidService.selectBidBoardList(map);
-		int totalnum = hairvalleyBidService.selectBidBoardListCount();
-
+		String search_msg = request.getParameter("search_msg");
+		
+		List<?> bidBoardList = null;
+		int totalnum = 0;
+		
+		
+		if(search_msg != null && search_msg != "")
+		{
+			map.put("search_msg", search_msg);
+			bidBoardList = hairvalleyBidService.selectBidBoardListSearch(map);
+			totalnum = hairvalleyBidService.selectBidBoardListSearchCount(search_msg);
+		}
+		else
+		{
+			bidBoardList = hairvalleyBidService.selectBidBoardList(map);
+			totalnum = hairvalleyBidService.selectBidBoardListCount();
+		}
+		
+		
+		
 		for(int i=0; i< bidBoardList.size(); i++){
 			HairValleyBidVO vo = (HairValleyBidVO)bidBoardList.get(i);
 			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
 		}
-
+		
 		int totalpage = totalnum / 10;
 		if (totalpage == 0) {
 			totalpage = 1;
@@ -106,7 +123,8 @@ public class HairValleyBidController {
 			if (totalnum % 10 != 0)
 				totalpage++;
 		}
-
+		
+		model.addAttribute("search_msg",search_msg);
 		model.addAttribute("bidBoardList", bidBoardList);
 		model.addAttribute("page", page);
 		model.addAttribute("totalpage", totalpage);
@@ -157,6 +175,8 @@ public class HairValleyBidController {
 			hairvalley_bid_insertVO.setUser_id(multiRequest.getParameter("user_id"));
 			hairvalley_bid_insertVO.setHit(0);
 			hairvalley_bid_insertVO.setRegip(request.getRemoteAddr());
+			hairvalley_bid_insertVO.setHope_location(request.getParameter("hope_location"));
+
 			int boardlist_retval = hairvalleyBidService.insertBidBoardData(hairvalley_bid_insertVO);
 			
 			System.out.println("boardlist결과 : " + boardlist_retval);

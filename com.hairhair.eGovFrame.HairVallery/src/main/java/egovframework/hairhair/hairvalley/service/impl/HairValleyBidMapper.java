@@ -12,9 +12,13 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("hairvalleyBidMapper")
 public interface HairValleyBidMapper {
 	
-	List<?> selectBidBoardList(HashMap<String, Integer> map);
+	List<?> selectBidBoardList(HashMap<String, Object> map);
+	
+	List<?> selectBidBoardListSearch(HashMap<String, Object> map);
 	
 	int selectBidBoardListCount();
+	
+	int selectBidBoardListSearchCount(String search_msg);
 	
 	int insertBidBoardData(HairValleyBidInsertVO bidBoardContent);
 	

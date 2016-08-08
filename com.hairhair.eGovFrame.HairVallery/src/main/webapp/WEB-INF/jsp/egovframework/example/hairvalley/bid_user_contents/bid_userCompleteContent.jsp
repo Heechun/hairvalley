@@ -105,6 +105,11 @@
 
 											</tr>
 											<tr>
+													<th id="contentHead">원하는 지역</th>
+
+													<td colspan="8">${bidBoardContent.hope_location}</td>
+											</tr>
+											<tr>
 												<th rowspan="3" id="contentHead">요구 사항</th>
 												<th id="contentHead">커트</th>
 												<td colspan="8">${bidBoardContent.cut}</td>

@@ -53,20 +53,24 @@
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:forEach items="${bidBoardContentFaceImages}"
-																		var="images">
-																		<li><img src="${images.image_url}"></li>
-																	</c:forEach>
+																	<c:if test="${user_id != null || company_id != null}">
+																		<c:forEach items="${bidBoardContentFaceImages}"
+																			var="images">
+																			<li><img src="${images.image_url}"></li>
+																		</c:forEach>
+																	</c:if>
 																</ul>
 															</td>
 															<td width="35%" colspan="1"
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:forEach items="${bidBoardContentRefImages}"
-																		var="images">
-																		<li><img src="${images.image_url}"></li>
-																	</c:forEach>
+																	<c:if test="${user_id != null || company_id != null}">
+																		<c:forEach items="${bidBoardContentRefImages}"
+																			var="images">
+																			<li><img src="${images.image_url}"></li>
+																		</c:forEach>
+																	</c:if>
 																</ul>
 															</td>
 														</tr>
@@ -95,12 +99,17 @@
 
 													<td>${bidBoardContent.user_id}</td>
 
-
+		
 													<th id="contentHead">조회수</th>
 
 													<td>${bidBoardContent.hit}</td>
 
 
+												</tr>
+												<tr>
+													<th id="contentHead">원하는 지역</th>
+
+													<td colspan="8">${bidBoardContent.hope_location}</td>
 												</tr>
 												<tr>
 													<th rowspan="3" id="contentHead">요구 사항</th>
@@ -129,12 +138,18 @@
 										</div>
 
 										<!--  <button class="btn btn-green" id="updateContentBtn" onclick="move('/sample/bid_updateBoardData.do?text_num=${bidBoardContent.text_num}');" style="float:right; margin-top:10px;">글수정</button>-->
-										<button class="btn btn-red" id="deleteContentBtn"
-											onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');"
-											style="float: right; margin-right: 10px; margin-top: 10px;">글삭제</button>
 										<button class="btn btn-blue"
 											onclick="move('/sample/bid_boardList.do');"
 											style="float: right; margin-right: 10px; margin-top: 10px;">목록으로</button>
+										
+										<c:if test="${user_id != null && user_id == bidBoardContent.user_id}">
+											<button class="btn btn-red" id="deleteContentBtn"
+											onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');"
+											style="float: right; margin-right: 10px; margin-top: 10px;">글삭제</button>
+										</c:if>
+															
+										
+										
 									</div>
 								</div>
 
@@ -151,7 +166,9 @@
 									<h3 style="color:#fff;">업체 제안 목록</h3>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-blue btn-sm pull-right" onclick="move('/sample/bid_boardOffer.do?text_num=${bidBoardContent.text_num}&content_num=${bidBoardContent.content_num}');">제안 등록</button>
+									<c:if test="${company_id != null}">
+										<button class="btn btn-blue btn-sm pull-right" onclick="move('/sample/bid_boardOffer.do?text_num=${bidBoardContent.text_num}&content_num=${bidBoardContent.content_num}');">제안 등록</button>
+									</c:if>
 								</div>
 							</div>
 						

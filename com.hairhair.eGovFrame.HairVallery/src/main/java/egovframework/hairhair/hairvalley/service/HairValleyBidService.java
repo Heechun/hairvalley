@@ -5,10 +5,13 @@ import java.util.List;
 
 public interface HairValleyBidService {
 
-	List<?> selectBidBoardList(HashMap<String, Integer> map) throws Exception;
+	List<?> selectBidBoardList(HashMap<String, Object> map) throws Exception;
+	
+	List<?> selectBidBoardListSearch(HashMap<String, Object> map) throws Exception;
 	
 	int selectBidBoardListCount() throws Exception;
 	
+	int selectBidBoardListSearchCount(String search_msg) throws Exception;
 	
 	int insertBidBoardData(HairValleyBidInsertVO bidBoardContent) throws Exception;
 	

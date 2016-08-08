@@ -14,7 +14,17 @@ public class HairValleyBidInsertVO {
 	String add_request;
 	int hit;
 	String regip;
+	String hope_location;
 	
+	
+	public String getHope_location() {
+		return hope_location;
+	}
+
+	public void setHope_location(String hope_location) {
+		this.hope_location = hope_location;
+	}
+
 	public String getTitle() {
 		return title;
 	}

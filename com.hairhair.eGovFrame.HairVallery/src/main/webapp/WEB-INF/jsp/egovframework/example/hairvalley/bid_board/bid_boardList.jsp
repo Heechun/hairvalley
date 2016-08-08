@@ -18,6 +18,26 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">입찰 게시판</h3>
 						</div>
+						<hr/>
+						<div class="col-md-6 col-md-offset-3">
+							<div class="input-group input-group-lg">
+								<input type="text" class="form-control" placeholder="지역 검색 ex) OO동"
+									id="searchInput"> <span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="searchBtn">
+										<i class="fa-search"></i>검색
+									</button>
+								</span>
+							</div>
+							<!-- /input-group -->
+							<div>
+								<c:if test="${search_msg !=null}">
+									<br />
+									<p>검색어 '${search_msg}'에 해당되는 검색결과</p>
+								</c:if>
+							</div>
+						</div>
+						
+			
 						<div class="panel-body">
 							<div class="row margin-vert-10">
 								<div class="col-md-12">
@@ -60,7 +80,7 @@
 										<div class="col-md-8">
 											<ul class="pagination">
 												<c:if test="${page > 1}">
-													<li><a href="bid_boardList.do?page=${page-1}">&laquo;</a>
+													<li><a href="bid_boardList.do?page=${page-1}&search_msg=${search_msg}">&laquo;</a>
 													</li>
 												</c:if>
 												<c:if test="${page == 1}">
@@ -69,28 +89,33 @@
 												<c:forEach var="num" begin="1" end="${totalpage}" step="1">
 													<c:if test="${page == num}">
 														<li class="active"><a
-															href="bid_boardList.do?page=${num}">${num}</a></li>
+															href="bid_boardList.do?page=${num}&search_msg=${search_msg}">${num}</a></li>
 													</c:if>
 													<c:if test="${page != num}">
-														<li><a href="bid_boardList.do?page=${num}">${num}</a>
+														<li><a href="bid_boardList.do?page=${num}&search_msg=${search_msg}">${num}</a>
 														</li>
 													</c:if>
 												</c:forEach>
 												<li><c:if test="${fn:length( bidBoardList ) < 10}">
 														<li class="disabled"><a href="#">&raquo;</a></li>
 													</c:if> <c:if test="${fn:length( bidBoardList ) == 10}">
-														<li><a href="bid_boardList.do?page=${page+1}">&raquo;</a>
+														<li><a href="bid_boardList.do?page=${page+1}&search_msg=${search_msg}">&raquo;</a>
 														</li>
 													</c:if></li>
 											</ul>
 										</div>
 										<div class="col-md-4">
-											<input class="btn btn-blue" type="button" value="글쓰기"
-												onclick="move('/sample/bid_writeBoardData.do');"
-												style="float: right" /> <input class="btn btn-aqua"
+											<input class="btn btn-aqua"
 												type="button" value="처음으로"
 												onclick="move('/sample/bid_boardList.do');"
 												style="float: right; margin-right: 2px;" />
+											
+											<c:if test="${user_id != null}">
+												<input class="btn btn-blue" type="button" value="글쓰기"
+													onclick="move('/sample/bid_writeBoardData.do');"
+													style="float: right" /> 
+											</c:if>	
+											
 										</div>
 										<div class="mw_layer">
 											<div class="bg"></div>
@@ -149,6 +174,27 @@
 	<!-- Modernizr -->
 	<script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 	<!-- End JS -->
+	<script>
+	$("#searchBtn").on("click", function(){
+		var msg = $("#searchInput").val();
+		location.href = "/sample/bid_boardList.do?search_msg="+msg;
+		
+		var alertMsg = "검색어 '"+msg+"'을(를) 검색합니다.";
+		
+		alert(alertMsg);
+		
+		$("#searchInput").val("");
+	});
+	$("#searchInput").keyup(function(e) {
+		  if (e.which === 13) {
+			  var msg = $("#searchInput").val();
+			  location.href = "/sample/bid_boardList.do?search_msg="+msg;
+			  var alertMsg = "검색어 '"+msg+"'을(를) 검색합니다.";
+			  alert(alertMsg);
+			  $("#searchInput").val("");
+		  }
+		});
+	</script>
 </body>
 </html>
 <!-- === END FOOTER === -->

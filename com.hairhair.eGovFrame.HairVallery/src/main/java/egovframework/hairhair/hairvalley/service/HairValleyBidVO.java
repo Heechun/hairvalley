@@ -18,8 +18,17 @@ public class HairValleyBidVO {
 	int content_num;
 	String regip;
 	int offer_count;
-
+	String hope_location;
 	
+	
+	public String getHope_location() {
+		return hope_location;
+	}
+
+	public void setHope_location(String hope_location) {
+		this.hope_location = hope_location;
+	}
+
 	public int getOffer_count() {
 		return offer_count;
 	}

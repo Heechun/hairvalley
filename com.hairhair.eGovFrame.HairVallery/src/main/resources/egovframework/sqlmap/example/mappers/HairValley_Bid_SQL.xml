@@ -14,7 +14,8 @@
 		<result property="add_request" column="add_request" jdbcType="CLOB" javaType="java.lang.String" />
 		<result property="title" column="title"/>
 		<result property="hit" column="hit"/>
-	</resultMap>
+		<result property="hope_location" column="hope_location"/>
+	</resultMap> 
 	
 	<resultMap id="bidOfferContent" type="HairValleyBidOfferVO" >
 		<result property="company_id" column="company_id" />
@@ -27,10 +28,15 @@
 		
 	</resultMap>
 	
-	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
 	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+	]]> 
+	</select> 
+	
+	<select id="selectBidBoardListSearch" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
+		<![CDATA[ 
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count FROM hairvalley_bid_board_list where hope_location LIKE '%'||#{search_msg}||'%' order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select> 
 
@@ -60,6 +66,10 @@
 		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list
 	</select>
 	
+	<select id="selectBidBoardListSearchCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list where hope_location LIKE '%'||#{search_msg}||'%'
+	</select>
+	
 	<update id="updateBidBoardContentCount" parameterType="hairvalleyBidVO" >
       update hairvalley_bid_board_list set hit= (hit+1), regip = #{regip} where text_num = #{text_num}
 	</update>
@@ -67,8 +77,8 @@
 	<insert id="insertBidBoardData" parameterType="hairvalleyBidInsertVO">
  
     INSERT INTO hairvalley_bid_board_list 
-    		(text_num, user_id, reg_date, req_price, perm, cut, dye, add_request, title, hit)
-	VALUES (BID_BOARD_LIST_SEQ.nextval, #{user_id}, SYSDATE ,#{req_price},#{perm},#{cut},#{dye},#{add_request},#{title},#{hit})
+    		(text_num, user_id, reg_date, req_price, perm, cut, dye, add_request, title, hit, regip, contract_num, hope_location)
+	VALUES (BID_BOARD_LIST_SEQ.nextval, #{user_id}, SYSDATE ,#{req_price},#{perm},#{cut},#{dye},#{add_request},#{title},#{hit}, #{regip}, null, #{hope_location})
 
 	</insert>
 	<insert id="insertBidBoardUserFaceImage" parameterType="java.lang.String">
@@ -86,7 +96,7 @@
 	
 	
 	<select id="selectBidBoardContent" parameterType="java.lang.Integer" resultMap="bidBoardContent">
-		select text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, req_price, perm, cut, dye, add_request, title, hit, regip from hairvalley_bid_board_list where text_num = #{text_num}
+		select text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, req_price, perm, cut, dye, add_request, title, hit, regip, hope_location from hairvalley_bid_board_list where text_num = #{text_num}
 	</select>
 	
 	<select id="selectBidBoardContentFaceImages" parameterType="java.lang.Integer" resultType="HairValleyBidImagesVO">

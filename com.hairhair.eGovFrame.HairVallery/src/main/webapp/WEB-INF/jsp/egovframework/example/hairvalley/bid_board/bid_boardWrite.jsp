@@ -49,6 +49,14 @@
 							<hr>
 							<div class="row">
 								<div class="col-md-12">
+									<label><strong>원하는 지역</strong> <span class="color-red">*</span>
+									</label><br> <input name="hope_location"
+										class="form-control margin-bottom-20" placeholder="ex) OO시 OO구 OO동" />
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-md-12">
 									<label><strong>내 사진 등록</strong> <span class="color-red">*</span>
 									</label> <input class="multi with-preview" name="user_faceImg"
 										type="file" multiple="multiple"

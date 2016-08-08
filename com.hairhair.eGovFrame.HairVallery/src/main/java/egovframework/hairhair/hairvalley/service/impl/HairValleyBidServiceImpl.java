@@ -27,7 +27,7 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	private EgovIdGnrService egovIdGnrService;
 	
 	@Override
-	public List<?> selectBidBoardList(HashMap<String, Integer> map) throws Exception {
+	public List<?> selectBidBoardList(HashMap<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		List<?> hairvalleyBidVO = hairvalleyBidMapper.selectBidBoardList(map); 
 		//for(int i=0; i< hairvalleyBidVO.size(); i++){
@@ -35,11 +35,21 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		//}
 		return hairvalleyBidVO;
 	}
-
+	@Override
+	public List<?> selectBidBoardListSearch(HashMap<String, Object> map)throws Exception {
+		
+		return hairvalleyBidMapper.selectBidBoardListSearch(map);
+	}
 	@Override
 	public int selectBidBoardListCount() throws Exception {
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectBidBoardListCount();
+	}
+	@Override
+	public int selectBidBoardListSearchCount(String search_msg)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectBidBoardListSearchCount(search_msg);
 	}
 
 	@Override
@@ -140,5 +150,6 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectBidContentContractOffer(text_num);
 	}
+	
 	
 }
