@@ -17,9 +17,17 @@ public class HairValleyBidVO {
 	int hit;
 	int content_num;
 	String regip;
-	
+	int offer_count;
 
 	
+	public int getOffer_count() {
+		return offer_count;
+	}
+
+	public void setOffer_count(int offer_count) {
+		this.offer_count = offer_count;
+	}
+
 	public int getHit() {
 		return hit;
 	}

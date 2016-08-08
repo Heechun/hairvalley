@@ -34,4 +34,13 @@ public interface HairValleyBidService {
 	
 	int selectUserBidContentCount(String user_id) throws Exception;
 	
+	int insertBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo) throws Exception;
+	
+	int updateBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo) throws Exception;
+	
+	List<?> selectUserBidCompleteContentList(HashMap<String, Object> map) throws Exception;
+	
+	int selectUserBidCompleteContentCount(String user_id) throws Exception;
+	
+	List<?> selectBidContentContractOffer(int text_num) throws Exception;
 }

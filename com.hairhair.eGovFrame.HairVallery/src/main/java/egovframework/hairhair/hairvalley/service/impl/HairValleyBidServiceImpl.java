@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidContractVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
@@ -105,6 +106,39 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	public int selectUserBidContentCount(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectUserBidContentCount(user_id);
+	}
+
+	@Override
+	public int insertBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.insertBidContract(hairvalley_bid_contract_vo);
+	}
+
+	@Override
+	public int updateBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.updateBidContract(hairvalley_bid_contract_vo);
+	}
+
+	@Override
+	public List<?> selectUserBidCompleteContentList(HashMap<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectUserBidCompleteContentList(map);
+	}
+
+	@Override
+	public int selectUserBidCompleteContentCount(String user_id)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectUserBidCompleteContentCount(user_id);
+	}
+
+	@Override
+	public List<?> selectBidContentContractOffer(int text_num) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectBidContentContractOffer(text_num);
 	}
 	
 }

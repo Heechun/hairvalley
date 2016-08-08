@@ -73,5 +73,17 @@
 			history.back();
 		</script>	
 	</c:when>
+	<c:when test="${retval == 1 && methodName=='updateBidContract'}">
+		<script>
+			alert("업체와 계약이 완료 되었습니다.");
+			history.back();
+		</script>
+	</c:when>
+	<c:when test="${retval < 1 && methodName=='updateBidContract'}">
+		<script>
+			alert("업체와 계약이 실패하였습니다.");
+			history.back();
+		</script>	
+	</c:when>
 </c:choose>
 

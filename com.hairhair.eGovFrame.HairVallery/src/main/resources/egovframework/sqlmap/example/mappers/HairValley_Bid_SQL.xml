@@ -30,19 +30,31 @@
 	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select> 
 
 	<select id="selectUserBidContentList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list where user_id = #{user_id} order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 		]]> 
 	</select>
 	
 	<select id="selectUserBidContentCount" resultType="java.lang.Integer" parameterType="java.lang.String">
-		SELECT count(*) FROM hairvalley_bid_board_list where user_id=#{user_id}
+		SELECT count(*) FROM hairvalley_bid_board_list where user_id=#{user_id} and contract_num is null
 	</select> 
+	
+	<select id="selectUserBidCompleteContentList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
+	<![CDATA[ 
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is not null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+	]]> 
+	</select>
+	
+	<select id="selectUserBidCompleteContentCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(*) FROM hairvalley_bid_board_list where user_id=#{user_id} and contract_num is not null
+	</select> 
+	
+	
 	
 	<select id="selectBidBoardListCount" resultType="java.lang.Integer">
 		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list
@@ -99,10 +111,28 @@
 	</insert>
 	
 	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultMap="bidOfferContent">
-		select company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
+		select company.company_id, company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
 		from hairvalley_bid_offer_list offer, hairvalley_company_list company
 		where offer.text_num = #{text_num} and offer.company_id = company.company_id
 	</select>
 	
+	
+	
+	<insert id="insertBidContract" parameterType="HairValleyBidContractVO" >
+
+		insert into hairvalley_bid_contract_list (idx, text_num, company_id)
+		values (HAIRVALLEY_BID_CONTRACT_L_SEQ.nextval, #{text_num}, #{company_id})
+	</insert>
+
+	<update id="updateBidContract" parameterType="HairValleyBidContractVO" >
+      update hairvalley_bid_board_list set contract_num= ( select last_number-1 from user_sequences where sequence_name = 'HAIRVALLEY_BID_CONTRACT_L_SEQ') where text_num = #{text_num}
+	</update>
+	
+	
+	<select id="selectBidContentContractOffer" parameterType="java.lang.Integer" resultMap="bidOfferContent">
+		select company.company_id, company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
+		from hairvalley_bid_offer_list offer, hairvalley_company_list company
+		where offer.text_num = #{text_num} and offer.company_id = company.company_id and company.company_id = (select company_id from hairvalley_bid_contract_list where text_num=#{text_num})
+	</select>
 	
 </mapper>

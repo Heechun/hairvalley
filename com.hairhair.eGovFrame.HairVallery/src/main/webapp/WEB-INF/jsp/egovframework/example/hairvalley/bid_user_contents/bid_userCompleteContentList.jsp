@@ -16,7 +16,7 @@
 					<div
 						class="panel panel-primary margin-bottom-30 margin-top-30">
 						<div class="panel-heading">
-							<h3 class="panel-title">입찰 미완료 목록 조회</h3>
+							<h3 class="panel-title">입찰 완료 목록 조회</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row margin-vert-10">
@@ -41,7 +41,7 @@
 														<!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
 
 														<td><a
-															href="/sample/bid_selectUserBidContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">${bidBoardList.title}</a></td>
+															href="/sample/bid_selectUserBidCompleteContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">${bidBoardList.title}</a></td>
 
 														<td>${bidBoardList.user_id}</td>
 
@@ -57,7 +57,7 @@
 										<div class="col-md-8">
 											<ul class="pagination">
 												<c:if test="${page > 1}">
-													<li><a href="bid_selectUserBidContentList.do?user_id=${user_id}&page=${page-1}">&laquo;</a>
+													<li><a href="bid_selectUserBidCompleteContentList.do?user_id=${user_id}&page=${page-1}">&laquo;</a>
 													</li>
 												</c:if>
 												<c:if test="${page == 1}">
@@ -66,17 +66,17 @@
 												<c:forEach var="num" begin="1" end="${totalpage}" step="1">
 													<c:if test="${page == num}">
 														<li class="active"><a
-															href="bid_selectUserBidContentList.do?user_id=${user_id}&page=${num}">${num}</a></li>
+															href="bid_selectUserBidCompleteContentList.do?user_id=${user_id}&page=${num}">${num}</a></li>
 													</c:if>
 													<c:if test="${page != num}">
-														<li><a href="bid_selectUserBidContentList.do?user_id=${user_id}&page=${num}">${num}</a>
+														<li><a href="bid_selectUserBidCompleteContentList.do?user_id=${user_id}&page=${num}">${num}</a>
 														</li>
 													</c:if>
 												</c:forEach>
 												<li><c:if test="${fn:length( bidBoardList ) < 10}">
 														<li class="disabled"><a href="#">&raquo;</a></li>
 													</c:if> <c:if test="${fn:length( bidBoardList ) == 10}">
-														<li><a href="bid_selectUserBidContentList.do?user_id=${user_id}&page=${page+1}">&raquo;</a>
+														<li><a href="bid_selectUserBidCompleteContentList.do?user_id=${user_id}&page=${page+1}">&raquo;</a>
 														</li>
 													</c:if></li>
 											</ul>

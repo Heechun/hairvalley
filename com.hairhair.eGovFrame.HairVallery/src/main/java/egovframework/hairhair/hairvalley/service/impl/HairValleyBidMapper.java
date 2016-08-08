@@ -3,6 +3,7 @@ package egovframework.hairhair.hairvalley.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidContractVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
@@ -38,4 +39,14 @@ public interface HairValleyBidMapper {
 	List<?> selectUserBidContentList(HashMap<String, Object> map);
 	
 	int selectUserBidContentCount(String user_id);
+	
+	int insertBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo);
+	
+	int updateBidContract(HairValleyBidContractVO hairvalley_bid_contract_vo);
+	
+	List<?> selectUserBidCompleteContentList(HashMap<String, Object> map);
+	
+	int selectUserBidCompleteContentCount(String user_id);
+	
+	List<?> selectBidContentContractOffer(int text_num);
 }

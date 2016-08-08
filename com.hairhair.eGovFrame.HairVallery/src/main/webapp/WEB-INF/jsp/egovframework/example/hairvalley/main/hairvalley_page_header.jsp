@@ -93,8 +93,8 @@
 						    입찰 정보 <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="/sample/bid_selectUserBidContent.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 내역 조회</a></li>
-						    <li><a href="#"><i class="fa fa-picture-o"></i>입찰 완료 내역 조회</a></li>
+						    <li><a href="/sample/bid_selectUserBidContentList.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 미완료 내역 조회</a></li>
+						    <li><a href="/sample/bid_selectUserBidCompleteContentList.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 완료 내역 조회</a></li>
 						  </ul>
 						</div>
 						<%-- 
@@ -165,6 +165,7 @@
 				$("#user_pw").val("");
 				$("#login_sign").hide();
 				$("#login_form").show();
+				location.href="/sample//hairvalley_main.do";
 			}
 		})
 	});

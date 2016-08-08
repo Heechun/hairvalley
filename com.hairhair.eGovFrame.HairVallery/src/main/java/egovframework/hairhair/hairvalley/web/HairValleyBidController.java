@@ -48,6 +48,8 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 
 
+
+import egovframework.hairhair.hairvalley.service.HairValleyBidContractVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
@@ -223,7 +225,7 @@ public class HairValleyBidController {
 	}
 	
 	
-	@RequestMapping(value = "/bid_selectUserBidContent.do")
+	@RequestMapping(value = "/bid_selectUserBidContentList.do")
 	public String selectUserBidContentList(ModelMap model, HttpServletRequest request) throws Exception{
 		
 		String user_id = request.getParameter("user_id");
@@ -267,6 +269,123 @@ public class HairValleyBidController {
 		
 
 		return "hairvalley/bid_user_contents/bid_userContentList";
+	}
+	
+	@RequestMapping(value = "/bid_selectUserBidCompleteContentList.do")
+	public String selectUserBidCompleteContentList(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		String user_id = request.getParameter("user_id");
+		
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int startRow, endRow;
+		endRow = (int) (page * 10);
+		startRow = endRow - 9;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("user_id", user_id);
+		
+		
+		List<?> bidBoardList = hairvalleyBidService.selectUserBidCompleteContentList(map);
+		int totalnum = hairvalleyBidService.selectUserBidCompleteContentCount(user_id);
+
+		for(int i=0; i< bidBoardList.size(); i++){
+			HairValleyBidVO vo = (HairValleyBidVO)bidBoardList.get(i);
+			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
+
+		int totalpage = totalnum / 10;
+		if (totalpage == 0) {
+			totalpage = 1;
+		} else {
+			if (totalnum % 10 != 0)
+				totalpage++;
+		}
+
+		model.addAttribute("user_id",user_id);
+		model.addAttribute("bidBoardList", bidBoardList);
+		model.addAttribute("page", page);
+		model.addAttribute("totalpage", totalpage);
+		
+
+		return "hairvalley/bid_user_contents/bid_userCompleteContentList";
+	}
+	
+	
+	@RequestMapping(value = "/bid_selectUserBidContent.do")
+	public String selectUserBidContent(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+		int content_num = Integer.parseInt(request.getParameter("content_num"));
+		String regip = request.getRemoteAddr();
+		
+		
+		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
+		
+		if(!regip.equals(bidBoardContent.getRegip())){         
+	        	
+			bidBoardContent.setRegip(regip);
+			bidBoardContent.setHit(bidBoardContent.getHit()+1);
+			hairvalleyBidService.updateBidBoardContentCount(bidBoardContent);
+	    }
+		
+		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
+		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
+		
+		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentOffers(text_num);
+				
+
+		bidBoardContent.setContent_num(content_num);
+		
+	
+		model.addAttribute("bidBoardContent", bidBoardContent);
+		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
+		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
+		model.addAttribute("bidBoardOffers", bidBoardOffers);		
+		
+		return "hairvalley/bid_user_contents/bid_userContent";
+	}
+	
+
+	@RequestMapping(value = "/bid_selectUserBidCompleteContent.do")
+	public String selectUserBidCompleteContent(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+		int content_num = Integer.parseInt(request.getParameter("content_num"));
+		String regip = request.getRemoteAddr();
+		
+		
+		HairValleyBidVO bidBoardContent = hairvalleyBidService.selectBidBoardContent(text_num);
+		
+		if(!regip.equals(bidBoardContent.getRegip())){         
+	        	
+			bidBoardContent.setRegip(regip);
+			bidBoardContent.setHit(bidBoardContent.getHit()+1);
+			hairvalleyBidService.updateBidBoardContentCount(bidBoardContent);
+	    }
+		
+		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
+		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
+		
+		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentContractOffer(text_num);
+
+		bidBoardContent.setContent_num(content_num);
+		
+	
+		model.addAttribute("bidBoardContent", bidBoardContent);
+		model.addAttribute("bidBoardContentFaceImages", bidBoardContentFaceImages);		
+		model.addAttribute("bidBoardContentRefImages", bidBoardContentRefImages);		
+		model.addAttribute("bidBoardOffers", bidBoardOffers);		
+		
+		return "hairvalley/bid_user_contents/bid_userCompleteContent";
 	}
 	
 	
@@ -337,6 +456,33 @@ public class HairValleyBidController {
 		
 		return "hairvalley/bid_board/isSuccess";
 	}
+	
+	@RequestMapping(value = "/bid_updateBidContract.do")
+	public String updateBidContract(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		int text_num = Integer.parseInt(request.getParameter("text_num"));
+		String company_id = (String)request.getParameter("company_id");
+		
+		HairValleyBidContractVO vo = new HairValleyBidContractVO();
+		vo.setText_num(text_num);
+		vo.setCompany_id(company_id);
+		
+		int insert_retval = hairvalleyBidService.insertBidContract(vo);
+		int update_retval = 0;
+		if(insert_retval > 0){
+			update_retval = hairvalleyBidService.updateBidContract(vo);
+		}
+		
+		
+		request.setAttribute("retval", update_retval);
+		request.setAttribute("methodName", "updateBidContract");
+		
+	
+		return "hairvalley/bid_board/isSuccess";
+	}
+	
+	
+	
 	
 	/*
 	 * insertBidBoardData에서 사용하는 업로드 함수
