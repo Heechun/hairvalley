@@ -53,7 +53,7 @@
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:if test="${user_id != null || company_id != null}">
+																	<c:if test="${(user_id != null || company_id != null) && bidBoardContent.user_id == user_id }">
 																		<c:forEach items="${bidBoardContentFaceImages}"
 																			var="images">
 																			<li><img src="${images.image_url}"></li>
@@ -166,9 +166,9 @@
 									<h3 style="color:#fff;">업체 제안 목록</h3>
 								</div>
 								<div class="col-md-2">
-									<c:if test="${company_id != null}">
+									
 										<button class="btn btn-blue btn-sm pull-right" onclick="move('/sample/bid_boardOffer.do?text_num=${bidBoardContent.text_num}&content_num=${bidBoardContent.content_num}');">제안 등록</button>
-									</c:if>
+									
 								</div>
 							</div>
 						
@@ -271,7 +271,12 @@
 	</div>
 
 	<!-- End Footer Menu -->
-
+	<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.pgwSlideshow').pgwSlideshow();
+		});
+	</script>
 	<script type="text/javascript" src="js/myJs.js" type="text/javascript"></script>
 	<!-- JS -->
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"

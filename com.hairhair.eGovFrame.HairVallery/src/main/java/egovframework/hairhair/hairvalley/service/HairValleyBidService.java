@@ -46,4 +46,6 @@ public interface HairValleyBidService {
 	int selectUserBidCompleteContentCount(String user_id) throws Exception;
 	
 	List<?> selectBidContentContractOffer(int text_num) throws Exception;
+	
+	HairValleyEmailVO selectEmailInfomation(HairValleyEmailVO vo) throws Exception;
 }

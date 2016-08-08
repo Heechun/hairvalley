@@ -37,12 +37,7 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
 	rel="stylesheet" type="text/css">
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.pgwSlideshow').pgwSlideshow();
-	});
-</script>
+
 </head>
 <body>
 <div id="pre_header" class="visible-lg"></div>

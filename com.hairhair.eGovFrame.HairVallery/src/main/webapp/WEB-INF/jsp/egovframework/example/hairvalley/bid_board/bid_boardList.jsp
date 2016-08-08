@@ -20,21 +20,15 @@
 						</div>
 						<hr/>
 						<div class="col-md-6 col-md-offset-3">
-							<div class="input-group input-group-lg">
+							<div class="input-group input-group-md">
 								<input type="text" class="form-control" placeholder="지역 검색 ex) OO동"
-									id="searchInput"> <span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="searchBtn">
+									id="searchInput" value="${search_msg}"> <span class="input-group-btn">
+									<button class="btn btn-primary" type="button" id="searchBtn">
 										<i class="fa-search"></i>검색
 									</button>
 								</span>
 							</div>
-							<!-- /input-group -->
-							<div>
-								<c:if test="${search_msg !=null}">
-									<br />
-									<p>검색어 '${search_msg}'에 해당되는 검색결과</p>
-								</c:if>
-							</div>
+							
 						</div>
 						
 			

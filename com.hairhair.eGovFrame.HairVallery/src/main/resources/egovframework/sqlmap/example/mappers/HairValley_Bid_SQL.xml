@@ -144,5 +144,12 @@
 		from hairvalley_bid_offer_list offer, hairvalley_company_list company
 		where offer.text_num = #{text_num} and offer.company_id = company.company_id and company.company_id = (select company_id from hairvalley_bid_contract_list where text_num=#{text_num})
 	</select>
+
+	<select id="selectEmailInfomation" parameterType="HairValleyEmailVO" resultType="HairValleyEmailVO">
+		select userlist.user_email, userlist.user_name, userlist.user_phone, companylist.company_email, companylist.company_name, companylist.company_location 
+		from hairvalley_user_list userlist, hairvalley_company_list companylist 
+		where companylist.company_id = #{company_id} and userlist.user_id=#{user_id}
+	</select>
+	
 	
 </mapper>

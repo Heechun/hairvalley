@@ -7,6 +7,7 @@ import egovframework.hairhair.hairvalley.service.HairValleyBidContractVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
+import egovframework.hairhair.hairvalley.service.HairValleyEmailVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper("hairvalleyBidMapper")
@@ -53,4 +54,6 @@ public interface HairValleyBidMapper {
 	int selectUserBidCompleteContentCount(String user_id);
 	
 	List<?> selectBidContentContractOffer(int text_num);
+	
+	HairValleyEmailVO selectEmailInfomation(HairValleyEmailVO vo);
 }

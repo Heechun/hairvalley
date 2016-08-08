@@ -12,6 +12,7 @@ import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
+import egovframework.hairhair.hairvalley.service.HairValleyEmailVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
@@ -149,6 +150,12 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 	public List<?> selectBidContentContractOffer(int text_num) throws Exception {
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectBidContentContractOffer(text_num);
+	}
+	@Override
+	public HairValleyEmailVO selectEmailInfomation(HairValleyEmailVO vo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectEmailInfomation(vo);
 	}
 	
 	

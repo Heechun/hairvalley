@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -22,6 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 
@@ -54,6 +61,7 @@ import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
+import egovframework.hairhair.hairvalley.service.HairValleyEmailVO;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
@@ -482,6 +490,7 @@ public class HairValleyBidController {
 		
 		int text_num = Integer.parseInt(request.getParameter("text_num"));
 		String company_id = (String)request.getParameter("company_id");
+		String user_id = (String)request.getParameter("user_id");
 		
 		HairValleyBidContractVO vo = new HairValleyBidContractVO();
 		vo.setText_num(text_num);
@@ -493,13 +502,78 @@ public class HairValleyBidController {
 			update_retval = hairvalleyBidService.updateBidContract(vo);
 		}
 		
+		HairValleyEmailVO email_vo = new HairValleyEmailVO();
+		email_vo.setUser_id(user_id);
+		email_vo.setCompany_id(company_id);
 		
+		HairValleyEmailVO retval_vo = hairvalleyBidService.selectEmailInfomation(email_vo);
+	
+    	sendEmail(retval_vo.getUser_email(), retval_vo.getCompany_email(), "wonjong551@naver.com", retval_vo.getUser_name(), retval_vo.getCompany_name(), retval_vo.getUser_phone());
+   		
 		request.setAttribute("retval", update_retval);
 		request.setAttribute("methodName", "updateBidContract");
 		
 	
 		return "hairvalley/bid_board/isSuccess";
 	}
+	
+	private void sendEmail(String user_email, String company_email, String from, String user_name, String company_name, String phone){
+		Properties p = System.getProperties(); // ������ ���� ��ü
+    	p.put("mail.smtp.user", "wonjong551");
+    	p.put("mail.smtp.host","smtp.naver.com"); // ���̹� SMTP
+    	p.put("mail.smtp.port", "465");
+    	p.put("mail.smtp.starttls.enable", "true");
+    	p.put("mail.smtp.auth", "true");
+    	p.put("mail.smtp.debug", "true");
+    	p.put("mail.smtp.socketFactory.port", "465");
+    	p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    	p.put("mail.smtp.socketFactory.fallback", "false");
+
+    		try {
+
+    			javax.mail.Session mailSession = javax.mail.Session.getInstance(p,
+    					new javax.mail.Authenticator ( )
+    							
+    							{
+    							
+    							protected javax.mail.PasswordAuthentication getPasswordAuthentication ( )
+    							
+    							{
+    							
+    							return new javax.mail.PasswordAuthentication ( "wonjong551" , "rladnjswhd!@" ) ;
+    							
+    							}
+    							
+    							});
+
+    			Message msg = new MimeMessage(mailSession);
+    			
+
+    		    msg.setSubject("[HairValley - 입찰계약성사]: " + company_name);
+    		        
+
+    		    Address fromAddr = new InternetAddress(from);
+    		    msg.setFrom(fromAddr);
+    		        
+
+    		    Address toAddr = new InternetAddress(user_email);
+    		    msg.addRecipient(Message.RecipientType.TO, toAddr);
+    		
+    		    
+    		    msg.setContent("[사용자 이름] : "+ user_name +"<br/>[사용자 연락처] : " + phone + "<br/>[사용자 이메일] : " + user_email
+    		    		+ "<br/>[업체 이름] : " + company_name + "<br/>[업체 이메일] : " + company_email , "text/html;charset=UTF-8");
+    		        
+    		    Transport.send(msg);
+    		    
+    			return;
+    		} catch (Exception e) {
+    			System.out.println(e.getMessage());
+    			
+    			return;
+    		} finally {
+    		}
+ 
+    }
 	
 	
 	

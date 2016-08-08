@@ -188,7 +188,7 @@
 																class="form-control" readonly="readonly">${bidBoardOffers.add_offer}</textarea>
 														</div>
 													</div>
-													<button class="btn btn-primary" onclick="move('/sample/bid_updateBidContract.do?text_num=${bidBoardContent.text_num}&company_id=${bidBoardOffers.company_id}');">해당 업체와 계약하기</button>
+													<button class="btn btn-primary" onclick="move('/sample/bid_updateBidContract.do?text_num=${bidBoardContent.text_num}&company_id=${bidBoardOffers.company_id}&user_id=${bidBoardContent.user_id}');">해당 업체와 계약하기</button>
 
 												</div>
 											</div>
