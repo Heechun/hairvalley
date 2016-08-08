@@ -222,6 +222,54 @@ public class HairValleyBidController {
 		return "hairvalley/bid_board/bid_boardContent";
 	}
 	
+	
+	@RequestMapping(value = "/bid_selectUserBidContent.do")
+	public String selectUserBidContentList(ModelMap model, HttpServletRequest request) throws Exception{
+		
+		String user_id = request.getParameter("user_id");
+		
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int startRow, endRow;
+		endRow = (int) (page * 10);
+		startRow = endRow - 9;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("user_id", user_id);
+		
+		
+		List<?> bidBoardList = hairvalleyBidService.selectUserBidContentList(map);
+		int totalnum = hairvalleyBidService.selectUserBidContentCount(user_id);
+
+		for(int i=0; i< bidBoardList.size(); i++){
+			HairValleyBidVO vo = (HairValleyBidVO)bidBoardList.get(i);
+			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
+
+		int totalpage = totalnum / 10;
+		if (totalpage == 0) {
+			totalpage = 1;
+		} else {
+			if (totalnum % 10 != 0)
+				totalpage++;
+		}
+
+		model.addAttribute("user_id",user_id);
+		model.addAttribute("bidBoardList", bidBoardList);
+		model.addAttribute("page", page);
+		model.addAttribute("totalpage", totalpage);
+		
+
+		return "hairvalley/bid_user_contents/bid_userContentList";
+	}
+	
+	
 	/*
 	 * 입찰 게시판
 	 * --> 게시물 조회

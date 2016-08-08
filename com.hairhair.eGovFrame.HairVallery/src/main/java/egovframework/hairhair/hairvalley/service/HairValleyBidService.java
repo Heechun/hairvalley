@@ -30,4 +30,8 @@ public interface HairValleyBidService {
 	
 	List<?> selectBidContentOffers(int text_num) throws Exception;
 	
+	List<?> selectUserBidContentList(HashMap<String, Object> map) throws Exception;
+	
+	int selectUserBidContentCount(String user_id) throws Exception;
+	
 }

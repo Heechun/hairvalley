@@ -76,7 +76,35 @@
 							<i class="fa fa-sign-out"></i>로그아웃
 						</button>
 					</div>
-					<div class="panel-body">Lorem...</div>
+					<div class="panel-body">
+					
+						<!-- Single button -->
+						<div class="btn-group">
+						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						    개인 정보 <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="#"><i class="fa fa-picture-o"></i>개인정보 확인</a></li>
+						    <li><a href="#"><i class="fa fa-picture-o"></i>개인정보 수정</a></li>
+						  </ul>
+						</div>
+						<div class="btn-group">
+						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						    입찰 정보 <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="/sample/bid_selectUserBidContent.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 내역 조회</a></li>
+						    <li><a href="#"><i class="fa fa-picture-o"></i>입찰 완료 내역 조회</a></li>
+						  </ul>
+						</div>
+						<%-- 
+						<button class="btn btn-sm btn-primary" type="button">
+							<i class="fa fa-picture-o"></i>개인 정보
+						</button>
+						<button class="btn btn-sm btn-primary pull-right" type="button">
+							<i class="fa fa-picture-o"></i>입찰 정보
+						</button>--%>
+					</div>
 				</div>
 
 

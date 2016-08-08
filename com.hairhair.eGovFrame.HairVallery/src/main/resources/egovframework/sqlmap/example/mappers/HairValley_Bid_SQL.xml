@@ -32,8 +32,17 @@
 		<![CDATA[ 
 	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
-	</select>
+	</select> 
 
+	<select id="selectUserBidContentList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
+		<![CDATA[ 
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit FROM hairvalley_bid_board_list where user_id = #{user_id} order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+		]]> 
+	</select>
+	
+	<select id="selectUserBidContentCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(*) FROM hairvalley_bid_board_list where user_id=#{user_id}
+	</select> 
 	
 	<select id="selectBidBoardListCount" resultType="java.lang.Integer">
 		SELECT MAX(ROWNUM) FROM hairvalley_bid_board_list

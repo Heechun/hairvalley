@@ -94,5 +94,17 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectBidContentOffers(text_num);
 	}
+
+	@Override
+	public List<?> selectUserBidContentList(HashMap<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectUserBidContentList(map);
+	}
+
+	@Override
+	public int selectUserBidContentCount(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectUserBidContentCount(user_id);
+	}
 	
 }
