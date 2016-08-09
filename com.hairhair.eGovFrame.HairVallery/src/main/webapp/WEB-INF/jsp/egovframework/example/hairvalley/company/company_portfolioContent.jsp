@@ -53,9 +53,11 @@
 					</div>
 					<!-- End Thumbs Gallery -->
 					<div class=" btn btn-group" style="margin-top:20px">
+					<c:if test="${isMaster =='yes'}">
 						<a href="companyPortfolioDelete.do?idx=${portfolioVO.idx}">
 						<button type="button" class="btn btn-red" >삭제하기</button>
 						</a>
+					</c:if>
 			            <a href="javascript:history.go(-1)">
 			            <button id="backBtn" type="button" class="btn btn-aqua" >뒤로가기</button>
 			            </a>

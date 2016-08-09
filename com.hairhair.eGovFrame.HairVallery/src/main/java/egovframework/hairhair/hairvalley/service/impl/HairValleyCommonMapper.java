@@ -14,4 +14,5 @@ public interface HairValleyCommonMapper {
 	int checkId(String user_id);
 	String selectCompanyLogin(HairValleyCompanyListVO companyVO);
 	List<HairValleyCompanyListVO> selectPopularCompany();
+	String companyGetCompanyName(String company_id);
 }

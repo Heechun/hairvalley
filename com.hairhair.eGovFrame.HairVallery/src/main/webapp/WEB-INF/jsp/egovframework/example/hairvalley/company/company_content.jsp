@@ -58,9 +58,11 @@
 						</div>
 						<!-- End Main Content -->
 					</div>
-					<a href="companyContentUpdate.do?title=${companyIntro.title}&content=${companyIntro.content}">
-		            	<button type="button" class="btn btn-blue pull-right" >수정하기</button>
-		            </a>
+					<c:if test="${companyIntro.company_id == sessionCompanyId }">
+						<a href="companyContentUpdate.do?company_name=${companyIntro.company_name}">
+			            	<button type="button" class="btn btn-blue pull-right" >수정하기</button>
+			            </a>
+		            </c:if>
 					<!-- End Main Column -->
 				</div>
 			</div>

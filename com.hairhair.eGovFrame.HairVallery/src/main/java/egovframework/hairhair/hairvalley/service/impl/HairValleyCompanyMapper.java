@@ -66,4 +66,10 @@ public interface HairValleyCompanyMapper {
 
 	void companyReviewHitUpdate(int review_total_idx);
 
+	void companyStaffInsert(HairValleyCompanyStaffVO staffVO);
+
+	String companyGetCompanyId(String company_name);
+
+	HairValleyCompanyContentVO companyGetContent(String company_name);
+
 }

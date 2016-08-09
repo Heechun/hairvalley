@@ -32,35 +32,28 @@
 					</div>
 					<!-- End Sidebar Menu -->
 					<!-- End Side Column -->
-					<form action="companyNewImpl.do" method="post" id="myForm" enctype="multipart/form-data">
+					<form action="companyStaffInsertImpl.do" method="post" id="myForm" enctype="multipart/form-data">
 						<div class="col-md-9">
-							<h2>업체소개 최초 작성</h2><br />
-							<label for="title">제목</label>
-							<br />
-							<input type="text" name="title" id="title" placeholder="최초 회원가입시 무조건 작성!"/>
-							<br />
-							<label for="content">내용</label>
-							<br />
-							<textarea name="content" id="content" cols="70" rows="20" placeholder="최초 회원가입시 무조건 작성!" ></textarea>
-							<br />
-				        	<label for="company_intro_imgList">이미지 첨부</label>
-				        	<input name="company_intro_imgList" type="file" multiple="multiple"/>
-		<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
-							<button type="submit" class="btn btn-blue pull-right" >등록하기</button>
-			            </div>
-			            <div class="col-md-9">
-							<h2>조직구성원 최초 작성</h2><br />
+							<h1>직원소개 작성<small><br/>친절한 직원들을 자랑하세요.</small></h1><br />
 							<table class=" table table-bordered table-hover table-striped" >
 								<tr>
 									<td><label for="staff_job">직책</label></td>
-									<td><input type="text" name="staff_job" id="staff_job"/></td>
+									<td><input type="text" name="staff_job" id="staff_job" placeholder="ex)매니저"/></td>
 								</tr>
 								<tr>
 									<td><label for="staff_name">이름</label></td>
 									<td><input type="text" name="staff_name" id="staff_name"/></td>
 								</tr>
 								<tr>
-									<td><label for="company_staff_img">이미지 첨부</label></td>
+									<td><label for="staff_count">점수 (0~100)</label></td>
+									<td><input type="text" name="staff_count" id="staff_count"/></td>
+								</tr>
+								<tr>
+									<td><label for="staff_intro">직원소개</label></td>
+									<td><input type="text" name="staff_intro" id="staff_intro"/></td>
+								</tr>
+								<tr>
+									<td><label for="company_staff_img">직원 사진 첨부</label></td>
 									<td><input name="company_staff_img" type="file"/></td>
 								</tr>
 							</table>

@@ -12,4 +12,5 @@ public interface HairValleyCommonService {
 	String selectCompanyLogin(String salesman_num, String company_password);
 
 	List<HairValleyCompanyListVO> companyPopularSelect();
+	String companyGetCompanyName(String company_id);
 }

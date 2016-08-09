@@ -42,9 +42,7 @@ public class HairValleyMainController {
 	public String main(HttpServletRequest request, ModelMap model) throws Exception {
 		String new_company = (String) request.getSession().getAttribute("new_company");
 		String company_id = (String) request.getSession().getAttribute("company_id");
-		
-		
-		
+
 		if(new_company != null && company_id != null){
 			return "hairvalley/company/company_firstInsert";
 		}
@@ -56,8 +54,6 @@ public class HairValleyMainController {
 			
 			return "hairvalley/main/hairvalley_index";
 		}
-		
-		
 	}
 	
 	@RequestMapping(value = "/hairvalley_page_header.do")
@@ -66,15 +62,19 @@ public class HairValleyMainController {
 		String id = (String) request.getSession().getAttribute("user_id");
 		String company_id = (String) request.getSession().getAttribute("company_id");
 		
+		
+		
 		if((id != null)&&(company_id == null)){
 			request.setAttribute("isLogin", true);
 			request.setAttribute("user_id", id);
 			request.setAttribute("isCompanyLogin", false);
 		}
 		else if((company_id != null)&&(id == null)){
+			String company_name = hairvalleyCommonService.companyGetCompanyName(company_id);
 			request.setAttribute("isCompanyLogin", true);
 			request.setAttribute("company_id", company_id);
 			request.setAttribute("isLogin", false);
+			request.setAttribute("company_name", company_name);
 		}
 		else{
 			request.setAttribute("isCompanyLogin", false);

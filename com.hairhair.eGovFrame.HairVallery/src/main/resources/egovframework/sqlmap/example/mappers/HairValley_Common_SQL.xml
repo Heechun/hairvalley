@@ -29,4 +29,10 @@
 		where rownum &lt;= 3
 		order by company_hit desc
 	</select>
+	
+	<select id="companyGetCompanyName" parameterType="String" resultType="String">
+		SELECT company_name
+		FROM HAIRVALLEY_COMPANY_LIST
+		WHERE COMPANY_ID =#{company_id}
+	</select>
 </mapper>

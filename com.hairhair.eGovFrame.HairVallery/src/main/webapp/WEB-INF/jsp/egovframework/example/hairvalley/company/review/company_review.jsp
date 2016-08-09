@@ -73,9 +73,11 @@
 						</table>
 						</div>
 						<div class="btn-group pull-right" role="group">
+							<c:if test="${user_id != null}">
 							<a href="companyReviewInsert.do">
-								<button type="button" class="btn btn-aqua">글쓰기</button>
-							</a>
+								<button type="button" class="btn btn-primary">글쓰기</button>
+								</a>
+							</c:if>
 						</div>
 					</div>
 				</div>

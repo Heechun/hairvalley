@@ -37,11 +37,11 @@
 							<h2>업체소개 수정</h2><br />
 							<label for="title">제목</label>
 							<br />
-							<input type="text" name="title" id="title" value="${title}"/>
+							<input type="text" name="title" id="title" value="${contentVO.title}"/>
 							<br />
 							<label for="content">내용</label>
 							<br />
-							<textarea name="content" id="content" cols="70" rows="20">${content}</textarea>
+							<textarea name="content" id="content" cols="70" rows="20">${contentVO.content}</textarea>
 							<br />
 				        	<label for="company_intro_imgList">이미지 첨부</label>
 				        	<input name="company_intro_imgList" type="file" multiple="multiple"/>

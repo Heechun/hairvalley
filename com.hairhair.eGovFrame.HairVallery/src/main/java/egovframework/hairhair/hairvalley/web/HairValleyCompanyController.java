@@ -74,6 +74,8 @@ public class HairValleyCompanyController {
 		HairValleyCompanyContentVO companyIntro = companyService.companyIntro(company_name);
 		session.setAttribute("company_name", company_name);
 		
+		String sessionCompanyId = (String) session.getAttribute("company_id");
+		
 		List<HairValleyCompanyImagesVO> companyIntroImageList = companyService.companyIntroImageSelect(company_name);
 		HairValleyCompanyListVO companyInfo = companyService.companySelectInfo(company_name);
 		companyService.companyHitUpdate(company_name);
@@ -81,6 +83,7 @@ public class HairValleyCompanyController {
 		model.addAttribute("companyIntro", companyIntro);
 		model.addAttribute("companyIntroImageList", companyIntroImageList);
 		model.addAttribute("companyInfo", companyInfo);
+		model.addAttribute("sessionCompanyId", sessionCompanyId);
 		
 		return "hairvalley/company/company_content";
 	}
@@ -90,10 +93,11 @@ public class HairValleyCompanyController {
 	 * 
 	 */
 	@RequestMapping(value = "/companyContentUpdate.do")
-	public String contentUpdate(String title, String content, ModelMap model){
+	public String contentUpdate(String company_name, ModelMap model){
 		
-		model.addAttribute("title", title);
-		model.addAttribute("content", content);
+		HairValleyCompanyContentVO contentVO = companyService.companyGetContent(company_name);
+		
+		model.addAttribute("contentVO", contentVO);
 		
 		return "hairvalley/company/company_content_update";
 	}
@@ -152,9 +156,16 @@ public class HairValleyCompanyController {
 	public String portfolio(String company_name, ModelMap model, HttpSession session){
 		
 		session.setAttribute("company_name", company_name);
+		String sessionCompanyId = (String) session.getAttribute("company_id");
+		String company_id = companyService.companyGetCompanyId(company_name);
+		String isMaster = "no";
 		List<HairValleyCompanyPortfolioVO> portfolioList = companyService.companyPortfolioSelect(company_name);
 		
+		if((sessionCompanyId!=null)&&(sessionCompanyId.equals(company_id))){
+			isMaster = "yes";
+		}
 		model.addAttribute("portfolioList", portfolioList);
+		model.addAttribute("isMaster", isMaster);
 		
 		return "hairvalley/company/company_portfolio";
 	}
@@ -165,6 +176,13 @@ public class HairValleyCompanyController {
 	@RequestMapping(value = "/companyPortfolioContent.do")
 	public String portfolioContent(int idx ,ModelMap model, HttpSession session){
 		String company_name = (String)session.getAttribute("company_name");
+		String sessionCompanyId = (String) session.getAttribute("company_id");
+		String company_id = companyService.companyGetCompanyId(company_name);
+		String isMaster = "no";
+		
+		if((sessionCompanyId!=null)&&(sessionCompanyId.equals(company_id))){
+			isMaster = "yes";
+		}
 		HairValleyCompanyPortfolioVO portfolioVO = new HairValleyCompanyPortfolioVO();
 		portfolioVO.setCompany_name(company_name);
 		portfolioVO.setIdx(idx);
@@ -174,7 +192,7 @@ public class HairValleyCompanyController {
 		
 		model.addAttribute("portfolioVO", portfolioVO);
 		model.addAttribute("imageList", imageList);
-		
+		model.addAttribute("isMaster", isMaster);
 		return "hairvalley/company/company_portfolioContent";
 	}
 	/*
@@ -263,16 +281,41 @@ public class HairValleyCompanyController {
 		return "hairvalley/company/company_staffInsert";
 	}
 	/*
+	 * 직원소개 추가기능
+	 * 
+	 */
+	@RequestMapping(value="/companyStaffInsertImpl.do")
+	public String staffInsetImpl(HttpSession session, HairValleyCompanyStaffVO staffVO, MultipartHttpServletRequest mReq){
+		
+		String company_name = (String) session.getAttribute("company_name");
+		
+		List<String> company_staff_img = FileUpload.fileUpload(session.getServletContext().getRealPath("/uploads/CompanyStaffImages/"), 
+				mReq.getFiles("company_staff_img"), "Staff");
+				
+		staffVO.setCompany_name(company_name);
+		staffVO.setStaff_image(company_staff_img.get(0).toString());
+		System.out.println(staffVO);
+		companyService.companyStaffInsert(staffVO);
+		
+		
+		return "redirect:/companyStaff.do";
+	}
+	
+	/*
 	 * 이용후기 게시판형식
 	 * 
 	 */
 	@RequestMapping(value = "/companyReview.do")
 	public String review(ModelMap model, HttpSession session, String company_name){
+		
+		String user_id = (String) session.getAttribute("user_id");
+				
 		session.setAttribute("company_name", company_name);
 		List<HairValleyCompanyReviewVO>reviewList = companyService.companyReviewSelectList(company_name);
 		int size = reviewList.size();
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("size", size);
+		model.addAttribute("user_id", user_id);
 		return "hairvalley/company/review/company_review";
 	}
 	/*

@@ -115,14 +115,15 @@
 						</button>
 					</div>
 					<div class="panel-body">
+					${company_name }&nbsp;&nbsp;&nbsp;
 						<!-- Single button -->
 						<div class="btn-group">
 						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 						    기업 정보 <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="#"><i class="fa fa-picture-o"></i>기업정보 확인</a></li>
-						    <li><a href="#"><i class="fa fa-picture-o"></i>기업정보 수정</a></li>
+						    <li><a href="/sample/companyContent.do?company_name=${company_name}"><i class="fa fa-picture-o"></i>기업정보 확인</a></li>
+						    <li><a href="companyContentUpdate.do?company_name=${company_name}"><i class="fa fa-picture-o"></i>기업정보 수정</a></li>
 						  </ul>
 						</div>
 						<div class="btn-group">

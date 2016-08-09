@@ -79,9 +79,11 @@
 								</div>
 							</div>
 							<div class="company-button-box">
+							<c:if test="${isMaster =='yes'}">
 								<a href="companyPortfolioInsert.do">
 					            	<button type="button" class="btn btn-blue" >추가하기</button>
 					            </a>
+					        </c:if>
 							</div>
 					</div>
 					<!-- === END CONTENT === -->

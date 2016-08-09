@@ -74,5 +74,10 @@ public class HairValleyCommonServiceImpl extends EgovAbstractServiceImpl impleme
 		return hairvalleyCommonMapper.selectPopularCompany();
 	}
 
+	@Override
+	public String companyGetCompanyName(String company_id) {
+		return hairvalleyCommonMapper.companyGetCompanyName(company_id);
+	}
+
 
 }

@@ -151,4 +151,21 @@
 		SET REVIEW_HIT = REVIEW_HIT+1
 		WHERE REVIEW_TOTAL_IDX = #{review_total_idx}
 	</update>
+	
+	<insert id="companyStaffInsert" parameterType="HairValleyCompanyStaffVO">
+		insert into hairvalley_company_staff
+		values (#{company_name}, #{staff_name}, #{staff_job}, #{staff_count}, #{staff_intro}, #{staff_image} )
+	</insert>
+	
+	<select id="companyGetCompanyId" parameterType="String" resultType="String">
+		SELECT company_id
+		FROM HAIRVALLEY_COMPANY_LIST
+		WHERE COMPANY_NAME =#{company_name}
+	</select>
+	
+	<select id="companyGetContent" parameterType="String" resultType="HairValleyCompanyContentVO">
+		SELECT INTRO_TITLE as title, INTRO_CONTENT as content, COMPANY_NAME, COMPANY_ID
+		FROM hairValley_company_content
+		WHERE company_name = #{company_name}
+	</select>
 </mapper>

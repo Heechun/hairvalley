@@ -182,6 +182,24 @@ public class HairValleyCompanyServiceImpl extends EgovAbstractServiceImpl implem
 	}
 
 
+	@Override
+	public void companyStaffInsert(HairValleyCompanyStaffVO staffVO) {
+		companyDAO.companyStaffInsert(staffVO);
+	}
+
+
+	@Override
+	public String companyGetCompanyId(String company_name) {
+		return companyDAO.companyGetCompanyId(company_name);
+	}
+
+
+	@Override
+	public HairValleyCompanyContentVO companyGetContent(String company_name) {
+		return companyDAO.companyGetContent(company_name);
+	}
+
+
 
 
 	
