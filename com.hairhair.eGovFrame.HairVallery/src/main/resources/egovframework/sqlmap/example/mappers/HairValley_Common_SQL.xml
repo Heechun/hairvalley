@@ -8,8 +8,7 @@
 	</select>
 	
 	<insert id="insertUserRegister" parameterType="HairValleyUserVO" >
- 
-    INSERT INTO hairvalley_user_list 
+     INSERT INTO hairvalley_user_list 
     		(idx, user_id, user_pw, user_name, user_email, user_phone, user_loc)
 	VALUES (HAIRVALLEY_USER_LIST_SEQ.nextval, #{user_id}, #{user_pw} ,#{user_name},#{user_email},#{user_phone},#{user_loc})
 
@@ -20,4 +19,14 @@
 		select count(*) from hairvalley_user_list where user_id = #{user_id}
 	</select>
 	
+	<select id="selectCompanyLogin" parameterType="HairValleyCompanyListVO" resultType="java.lang.String">
+		select company_id from hairvalley_company_list where salesman_num = #{salesman_num} and company_password = #{company_password}
+	</select>
+	
+	<select id="selectPopularCompany" resultType="HairValleyCompanyListVO">
+		select *
+		from HAIRVALLEY_COMPANY_LIST
+		where rownum &lt;= 3
+		order by company_hit desc
+	</select>
 </mapper>

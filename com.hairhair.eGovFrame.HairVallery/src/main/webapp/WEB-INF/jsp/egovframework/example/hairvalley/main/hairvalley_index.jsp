@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<!-- === BEGIN HEADER === -->
 	<jsp:include page="/hairvalley_page_header.do" flush="false"/>
 	<!-- === END HEADER === -->
@@ -54,62 +52,39 @@
 			<!-- End Main Text -->
 		</div>
 		<div class="row">
-			<!-- Portfolio -->
 			<!-- Portfolio Item -->
-			<div class="portfolio-item col-sm-4 animate fadeIn">
-				<div class="image-hover">
-					<a href="#">
-						<figure>
-							<img src="assets/hairvalley_images/4.PNG" alt="image1">
-						</figure>
-						<h3 class="margin-top-20">서울 압구정점 리챠드</h3>
-						<p class="margin-top-10 margin-bottom-20"></p>
-						<div class="btn btn-default">
-							<a class="info"
-								href="http://localhost/build/substance/index.php/quam-nunc-putamus">Read
-								more</a>
+				<c:forEach var="companyList" items="${companyList}">
+					<div class="portfolio-item col-md-4 design">
+						<div class="image-hover">
+							<a href="/sample/companyContent.do?company_name=${companyList.company_name}">
+								<figure>
+									<img src="${companyList.company_image}">
+									<div class="overlay">
+									</div>
+								</figure>
+								<h3 class="margin-top-20">${companyList.company_name}</h3>
+								<p class="margin-top-10">${companyList.company_location}</p>
+								<ul class="list-inline company-details-icons">
+									<li>
+										<a class="info" href="/sample/companyContent.do?company_name=${companyList.company_name}">
+										<i class="fa-info-circle"></i>업체소개</a>
+									</li>
+									<li>
+										<a class="info" href="companyPortfolio.do?company_name=${companyList.company_name}">
+										<i class="fa-picture-o"></i>포트폴리오</a>
+									</li>
+									<li>
+										<a class="info" href="companyReview.do?company_name=${companyList.company_name}">
+										<i class="fa-camera-retro"></i>이용후기</a>
+									</li>
+								</ul>
+							</a>
 						</div>
-					</a>
-				</div>
-			</div>
-			<!-- //Portfolio Item// -->
-			<!-- Portfolio Item -->
-			<div class="portfolio-item col-sm-4 animate fadeIn">
-				<div class="image-hover">
-					<a href="#">
-						<figure>
-							<img src="assets/hairvalley_images/5.PNG" alt="image2">
-
-						</figure>
-						<h3 class="margin-top-20">대전 타임월드점 리챠드</h3>
-						<p class="margin-top-10 margin-bottom-20"></p>
-						<div class="btn btn-default">
-							<a class="info"
-								href="http://localhost/build/substance/index.php/quam-nunc-putamus">Read
-								more</a>
-						</div>
-					</a>
-				</div>
-			</div>
-			<!-- //Portfolio Item// -->
-			<!-- Portfolio Item -->
-			<div class="portfolio-item col-sm-4 animate fadeIn">
-				<div class="image-hover">
-					<a href="#">
-						<figure>
-							<img src="assets/hairvalley_images/6.PNG" alt="image3">
-						</figure>
-						<h3 class="margin-top-20">세종 CGV점 리챠드</h3>
-						<p class="margin-top-10 margin-bottom-20"></p>
-						<div class="btn btn-default">
-							<a class="info"
-								href="http://localhost/build/substance/index.php/quam-nunc-putamus">Read
-								more</a>
-						</div>
-					</a>
-				</div>
-			</div>
-			<!-- //Portfolio Item// -->
+						<div class="clearfix"></div>
+					</div>
+				</c:forEach>
+						<!-- //Portfolio Item// -->
+			
 			<!-- End Portfolio -->
 		</div>
 

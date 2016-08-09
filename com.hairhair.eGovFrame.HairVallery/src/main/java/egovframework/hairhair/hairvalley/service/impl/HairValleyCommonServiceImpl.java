@@ -1,10 +1,13 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import egovframework.hairhair.hairvalley.service.HairValleyCommonService;
+import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
 import egovframework.hairhair.hairvalley.service.HairValleyUserVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
@@ -55,5 +58,21 @@ public class HairValleyCommonServiceImpl extends EgovAbstractServiceImpl impleme
 		}
 		return false;
 	}
+
+	@Override
+	public String selectCompanyLogin(String salesman_num, String company_password) {
+		HairValleyCompanyListVO companyVO = new HairValleyCompanyListVO();
+		
+		companyVO.setSalesman_num(salesman_num);
+		companyVO.setCompany_password(company_password);
+		
+		return hairvalleyCommonMapper.selectCompanyLogin(companyVO);
+	}
+
+	@Override
+	public List<HairValleyCompanyListVO> companyPopularSelect() {
+		return hairvalleyCommonMapper.selectPopularCompany();
+	}
+
 
 }

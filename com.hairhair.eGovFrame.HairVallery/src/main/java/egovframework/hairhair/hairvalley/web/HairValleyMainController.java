@@ -3,10 +3,12 @@ package egovframework.hairhair.hairvalley.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyCommonService;
+import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyCommonServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -36,20 +39,45 @@ public class HairValleyMainController {
 	protected DefaultBeanValidator beanValidator;
 
 	@RequestMapping(value = "/hairvalley_main.do")
-	public String main(ModelMap model, HttpServletRequest request) throws Exception {
+	public String main(HttpServletRequest request, ModelMap model) throws Exception {
+		String new_company = (String) request.getSession().getAttribute("new_company");
+		String company_id = (String) request.getSession().getAttribute("company_id");
 		
-		return "hairvalley/main/hairvalley_index";
+		
+		
+		if(new_company != null && company_id != null){
+			return "hairvalley/company/company_firstInsert";
+		}
+		else{
+			
+			List<HairValleyCompanyListVO>companyList = hairvalleyCommonService.companyPopularSelect();
+			System.out.println(companyList);
+			model.addAttribute("companyList", companyList);
+			
+			return "hairvalley/main/hairvalley_index";
+		}
+		
+		
 	}
 	
 	@RequestMapping(value = "/hairvalley_page_header.do")
 	public String pageHeader(ModelMap model, HttpServletRequest request) throws Exception {
 
 		String id = (String) request.getSession().getAttribute("user_id");
+		String company_id = (String) request.getSession().getAttribute("company_id");
 		
-		if(id != null || id == ""){
+		if((id != null)&&(company_id == null)){
 			request.setAttribute("isLogin", true);
 			request.setAttribute("user_id", id);
-		}else{
+			request.setAttribute("isCompanyLogin", false);
+		}
+		else if((company_id != null)&&(id == null)){
+			request.setAttribute("isCompanyLogin", true);
+			request.setAttribute("company_id", company_id);
+			request.setAttribute("isLogin", false);
+		}
+		else{
+			request.setAttribute("isCompanyLogin", false);
 			request.setAttribute("isLogin", false);
 		}
 		
@@ -64,13 +92,33 @@ public class HairValleyMainController {
 		user_id = request.getParameter("user_id");
 		user_pw = request.getParameter("user_pw");
 		
-		int retval = hairvalleyCommonService.selectUserLogin(user_id, user_pw);
+		if(user_id.contains("-")){
+			int retval = 0;
+			String salesman_num = user_id;
+			String company_password = user_pw;
+			String company_id = hairvalleyCommonService.selectCompanyLogin(salesman_num, company_password);
+			System.out.println("company_id    : "+company_id);
+			if(company_id!=null){//로그인 안되었을떄
+				retval = 1;
+			}
+			
+			System.out.println("retval    : "+retval);
+			request.setAttribute("company_id", company_id);
+			request.setAttribute("methodName", "company_login");
+			request.setAttribute("retval", retval);
+			return "hairvalley/bid_board/isSuccess";
+		}
+		else{
+			int retval = hairvalleyCommonService.selectUserLogin(user_id, user_pw);
+			
+			request.setAttribute("user_id", user_id);
+			request.setAttribute("methodName", "login");
+			request.setAttribute("retval", retval);
+			
+			return "hairvalley/bid_board/isSuccess";
+		}
 		
-		request.setAttribute("user_id", user_id);
-		request.setAttribute("methodName", "login");
-		request.setAttribute("retval", retval);
 		
-		return "hairvalley/bid_board/isSuccess";
 	}
 	
 	@RequestMapping(value = "/hairvalley_register.do")
@@ -152,5 +200,22 @@ public class HairValleyMainController {
 		}
 		
 	
+	}
+	@RequestMapping(value = "/hairvalley_company_logout.do")
+	public void companyLogout(HttpSession session, HttpServletResponse response) {
+		HashMap<String, String> hm = new HashMap<>();
+		
+		session.removeAttribute("company_id");
+		hm.put("", "");
+		
+		JSONObject jb = new JSONObject(hm);
+		
+		PrintWriter pw;
+		try {
+			pw = response.getWriter();
+			pw.println(jb.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

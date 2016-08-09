@@ -1,12 +1,7 @@
 package egovframework.hairhair.hairvalley.web;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -14,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
@@ -25,6 +19,8 @@ import egovframework.hairhair.hairvalley.service.HairValleyCompanyPortfolioVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyReviewVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyService;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyStaffVO;
+import egovframework.hairhair.hairvalley.service.util.FileUpload;
+import egovframework.hairhair.hairvalley.service.util.MakeCompanyName;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
 
@@ -101,7 +97,6 @@ public class HairValleyCompanyController {
 		
 		return "hairvalley/company/company_content_update";
 	}
-	
 	/*
 	 * 업체소개 수정기능
 	 * 
@@ -109,7 +104,7 @@ public class HairValleyCompanyController {
 	@RequestMapping(value = "/companyContentUpdateImpl.do")
 	public String contentUpdateImpl(String title, String content, HttpSession session, MultipartHttpServletRequest mReq){
 		
-		List<String> company_intro_imgList = FileUpload(session.getServletContext().getRealPath("/uploads/CompanyIntroImages/"), 
+		List<String> company_intro_imgList = FileUpload.fileUpload(session.getServletContext().getRealPath("/uploads/CompanyIntroImages/"), 
 				mReq.getFiles("company_intro_imgList"), "Intro");
 		
 		HairValleyCompanyContentVO contentVO = new HairValleyCompanyContentVO();
@@ -132,26 +127,20 @@ public class HairValleyCompanyController {
 				
 				companyService.CompanyIntroImageInsert(imageVO);
 				
-				//첫번째 첨부파일 이미지를 업체 대표이미지로 설정
-				if(i==0){
-					HairValleyCompanyListVO listVO = new HairValleyCompanyListVO();
-					String company_image = company_intro_imgList.get(0).toString();
-										
-					listVO.setCompany_name(company_name);
-					listVO.setCompany_image(company_image);
-										
-					companyService.companyFirstImage(listVO);
-				}
+//				//첫번째 첨부파일 이미지를 업체 대표이미지로 설정
+//				if(i==0){
+//					HairValleyCompanyListVO listVO = new HairValleyCompanyListVO();
+//					String company_image = company_intro_imgList.get(0).toString();
+//										
+//					listVO.setCompany_name(company_name);
+//					listVO.setCompany_image(company_image);
+//										
+//					companyService.companyFirstImage(listVO);
+//				}
 			}
 		}
-		
-		String result="";
-		try {
-			result = URLEncoder.encode(company_name, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/companyContent.do?company_name="+result;
+
+		return "redirect:/companyContent.do?company_name="+MakeCompanyName.make(company_name);
 	}
 	
 	///////////////////포트폴리오
@@ -209,9 +198,9 @@ public class HairValleyCompanyController {
 	public String portfolioInsertImpl(HairValleyCompanyPortfolioVO portfolioVO, HttpSession session, MultipartHttpServletRequest mReq){
 		String company_name = (String)session.getAttribute("company_name");
 		
-		List<String> company_portfolio_main_img = FileUpload(session.getServletContext().getRealPath("/uploads/CompanyPortfolioImages/"), 
+		List<String> company_portfolio_main_img = FileUpload.fileUpload(session.getServletContext().getRealPath("/uploads/CompanyPortfolioImages/"), 
 				mReq.getFiles("company_portfolio_main_img"), "Portfolio");
-		List<String> company_portfolio_imgList = FileUpload(session.getServletContext().getRealPath("/uploads/CompanyPortfolioImages/"), 
+		List<String> company_portfolio_imgList = FileUpload.fileUpload(session.getServletContext().getRealPath("/uploads/CompanyPortfolioImages/"), 
 				mReq.getFiles("company_portfolio_imgList"), "Portfolio");
 				
 		//포트폴리오 메인이미지 첨부 동작
@@ -233,13 +222,7 @@ public class HairValleyCompanyController {
 			companyService.companyPortfolioImageInsert(imageVO);
 		}
 
-		String result="";
-		try {
-			result = URLEncoder.encode(company_name, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/companyPortfolio.do?company_name="+result;
+		return "redirect:/companyPortfolio.do?company_name="+MakeCompanyName.make(company_name);
 	}
 	/*
 	 * 포트폴리오 삭제
@@ -252,18 +235,12 @@ public class HairValleyCompanyController {
 		companyService.companyPortfolioImageDelete(idx);
 		companyService.companyPortfolioDelete(idx);
 		
-		String result="";
-		try {
-			result = URLEncoder.encode(company_name, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/companyPortfolio.do?company_name="+result;
+		return "redirect:/companyPortfolio.do?company_name="+MakeCompanyName.make(company_name);
 	}
 		
 	/*
 	 * 
-	 * 직원소개, 수정, 삭제기능 구현필요
+	 * 직원소개 삭제기능 구현필요
 	 */
 	@RequestMapping(value ="/companyStaff.do")
 	public String staff(HttpSession session, ModelMap model){
@@ -276,7 +253,15 @@ public class HairValleyCompanyController {
 		
 		return "hairvalley/company/company_staff";
 	}
-	
+	/*
+	 * 직원소개 추가
+	 * 
+	 */
+	@RequestMapping(value="/companyStaffInsert.do")
+	public String staffInsert(){
+		
+		return "hairvalley/company/company_staffInsert";
+	}
 	/*
 	 * 이용후기 게시판형식
 	 * 
@@ -285,7 +270,9 @@ public class HairValleyCompanyController {
 	public String review(ModelMap model, HttpSession session, String company_name){
 		session.setAttribute("company_name", company_name);
 		List<HairValleyCompanyReviewVO>reviewList = companyService.companyReviewSelectList(company_name);
+		int size = reviewList.size();
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("size", size);
 		return "hairvalley/company/review/company_review";
 	}
 	/*
@@ -305,7 +292,7 @@ public class HairValleyCompanyController {
 	 */
 	@RequestMapping(value="/companyReviewInsertImpl.do")
 	public String reviewInsertImpl(HairValleyCompanyReviewVO reviewVO, MultipartHttpServletRequest mReq, HttpSession session){
-		List<String> company_review_imgList = FileUpload(session.getServletContext().getRealPath("/uploads/CompanyReviewImages/"), 
+		List<String> company_review_imgList = FileUpload.fileUpload(session.getServletContext().getRealPath("/uploads/CompanyReviewImages/"), 
 				mReq.getFiles("company_review_imgList"), "Review");
 		//파일 첨부시
 		if(company_review_imgList.isEmpty()){
@@ -326,13 +313,7 @@ public class HairValleyCompanyController {
 			companyService.companyReviewImageInsert(imageVO);
 		}
 				
-		String result="";
-		try {
-			result = URLEncoder.encode(company_name, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/companyReview.do?company_name="+result;
+		return "redirect:/companyReview.do?company_name="+MakeCompanyName.make(company_name);
 	}
 	/*
 	 * 이용후기 읽기
@@ -359,62 +340,7 @@ public class HairValleyCompanyController {
 		companyService.companyReviewImageDelete(review_total_idx);
 		companyService.companyReviewDelete(review_total_idx);
 		
-		String result="";
-		try {
-			result = URLEncoder.encode(company_name, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/companyReview.do?company_name="+result;
+		return "redirect:/companyReview.do?company_name="+MakeCompanyName.make(company_name);
 	}
-	
-	
-	
-	
-	
-	/*
-	 * insertBidBoardData에서 사용하는 업로드 함수
-	 * 
-	 * 사용자 이미지와 사용자 참고 이미지 업로드 관련 함수
-	 */
-	List<String> FileUpload(String realPath, List<MultipartFile> mf, String type){
-		
-		List<String> url_list = new ArrayList<String>();
-		try{
-			File dir = new File(realPath);
-	        if (!dir.isDirectory()) {
-	            dir.mkdirs();
-	    }
-	        
-	 
-	    if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-	        
-	    } 
-	    else {
-	        for (int i = 0; i < mf.size(); i++) {
-	            // 파일 중복명 처리
-	            String genId = UUID.randomUUID().toString(); 
-	            // 본래 파일명
-	            String originalfileName = mf.get(i).getOriginalFilename(); 
-	            
-	            // 저장되는 파일 이름
-	            String saveFileName = genId + "." + originalfileName;
-	            
-	            // 저장 될 파일 경로
-	            String savePath = realPath + saveFileName; 
-	
-	            byte[] fileData = mf.get(i).getBytes();
-	            FileOutputStream output = new FileOutputStream(savePath);
-	            output.write(fileData);
-	           	url_list.add("uploads/Company"+type+"Images/"+ saveFileName);
-	        }
-	    }
-		}catch(Exception ex){
-			System.out.println("FileUpload()에러 \n" + ex.getMessage());
-		}
-		
-		return url_list;
-	}
-
 
 }

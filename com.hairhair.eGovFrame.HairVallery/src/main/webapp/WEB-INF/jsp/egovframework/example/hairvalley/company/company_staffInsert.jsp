@@ -32,25 +32,40 @@
 					</div>
 					<!-- End Sidebar Menu -->
 					<!-- End Side Column -->
-					<form action="companyContentUpdateImpl.do" method="post" id="myForm" enctype="multipart/form-data">
+					<form action="companyNewImpl.do" method="post" id="myForm" enctype="multipart/form-data">
 						<div class="col-md-9">
-							<h2>업체소개 수정</h2><br />
+							<h2>업체소개 최초 작성</h2><br />
 							<label for="title">제목</label>
 							<br />
-							<input type="text" name="title" id="title" value="${title}"/>
+							<input type="text" name="title" id="title" placeholder="최초 회원가입시 무조건 작성!"/>
 							<br />
 							<label for="content">내용</label>
 							<br />
-							<textarea name="content" id="content" cols="70" rows="20">${content}</textarea>
+							<textarea name="content" id="content" cols="70" rows="20" placeholder="최초 회원가입시 무조건 작성!" ></textarea>
 							<br />
 				        	<label for="company_intro_imgList">이미지 첨부</label>
 				        	<input name="company_intro_imgList" type="file" multiple="multiple"/>
 		<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
-							<button type="submit" class="btn btn-blue pull-right" >수정하기</button>
-				            <a href="javascript:history.go(-1)">
-				            	<button id="backBtn" type="button" class="btn btn-aqua pull-right" >뒤로가기</button>
-				            </a>
+							<button type="submit" class="btn btn-blue pull-right" >등록하기</button>
 			            </div>
+			            <div class="col-md-9">
+							<h2>조직구성원 최초 작성</h2><br />
+							<table class=" table table-bordered table-hover table-striped" >
+								<tr>
+									<td><label for="staff_job">직책</label></td>
+									<td><input type="text" name="staff_job" id="staff_job"/></td>
+								</tr>
+								<tr>
+									<td><label for="staff_name">이름</label></td>
+									<td><input type="text" name="staff_name" id="staff_name"/></td>
+								</tr>
+								<tr>
+									<td><label for="company_staff_img">이미지 첨부</label></td>
+									<td><input name="company_staff_img" type="file"/></td>
+								</tr>
+							</table>
+			            </div>
+			            <button type="submit" class="btn btn-blue pull-right" >등록하기</button>
 		            </form>  
 				</div>
 			</div>

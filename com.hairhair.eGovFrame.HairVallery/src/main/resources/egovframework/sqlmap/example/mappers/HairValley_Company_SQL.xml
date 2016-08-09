@@ -3,7 +3,7 @@
 <mapper namespace="egovframework.hairhair.hairvalley.service.impl.HairValleyCompanyMapper">
 	
 	<select id="companySelectList" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, company_image, company_hit
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit, company_email
 		FROM hairValley_company_list
 	</select>
 	
@@ -42,13 +42,13 @@
 	</select>
 	
 	<select id="companySearchList" parameterType="String" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, company_image, company_hit
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit, company_email
 		FROM hairValley_company_list
 		WHERE COMPANY_LOCATION LIKE '%'||#{query}||'%' OR COMPANY_NAME LIKE '%'||#{query}||'%'
 	</select>
 	
 	<select id="companySelectInfo" parameterType="String" resultType="HairValleyCompanyListVO">
-		SELECT seq, company_id, company_name, company_location, company_image, company_hit
+		SELECT seq, company_id, company_name, company_location, company_image, company_hit, company_email
 		FROM hairValley_company_list
 		WHERE COMPANY_NAME = #{company_name}
 	</select>

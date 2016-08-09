@@ -85,5 +85,21 @@
 			history.back();
 		</script>	
 	</c:when>
+	<c:when test="${retval == 1 && methodName=='company_login'}">
+		<% 
+			String company_id = (String)request.getAttribute("company_id");
+			session.setAttribute("company_id", company_id); 
+		%>
+		<script>
+			alert("로그인 되었습니다.");
+			location.href="/sample/hairvalley_main.do";
+		</script>
+		</c:when>
+		<c:when test="${retval < 1 && methodName=='company_login'}">
+		<script>
+			alert("아이디 혹은 비밀번호를 확인하세요.");
+			history.back();
+		</script>
+	</c:when>
 </c:choose>
 

@@ -1,5 +1,7 @@
 package egovframework.hairhair.hairvalley.service;
 
+import java.util.List;
+
 public interface HairValleyCommonService {
 
 	int selectUserLogin(String user_id, String user_pw) throws Exception;
@@ -7,4 +9,7 @@ public interface HairValleyCommonService {
 	
 	boolean checkId(String user_id) throws Exception;
 	
+	String selectCompanyLogin(String salesman_num, String company_password);
+
+	List<HairValleyCompanyListVO> companyPopularSelect();
 }

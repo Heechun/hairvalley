@@ -7,5 +7,42 @@
 		FROM HAIRVALLEY_COMPANY_LIST
 		WHERE COMPANY_ID =#{id}
 	</select>
+	
+	<select id="companyCheckName" parameterType="String" resultType="String">
+		SELECT company_name
+		FROM HAIRVALLEY_COMPANY_LIST
+		WHERE COMPANY_NAME =#{name}
+	</select>
+	
+	<select id="companyCheckSales" parameterType="String" resultType="String">
+		SELECT SALESMAN_NUM
+		FROM HAIRVALLEY_COMPANY_LIST
+		WHERE SALESMAN_NUM =#{sales}
+	</select>
 
+	<insert id="companyListInsert" parameterType="HairValleyCompanyListVO">
+		INSERT into hairValley_company_list
+		values (COMPANY_SEQ.nextval, #{company_id}, #{company_name}, #{salesman_num}, #{company_location}, #{company_image}, #{company_password}, 0, #{company_email})
+	</insert>
+	
+	<select id="companyGetCompanyName" parameterType="String" resultType="String">
+		SELECT company_name
+		FROM HAIRVALLEY_COMPANY_LIST
+		WHERE COMPANY_ID =#{company_id}
+	</select>
+	
+	<insert id="companyContentInsert" parameterType="HairValleyCompanyContentVO">
+		INSERT INTO HAIRVALLEY_COMPANY_CONTENT
+		VALUES (#{company_name}, #{company_id}, #{title}, #{content}, 'a' )
+	</insert>
+	
+	<insert id="companyIntroImageInsert" parameterType="HairValleyCompanyImagesVO">
+		insert into hairvalley_company_images
+		values (COMPANY_IMAGE_SEQ.nextval, #{company_name}, #{image_type}, #{image_url}, 0)
+	</insert>
+	
+	<insert id="companyStaffInsert" parameterType="HairValleyCompanyStaffVO">
+		insert into hairvalley_company_staff
+		values (#{company_name}, #{staff_name}, #{staff_job}, #{staff_count}, #{staff_intro}, #{staff_image} )
+	</insert>
 </mapper>
