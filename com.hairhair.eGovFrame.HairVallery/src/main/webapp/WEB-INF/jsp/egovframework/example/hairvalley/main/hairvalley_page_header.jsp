@@ -224,6 +224,7 @@ else {
 				$("#user_pw").val("");
 				$("#company_login_sign").hide();
 				$("#login_form").show();
+				location.href="/sample//hairvalley_main.do";
 			}
 		})
 	});
