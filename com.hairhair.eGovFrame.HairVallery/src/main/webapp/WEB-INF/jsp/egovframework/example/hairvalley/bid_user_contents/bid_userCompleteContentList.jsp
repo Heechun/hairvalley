@@ -41,7 +41,7 @@
 														<!-- jstl의 표현식은 스크립트릿과 속성이 같아서 어디에쓰나 우선됨 -->
 
 														<td><a
-															href="/sample/bid_selectUserBidCompleteContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">${bidBoardList.title}</a></td>
+															href="/sample/bid_selectUserBidCompleteContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}"><span style="color:red;">[계약완료]</span>&nbsp;&nbsp;${bidBoardList.title}</a></td>
 
 														<td>${bidBoardList.user_id}</td>
 

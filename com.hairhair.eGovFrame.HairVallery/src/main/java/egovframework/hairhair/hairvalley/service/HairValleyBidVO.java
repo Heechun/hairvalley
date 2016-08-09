@@ -19,8 +19,17 @@ public class HairValleyBidVO {
 	String regip;
 	int offer_count;
 	String hope_location;
+	int is_contract;
 	
 	
+	public int getIs_contract() {
+		return is_contract;
+	}
+
+	public void setIs_contract(int is_contract) {
+		this.is_contract = is_contract;
+	}
+
 	public String getHope_location() {
 		return hope_location;
 	}

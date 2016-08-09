@@ -105,7 +105,7 @@ public class HairValleyBidController {
 		int totalnum = 0;
 		
 		
-		if(search_msg != null && search_msg != "")
+		if(search_msg != null && !search_msg.equals(""))
 		{
 			map.put("search_msg", search_msg);
 			bidBoardList = hairvalleyBidService.selectBidBoardListSearch(map);
@@ -508,16 +508,18 @@ public class HairValleyBidController {
 		
 		HairValleyEmailVO retval_vo = hairvalleyBidService.selectEmailInfomation(email_vo);
 	
-    	sendEmail(retval_vo.getUser_email(), retval_vo.getCompany_email(), "wonjong551@naver.com", retval_vo.getUser_name(), retval_vo.getCompany_name(), retval_vo.getUser_phone());
+		
+    	sendEmail("wonjong551@naver.com", retval_vo.getUser_email(), retval_vo.getUser_email(), retval_vo.getCompany_email(), retval_vo.getUser_name(), retval_vo.getCompany_name(), retval_vo.getUser_phone(), retval_vo.getCompany_name());
+    	sendEmail("wonjong551@naver.com", retval_vo.getCompany_email(), retval_vo.getUser_email(), retval_vo.getCompany_email(), retval_vo.getUser_name(), retval_vo.getCompany_name(), retval_vo.getUser_phone(), retval_vo.getUser_name());
    		
 		request.setAttribute("retval", update_retval);
 		request.setAttribute("methodName", "updateBidContract");
-		
+		request.setAttribute("user_id", user_id);
 	
 		return "hairvalley/bid_board/isSuccess";
 	}
 	
-	private void sendEmail(String user_email, String company_email, String from, String user_name, String company_name, String phone){
+	private void sendEmail(String from, String to, String user_email, String company_email, String user_name, String company_name, String user_phone, String title){
 		Properties p = System.getProperties(); // ������ ���� ��ü
     	p.put("mail.smtp.user", "wonjong551");
     	p.put("mail.smtp.host","smtp.naver.com"); // ���̹� SMTP
@@ -549,18 +551,18 @@ public class HairValleyBidController {
     			Message msg = new MimeMessage(mailSession);
     			
 
-    		    msg.setSubject("[HairValley - 입찰계약성사]: " + company_name);
+    		    msg.setSubject("[HairValley - 입찰계약성사]: " + title);
     		        
 
     		    Address fromAddr = new InternetAddress(from);
     		    msg.setFrom(fromAddr);
     		        
 
-    		    Address toAddr = new InternetAddress(user_email);
+    		    Address toAddr = new InternetAddress(to);
     		    msg.addRecipient(Message.RecipientType.TO, toAddr);
     		
     		    
-    		    msg.setContent("[사용자 이름] : "+ user_name +"<br/>[사용자 연락처] : " + phone + "<br/>[사용자 이메일] : " + user_email
+    		    msg.setContent("[사용자 이름] : "+ user_name +"<br/>[사용자 연락처] : " + user_phone + "<br/>[사용자 이메일] : " + user_email
     		    		+ "<br/>[업체 이름] : " + company_name + "<br/>[업체 이메일] : " + company_email , "text/html;charset=UTF-8");
     		        
     		    Transport.send(msg);

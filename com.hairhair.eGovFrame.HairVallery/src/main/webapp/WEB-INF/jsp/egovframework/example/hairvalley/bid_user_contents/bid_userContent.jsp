@@ -165,13 +165,13 @@
 										<li class="list-group-item">
 											<div class="row">
 												<div class="col-md-4 profile-thumb">
-													<a href="#"> <img class="media-object"
+													<a href="/sample/companyContent.do?company_name=${bidBoardOffers.company_name}"> <img class="media-object"
 														src="${bidBoardOffers.company_image}" alt="">
 													</a>
 												</div>
 												<div class="col-md-8">
 													<h3>
-														<strong>${bidBoardOffers.company_name}</strong>
+														<strong><a href="/sample/companyContent.do?company_name=${bidBoardOffers.company_name}">${bidBoardOffers.company_name}</a></strong>
 													</h3>
 													<span class="label label-lg label-primary" type="span">
 														<i class="fa fa-clock-o">${bidBoardOffers.reg_date}</i>
@@ -228,7 +228,12 @@
 		</div>
 
 		<!-- End Footer Menu -->
-
+		<script src="assets/js/pgwslideshow.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.pgwSlideshow').pgwSlideshow();
+			});
+		</script>
 		<script type="text/javascript" src="js/myJs.js" type="text/javascript"></script>
 		<!-- JS -->
 		<script type="text/javascript" src="assets/js/bootstrap.min.js"

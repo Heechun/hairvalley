@@ -179,12 +179,12 @@
 									<li class="list-group-item">
 										<div class="row">
 											<div class="col-md-4 profile-thumb">
-												<a href="#"> <img class="media-object"
+												<a href="/sample/companyContent.do?company_name=${bidBoardOffers.company_name}"> <img class="media-object"
 													src="${bidBoardOffers.company_image}" alt="">
 												</a>
 											</div>
 											<div class="col-md-8">
-												<h3><strong>${bidBoardOffers.company_name}</strong></h3><br/>
+												<h3><strong><a href="/sample/companyContent.do?company_name=${bidBoardOffers.company_name}"> ${bidBoardOffers.company_name}</a></strong></h3><br/>
 												
 												<label><strong>제안 가격 </strong> <span class="color-white">*</span></label>
 												<input class="form-control" type="text" readonly="readonly" value="&nbsp;&nbsp;${bidBoardOffers.offer_price}" style="color:black; border-radius:7px; max-width:17%;"/>

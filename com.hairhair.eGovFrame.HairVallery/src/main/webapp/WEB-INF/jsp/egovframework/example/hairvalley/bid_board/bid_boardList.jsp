@@ -56,7 +56,14 @@
 
 														<td>
 															<a href="/sample/bid_selectBoardContent.do?text_num=${bidBoardList.text_num}&content_num=${bidBoardList.content_num}">
-															${bidBoardList.title}<c:if test="${bidBoardList.offer_count > 0}"><span style="color:red;">&nbsp;[${bidBoardList.offer_count}]</span></c:if>
+															<c:if test="${bidBoardList.is_contract == 1}">
+															<span style="color:blue;">[계약완료]</span>&nbsp;&nbsp;
+															</c:if>
+															<c:if test="${bidBoardList.is_contract == 0}">
+															<span style="color:red;">[계약 미완료]</span>&nbsp;&nbsp;
+															</c:if>
+															${bidBoardList.title}
+															<c:if test="${bidBoardList.offer_count > 0}"><span style="color:red;">&nbsp;[${bidBoardList.offer_count}]</span></c:if>
 															</a>
 														</td>
 

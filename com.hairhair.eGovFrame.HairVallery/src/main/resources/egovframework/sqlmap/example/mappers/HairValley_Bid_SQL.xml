@@ -30,7 +30,7 @@
 	
 	<select id="selectBidBoardList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+	select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count, (select count(*) from hairvalley_bid_contract_list where hairvalley_bid_contract_list.text_num= hairvalley_bid_board_list.text_num) as is_contract FROM hairvalley_bid_board_list order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select> 
 	
@@ -42,7 +42,7 @@
 
 	<select id="selectUserBidContentList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 		<![CDATA[ 
-		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count  FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 		]]> 
 	</select>
 	
@@ -52,7 +52,7 @@
 	
 	<select id="selectUserBidCompleteContentList" resultType="hairvalleyBidVO" parameterType="java.util.HashMap" >
 	<![CDATA[ 
-		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is not null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, text_num, user_id, TO_CHAR(reg_date, 'YYYY/MM/DD') AS reg_date, title, hit, contract_num, (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= hairvalley_bid_board_list.text_num) as offer_count  FROM hairvalley_bid_board_list where user_id = #{user_id} and contract_num is not null order by text_num desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
 	]]> 
 	</select>
 	
