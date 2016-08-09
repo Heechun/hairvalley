@@ -15,8 +15,18 @@ public class HairValleyBidInsertVO {
 	int hit;
 	String regip;
 	String hope_location;
+	String hope_date;
 	
 	
+	
+	public String getHope_date() {
+		return hope_date;
+	}
+
+	public void setHope_date(String hope_date) {
+		this.hope_date = hope_date;
+	}
+
 	public String getHope_location() {
 		return hope_location;
 	}

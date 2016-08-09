@@ -1,5 +1,6 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyContentVO;
@@ -50,7 +51,7 @@ public interface HairValleyCompanyMapper {
 
 	void companyPortfolioDelete(int idx);
 
-	List<HairValleyCompanyReviewVO> companyReviewSelectList(String company_name);
+	List<HairValleyCompanyReviewVO> companyReviewSelectList(HashMap<String,Object> map);
 
 	void companyReviewInsert(HairValleyCompanyReviewVO reviewVO);
 
@@ -71,5 +72,7 @@ public interface HairValleyCompanyMapper {
 	String companyGetCompanyId(String company_name);
 
 	HairValleyCompanyContentVO companyGetContent(String company_name);
+	
+	int companyReviewSelectListCount(String company_name);
 
 }

@@ -105,11 +105,15 @@
 		WHERE idx = #{idx}
 	</delete>
 	
-	<select id="companyReviewSelectList" parameterType="String" resultType="HairValleyCompanyReviewVO">
-		SELECT *
-		FROM HAIRVALLEY_COMPANY_REVIEW
-		WHERE COMPANY_NAME =#{company_name}
-		ORDER BY REVIEW_TOTAL_IDX DESC
+	<select id="companyReviewSelectList" parameterType="java.util.HashMap" resultType="HairValleyCompanyReviewVO">
+		<![CDATA[ 
+		select * from (SELECT * FROM (SELECT ROWNUM as rnum, company_name, review_total_idx, review_idx, review_id, review_title, review_content, review_file_status, review_hit, TO_CHAR(review_write_date, 'YYYY/MM/DD') AS review_write_date 
+		FROM HAIRVALLEY_COMPANY_REVIEW 	WHERE COMPANY_NAME =#{company_name} order by review_total_idx desc) where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by review_write_date desc
+		]]>
+	</select>
+	<select id="companyReviewSelectListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(*) FROM HAIRVALLEY_COMPANY_REVIEW where COMPANY_NAME =#{company_name}
+		 
 	</select>
 	
 	<insert id="companyReviewInsert" parameterType="HairValleyCompanyReviewVO">

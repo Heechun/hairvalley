@@ -1,9 +1,11 @@
 package egovframework.hairhair.hairvalley.web;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyContentVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyImagesVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
@@ -305,16 +308,54 @@ public class HairValleyCompanyController {
 	 * 
 	 */
 	@RequestMapping(value = "/companyReview.do")
-	public String review(ModelMap model, HttpSession session, String company_name){
+	public String review(ModelMap model, HttpSession session, HttpServletRequest request ,String company_name){
 		
 		String user_id = (String) session.getAttribute("user_id");
 				
-		session.setAttribute("company_name", company_name);
-		List<HairValleyCompanyReviewVO>reviewList = companyService.companyReviewSelectList(company_name);
-		int size = reviewList.size();
+		
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int startRow, endRow;
+		endRow = (int) (page * 10);
+		startRow = endRow - 9;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("company_name", company_name);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+		
+		
+		int totalnum = 0;
+		
+		List<HairValleyCompanyReviewVO>reviewList = companyService.companyReviewSelectList(map);
+		totalnum = companyService.companyReviewSelectListCount(company_name);
+	
+		
+		
+		
+		for(int i=0; i< reviewList.size(); i++){
+			reviewList.get(i).setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
+		
+		int totalpage = totalnum / 10;
+		if (totalpage == 0) {
+			totalpage = 1;
+		} else {
+			if (totalnum % 10 != 0)
+				totalpage++;
+		}
+		
 		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("size", size);
 		model.addAttribute("user_id", user_id);
+		model.addAttribute("page", page);
+		model.addAttribute("totalpage", totalpage);
+		
+		
 		return "hairvalley/company/review/company_review";
 	}
 	/*

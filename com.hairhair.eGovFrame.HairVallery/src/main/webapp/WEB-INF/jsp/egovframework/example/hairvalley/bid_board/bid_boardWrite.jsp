@@ -36,14 +36,22 @@
 							<hr>
 							<div class="row">
 								<div class="col-sm-6">
-									<label><strong>이 름</strong> <span class="color-red">*</span>
+									<label><strong>작성자</strong> <span class="color-red">*</span>
 									</label> <input name="user_id" class="form-control margin-bottom-20"
-										placeholder="ex) 홍길동" />
+										readonly="readonly" value="${user_id}"/>
 								</div>
 								<div class="col-sm-6">
 									<label><strong>예상 가격</strong> <span class="color-red">*</span>
 									</label> <input name="req_price" class="form-control margin-bottom-20"
 										placeholder="* ex) 40,000" />
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-md-12">
+									<label><strong>원하는 날짜</strong> <span class="color-red">*</span>
+									</label><br> <input name="hope_date"
+										class="form-control margin-bottom-20" type="date"/>
 								</div>
 							</div>
 							<hr>

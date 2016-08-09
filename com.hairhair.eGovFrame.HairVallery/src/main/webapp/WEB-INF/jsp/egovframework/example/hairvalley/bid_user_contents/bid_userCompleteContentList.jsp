@@ -75,7 +75,8 @@
 												</c:forEach>
 												<li><c:if test="${fn:length( bidBoardList ) < 10}">
 														<li class="disabled"><a href="#">&raquo;</a></li>
-													</c:if> <c:if test="${fn:length( bidBoardList ) == 10}">
+													</c:if> 
+													<c:if test="${fn:length( bidBoardList ) == 10}">
 														<li><a href="bid_selectUserBidCompleteContentList.do?user_id=${user_id}&page=${page+1}">&raquo;</a>
 														</li>
 													</c:if></li>

@@ -1,5 +1,6 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -135,8 +136,8 @@ public class HairValleyCompanyServiceImpl extends EgovAbstractServiceImpl implem
 
 
 	@Override
-	public List<HairValleyCompanyReviewVO> companyReviewSelectList(String company_name) {
-		return companyDAO.companyReviewSelectList(company_name);
+	public List<HairValleyCompanyReviewVO> companyReviewSelectList(HashMap<String,Object> map) {
+		return companyDAO.companyReviewSelectList(map);
 	}
 
 
@@ -197,6 +198,13 @@ public class HairValleyCompanyServiceImpl extends EgovAbstractServiceImpl implem
 	@Override
 	public HairValleyCompanyContentVO companyGetContent(String company_name) {
 		return companyDAO.companyGetContent(company_name);
+	}
+
+
+	@Override
+	public int companyReviewSelectListCount(String company_name) {
+		// TODO Auto-generated method stub
+		return companyDAO.companyReviewSelectListCount(company_name);
 	}
 
 

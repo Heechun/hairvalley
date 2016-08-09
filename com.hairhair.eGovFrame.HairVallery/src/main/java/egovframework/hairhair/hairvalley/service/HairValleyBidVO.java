@@ -20,7 +20,17 @@ public class HairValleyBidVO {
 	int offer_count;
 	String hope_location;
 	int is_contract;
+	String hope_date;
 	
+	
+	
+	public String getHope_date() {
+		return hope_date;
+	}
+
+	public void setHope_date(String hope_date) {
+		this.hope_date = hope_date;
+	}
 	
 	public int getIs_contract() {
 		return is_contract;

@@ -20,7 +20,7 @@
 				<div class="blog-post">
 					<div class="blog-item-header">
 						<h2>
-							<a href="#"> ${bidBoardContent.title} </a>
+							<a href="#"> 입찰 게시판 </a>
 						</h2>
 					</div>
 					<br />
@@ -107,9 +107,13 @@
 
 												</tr>
 												<tr>
+													<th id="contentHead">원하는 날짜</th>
+
+													<td>${bidBoardContent.hope_date}</td>
+													
 													<th id="contentHead">원하는 지역</th>
 
-													<td colspan="8">${bidBoardContent.hope_location}</td>
+													<td>${bidBoardContent.hope_location}</td>
 												</tr>
 												<tr>
 													<th rowspan="3" id="contentHead">요구 사항</th>

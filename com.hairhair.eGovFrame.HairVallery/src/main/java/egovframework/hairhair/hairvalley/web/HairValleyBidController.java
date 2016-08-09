@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -29,6 +30,7 @@ import javax.mail.Message;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 
 
 
@@ -184,10 +186,11 @@ public class HairValleyBidController {
 			hairvalley_bid_insertVO.setHit(0);
 			hairvalley_bid_insertVO.setRegip(request.getRemoteAddr());
 			hairvalley_bid_insertVO.setHope_location(request.getParameter("hope_location"));
-
+			hairvalley_bid_insertVO.setHope_date(request.getParameter("hope_date"));
+			
 			int boardlist_retval = hairvalleyBidService.insertBidBoardData(hairvalley_bid_insertVO);
 			
-			System.out.println("boardlist결과 : " + boardlist_retval);
+			System.out.println("hope_date결과 : " + request.getParameter("hope_date"));
 			
 			for(int i=0; i< user_faceImg.size(); i++){
 				int userFace_retval = hairvalleyBidService.insertBidBoardUserFaceImage(user_faceImg.get(i).toString());

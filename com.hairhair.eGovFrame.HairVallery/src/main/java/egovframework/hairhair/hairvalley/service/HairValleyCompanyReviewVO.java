@@ -10,6 +10,15 @@ public class HairValleyCompanyReviewVO {
 	private int review_file_status;
 	private int review_hit;
 	private String review_write_date;
+	private int content_num;
+	
+	
+	public int getContent_num() {
+		return content_num;
+	}
+	public void setContent_num(int content_num) {
+		this.content_num = content_num;
+	}
 	public String getCompany_name() {
 		return company_name;
 	}
