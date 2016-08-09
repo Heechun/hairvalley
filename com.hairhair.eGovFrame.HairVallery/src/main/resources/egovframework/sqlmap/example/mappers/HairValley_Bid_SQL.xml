@@ -128,10 +128,10 @@
 	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultMap="bidOfferContent">
 		select company.company_id, company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date
 		from hairvalley_bid_offer_list offer, hairvalley_company_list company
-		where offer.text_num = #{text_num} and offer.company_id = company.company_id
+		where offer.text_num = #{text_num} and offer.company_id = company.company_id order by reg_date desc
 	</select>
-	
-	
+	                              
+	 
 	
 	<insert id="insertBidContract" parameterType="HairValleyBidContractVO" >
 
