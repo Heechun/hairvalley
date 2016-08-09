@@ -44,7 +44,7 @@
 							<textarea name="content" id="content" cols="70" rows="20">${contentVO.content}</textarea>
 							<br />
 				        	<label for="company_intro_imgList">이미지 첨부</label>
-				        	<input name="company_intro_imgList" type="file" multiple="multiple"/>
+				        	<input name="company_intro_imgList" type="file" multiple="multiple" style="color:white;"/>
 		<!-- 			            글쓴사람만 수정할수있게 c:if사용 필요 -->
 							<button type="submit" class="btn btn-blue pull-right" >수정하기</button>
 				            <a href="javascript:history.go(-1)">
