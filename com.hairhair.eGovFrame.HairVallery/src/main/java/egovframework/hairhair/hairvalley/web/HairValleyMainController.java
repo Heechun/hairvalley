@@ -16,10 +16,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
-import egovframework.hairhair.hairvalley.service.HairValleyBidService;
 import egovframework.hairhair.hairvalley.service.HairValleyCommonService;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
-import egovframework.hairhair.hairvalley.service.impl.HairValleyBidServiceImpl;
 import egovframework.hairhair.hairvalley.service.impl.HairValleyCommonServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
@@ -47,11 +45,8 @@ public class HairValleyMainController {
 			return "hairvalley/company/company_firstInsert";
 		}
 		else{
-			
 			List<HairValleyCompanyListVO>companyList = hairvalleyCommonService.companyPopularSelect();
-			System.out.println(companyList);
 			model.addAttribute("companyList", companyList);
-			
 			return "hairvalley/main/hairvalley_index";
 		}
 	}

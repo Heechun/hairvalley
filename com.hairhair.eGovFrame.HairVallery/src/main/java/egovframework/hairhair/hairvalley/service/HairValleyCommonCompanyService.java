@@ -1,5 +1,8 @@
 package egovframework.hairhair.hairvalley.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 public interface HairValleyCommonCompanyService {
@@ -19,5 +22,11 @@ public interface HairValleyCommonCompanyService {
 	void companyIntroImageInsert(HairValleyCompanyImagesVO imageVO);
 
 	void companyStaffInsert(HairValleyCompanyStaffVO staffVO);
+
+	List<HairValleyCompanyBidOfferVO> selectCompanyBidContentList(HashMap<String, Object> map);
+
+	int selectCompanyBidContentCount(String company_id);
+
+	List<HairValleyCompanyBidOfferVO> selectCompanyBidContentComplete(HashMap<String, Object> map);
 
 }

@@ -45,4 +45,32 @@
 		insert into hairvalley_company_staff
 		values (#{company_name}, #{staff_name}, #{staff_job}, #{staff_count}, #{staff_intro}, #{staff_image} )
 	</insert>
+	
+	<select id="selectCompanyBidContentCount" parameterType="String" resultType="int">
+		SELECT count(*) 
+		FROM hairvalley_bid_offer_list 
+		where company_id=#{company_id}
+	</select>
+	
+	<select id="selectCompanyBidContentList" parameterType="java.util.HashMap" resultType="HairValleyCompanyBidOfferVO">
+		<![CDATA[ 
+		select * from 
+    (SELECT * FROM 
+    (SELECT ROWNUM as rnum, board.text_num, board.user_id, TO_CHAR(board.reg_date, 'YYYY/MM/DD') AS reg_date, board.title, board.hit, offer.company_id 
+    , (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= board.text_num) as offer_count
+    , board.contract_num
+    FROM hairvalley_bid_board_list board, hairvalley_bid_offer_list offer where offer.company_id = #{company_id} and offer.text_num = board.text_num and board.contract_num is not null order by board.text_num desc) 
+    where rnum <= #{endRow}) hairvalley_bid_board_list where rnum >= #{startRow} order by reg_date desc
+		]]>
+	</select>
+	
+	<select id="selectCompanyBidContentComplete" parameterType="java.util.HashMap" resultType="HairValleyCompanyBidOfferVO">
+		<![CDATA[ 
+		select * from   (SELECT * FROM 
+    (SELECT ROWNUM as rnum, board.text_num, board.user_id, TO_CHAR(board.reg_date, 'YYYY/MM/DD') AS reg_date, board.title, board.hit, offer.company_id 
+    , (select count(*) from hairvalley_bid_offer_list where hairvalley_bid_offer_list.text_num= board.text_num) as offer_count
+    FROM hairvalley_bid_board_list board, hairvalley_bid_offer_list offer where offer.company_id = #{company_id} and offer.text_num = board.text_num and ( select count(*) from hairvalley_bid_contract_list a where a.text_num = board.text_num) > 0 order by board.text_num desc) 
+    where rnum <= #{endRow}) where rnum >= #{startRow} order by reg_date desc
+		]]>
+	</select>
 </mapper>

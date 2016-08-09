@@ -1,5 +1,11 @@
 package egovframework.hairhair.hairvalley.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
+import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
+import egovframework.hairhair.hairvalley.service.HairValleyCompanyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyContentVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyImagesVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
@@ -24,5 +30,11 @@ public interface HairValleyCommonCompanyMapper {
 	void companyIntroImageInsert(HairValleyCompanyImagesVO imageVO);
 
 	void companyStaffInsert(HairValleyCompanyStaffVO staffVO);
+
+	List<HairValleyCompanyBidOfferVO> selectCompanyBidContentList(HashMap<String, Object> map);
+
+	int selectCompanyBidContentCount(String company_id);
+
+	List<HairValleyCompanyBidOfferVO> selectCompanyBidContentComplete(HashMap<String, Object> map);
 
 }

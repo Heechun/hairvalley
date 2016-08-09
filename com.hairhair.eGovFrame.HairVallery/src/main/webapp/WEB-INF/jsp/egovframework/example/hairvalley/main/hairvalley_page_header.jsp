@@ -131,8 +131,8 @@
 						    입찰 정보 <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="/sample/bid_selectUserBidContent.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>제안 내역 조회</a></li>
-						    <li><a href="#"><i class="fa fa-picture-o"></i>계약 완료 내역 조회</a></li>
+						    <li><a href="/sample/companyBidContent.do?company_id=${company_id}"><i class="fa fa-picture-o"></i>제안 내역 조회</a></li>
+						    <li><a href="/sample/companyBidContentComplete.do?company_id=${company_id}"><i class="fa fa-picture-o"></i>계약 완료 내역 조회</a></li>
 						  </ul>
 						</div>
 					</div>

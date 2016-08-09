@@ -1,16 +1,22 @@
 package egovframework.hairhair.hairvalley.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCommonCompanyService;
+import egovframework.hairhair.hairvalley.service.HairValleyCompanyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyContentVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyImagesVO;
 import egovframework.hairhair.hairvalley.service.HairValleyCompanyListVO;
@@ -95,6 +101,97 @@ public class HairValleyMainCompanyController {
 		hairvalleyCommonCompanyService.companyStaffInsert(staffVO);
 		
 		return "redirect:/hairvalley_main.do";
+	}
+	
+	/*
+	 * 로그인시 입찰정보 제안내역 조회
+	 * 
+	 */
+	@RequestMapping(value ="/companyBidContent.do")
+	public String companyBidContent(String company_id, ModelMap model, HttpServletRequest request){
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int startRow, endRow;
+		endRow = (int) (page * 10);
+		startRow = endRow - 9;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("company_id", company_id);
+		
+		System.out.println(map);
+		List<HairValleyCompanyBidOfferVO> bidBoardList = hairvalleyCommonCompanyService.selectCompanyBidContentList(map);
+		int totalnum = hairvalleyCommonCompanyService.selectCompanyBidContentCount(company_id);
+
+		for(int i=0; i< bidBoardList.size(); i++){
+			HairValleyCompanyBidOfferVO vo = (HairValleyCompanyBidOfferVO)bidBoardList.get(i);
+			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
+
+		int totalpage = totalnum / 10;
+		if (totalpage == 0) {
+			totalpage = 1;
+		} else {
+			if (totalnum % 10 != 0)
+				totalpage++;
+		}
+
+		model.addAttribute("company_id",company_id);
+		model.addAttribute("bidBoardList", bidBoardList);
+		model.addAttribute("page", page);
+		model.addAttribute("totalpage", totalpage);		
+		
+		return "hairvalley/bid_board/bid_boardList";
+	}
+	/*
+	 * 로그인시 입찰정보 계약완료 내역 조회
+	 * 
+	 */
+	@RequestMapping(value ="/companyBidContentComplete.do")
+	public String companyBidContentComplete(String company_id, ModelMap model, HttpServletRequest request){
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int startRow, endRow;
+		endRow = (int) (page * 10);
+		startRow = endRow - 9;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("company_id", company_id);
+		
+		System.out.println(map);
+		List<HairValleyCompanyBidOfferVO> bidBoardList = hairvalleyCommonCompanyService.selectCompanyBidContentComplete(map);
+		int totalnum = hairvalleyCommonCompanyService.selectCompanyBidContentCount(company_id);
+		
+		for(int i=0; i< bidBoardList.size(); i++){
+			HairValleyCompanyBidOfferVO vo = (HairValleyCompanyBidOfferVO)bidBoardList.get(i);
+			vo.setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
+		}
+
+		int totalpage = totalnum / 10;
+		if (totalpage == 0) {
+			totalpage = 1;
+		} else {
+			if (totalnum % 10 != 0)
+				totalpage++;
+		}
+
+		model.addAttribute("company_id",company_id);
+		model.addAttribute("bidBoardList", bidBoardList);
+		model.addAttribute("page", page);
+		model.addAttribute("totalpage", totalpage);		
+		
+		return "hairvalley/bid_board/bid_boardList";
 	}
 	/*
 	 * ajax 중복id체크
