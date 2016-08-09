@@ -83,9 +83,15 @@
 <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
 <!-- End JS -->
 <script src="assets/js/pgwslideshow2.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.pgwSlideshow').pgwSlideshow();
+		});
+	</script>
 <!-- 다음지도 API -->
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=3283fe99558bf610a870f5a13f06c452&libraries=services"></script>
 <script>
+
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new daum.maps.LatLng(37.5100205, 127.0790147), // 지도의 중심좌표

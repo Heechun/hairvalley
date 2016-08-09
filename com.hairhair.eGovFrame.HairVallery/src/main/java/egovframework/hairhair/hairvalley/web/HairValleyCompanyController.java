@@ -333,10 +333,7 @@ public class HairValleyCompanyController {
 		
 		List<HairValleyCompanyReviewVO>reviewList = companyService.companyReviewSelectList(map);
 		totalnum = companyService.companyReviewSelectListCount(company_name);
-	
-		
-		
-		
+				
 		for(int i=0; i< reviewList.size(); i++){
 			reviewList.get(i).setContent_num(((totalnum - ((page-1) * 10))- i)); //글 번호(마지막으로 등록된 글이 마지막 번호부터 순차적으로 부여)
 		}
@@ -364,8 +361,9 @@ public class HairValleyCompanyController {
 	@RequestMapping(value="/companyReviewInsert.do")
 	public String reviewInsert(HttpSession session, ModelMap model){
 		String company_name = (String) session.getAttribute("company_name");
+		String user_id = (String) session.getAttribute("user_id");
 		model.addAttribute("company_name", company_name);
-		
+		model.addAttribute("user_id", user_id);
 		return "hairvalley/company/review/company_reviewInsert";
 	}
 	/*

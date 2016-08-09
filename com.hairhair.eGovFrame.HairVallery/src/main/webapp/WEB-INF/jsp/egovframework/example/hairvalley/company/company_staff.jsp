@@ -55,8 +55,8 @@
 									<figure>
 										<img src="${staffList.staff_image}" alt="image1">
 										<figcaption>
-										<h3 class="margin-bottom-10">${staffList.staff_name}<small><br /> - ${staffList.staff_job}</small></h3>
-										<span>${staffList.staff_intro}</span>
+										<h3 class="margin-bottom-10" style="color:black">${staffList.staff_name}<small><br /> - ${staffList.staff_job}</small></h3>
+										<span style="color:black">${staffList.staff_intro }</span>
 										</figcaption>
 										<ul class="list-inline person-details-icons">
 											<li><a href="#"><i class="fa-lg fa-twitter"></i></a></li>

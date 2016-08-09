@@ -42,7 +42,7 @@
 								<label>글쓴이</label>
 								<div class="row margin-bottom-20">
 									<div class="col-md-12">
-										<input class="form-control" type="text" name="review_id" required>
+										<input class="form-control" type="text" name="review_id"  value="${user_id}" disabled="disabled">
 									</div>
 								</div>
 								<label>제목</label>
