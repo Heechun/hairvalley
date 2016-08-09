@@ -142,7 +142,7 @@
 											onclick="move('/sample/bid_boardList.do');"
 											style="float: right; margin-right: 10px; margin-top: 10px;">목록으로</button>
 										
-										<c:if test="${user_id != null && user_id == bidBoardContent.user_id}">
+										<c:if test="${user_id != null}">
 											<button class="btn btn-red" id="deleteContentBtn"
 											onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');"
 											style="float: right; margin-right: 10px; margin-top: 10px;">글삭제</button>
@@ -166,9 +166,9 @@
 									<h3 style="color:#fff;">업체 제안 목록</h3>
 								</div>
 								<div class="col-md-2">
-									
+									<c:if test="${company_id != null}">
 										<button class="btn btn-blue btn-sm pull-right" onclick="move('/sample/bid_boardOffer.do?text_num=${bidBoardContent.text_num}&content_num=${bidBoardContent.content_num}');">제안 등록</button>
-									
+									</c:if>
 								</div>
 							</div>
 						

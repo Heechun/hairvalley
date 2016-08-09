@@ -38,17 +38,17 @@
 						</div>
 						<table class=" table table-bordered table-striped" >
 							<tr>
-								<td align="center" width="50" class="warning">번 호</td>
+								<th id="contentHead" align="center" width="50" class="warning">번 호</th>
 								<td align="center" width="50">${reviewVO.review_total_idx}</td>
-								<td align="center" width="100" class="warning">작성자</td>
+								<th id="contentHead" align="center" width="100" class="warning">작성자</th>
 								<td>${reviewVO.review_id}</td>
-								<td align="center" width="100" class="warning">조회수</td>
+								<th id="contentHead" align="center" width="100" class="warning">조회수</th>
 								<td align="center" width="50">${reviewVO.review_hit}</td>
 							</tr>
 							<tr>
-								<td align="center" class="warning">제목</td>
+								<th id="contentHead" align="center" class="warning">제목</th>
 								<td colspan="3">${reviewVO.review_title}</td>
-								<td align="center" class="warning">작성일</td>
+								<th id="contentHead" align="center" class="warning">작성일</th>
 								<td align="center">${reviewVO.review_write_date}</td>
 							</tr>
 							<tr height="50">

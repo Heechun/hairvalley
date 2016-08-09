@@ -87,7 +87,7 @@
 						</div>
 						<div class="btn-group">
 						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						    입찰 정보 <span class="caret"></span>
+						    등록 게시물 조회 <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
 						    <li><a href="/sample/bid_selectUserBidContentList.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 미완료 내역 조회</a></li>
@@ -108,7 +108,7 @@
 					class="nav navbar-nav navbar-right panel-sm panel-primary invert"
 					style="margin-top: 0;">
 					<div class="panel-heading">
-						<i class="fa fa-group"></i> ${company_id} 기업회원님
+						<i class="fa fa-group"></i> ${company_id} 님
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-sm btn-blue" id="companyLogoutBtn">
 							<i class="fa fa-sign-out"></i>로그아웃
@@ -130,8 +130,8 @@
 						    입찰 정보 <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="/sample/bid_selectUserBidContent.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>입찰 내역 조회</a></li>
-						    <li><a href="#"><i class="fa fa-picture-o"></i>입찰 완료 내역 조회</a></li>
+						    <li><a href="/sample/bid_selectUserBidContent.do?user_id=${user_id}"><i class="fa fa-picture-o"></i>제안 내역 조회</a></li>
+						    <li><a href="#"><i class="fa fa-picture-o"></i>계약 완료 내역 조회</a></li>
 						  </ul>
 						</div>
 					</div>

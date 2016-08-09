@@ -16,7 +16,7 @@
 						<div class="input-group input-group-lg">
 					      <input type="text" class="form-control" placeholder="검색어 입력" id="searchInput">
 					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button" id="searchBtn"><i class="fa-search"></i>검색</button>
+					        <button class="btn btn-primary" type="button" id="searchBtn"><i class="fa-search"></i>검색</button>
 					      </span>
 					    </div><!-- /input-group -->
 					    <div>

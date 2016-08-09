@@ -36,14 +36,18 @@
 						<div class="company-content-header">
 							<h2><i class="glyphicon glyphicon-camera"></i> ${company_name}의 후기</h2>
 						</div>
-						<table class=" table table-bordered table-hover table-striped" >
-							<tr height="30">
-								<td align="center" width="50">번 호</td>
-								<td align="center" width="250">제  목</td>
-								<td align="center" width="100">작성자</td>
-								<td align="center" width="150">작성일</td>
-								<td align="center" width="50">조회수</td>
+						<div class="table-responsive">
+						<table class=" table table-bordered" >
+						<thead>
+							<tr height="30">												
+								<th align="center" width="50"><strong>번 호</strong></th>
+								<th align="center" width="250"><strong>제  목</strong></th>
+								<th align="center" width="100"><strong>작성자</strong></th>
+								<th align="center" width="150"><strong>작성일</strong></th>
+								<th align="center" width="50"><strong>조회수</strong></th>
 							</tr>
+						</thead>
+							<tbody>
 							<c:forEach var="reviewList" items="${reviewList}" varStatus="status">
 								<tr height="30">
 									<td align="center" width="50">
@@ -59,15 +63,18 @@
 									<td align="center"  width="50">${reviewList.review_hit}</td>
 								</tr>
 							</c:forEach>
+							</tbody>
+							
 							<tr>	  
 								<td colspan="5" align="center" height="40">	 
 <%-- 								${pageCode} --%>
 								</td>
 							</tr>
 						</table>
+						</div>
 						<div class="btn-group pull-right" role="group">
 							<a href="companyReviewInsert.do">
-								<button type="button" class="btn btn-primary">글쓰기</button>
+								<button type="button" class="btn btn-aqua">글쓰기</button>
 							</a>
 						</div>
 					</div>
