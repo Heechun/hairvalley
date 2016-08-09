@@ -38,16 +38,14 @@
 								<h2><i class="glyphicon glyphicon-picture"></i> 포트폴리오 추가</h2>
 							</div>
 							<div class="col-md-12" style="margin: 5px auto;">
-<!-- 								<div class="dropdown" id="mydropdown"> -->
-<!-- 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> -->
-<!-- 								    종류 -->
-<!-- 								    <span class="caret"></span> -->
-<!-- 								  </button> -->
-<!-- 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> -->
-<!-- 								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">남자</a></li> -->
-<!-- 								    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">여자</a></li> -->
-<!-- 								  </ul> -->
-<!-- 								</div> -->
+							<div>
+							 	<label for="portfolio_filter">종류</label>
+							 	<select name="portfolio_filter" id="portfolio_filter">
+							 		<option>--선택--</option>
+							 		<option value="man" selected="selected">남자</option>
+							 		<option value="woman">여자</option>
+							 	</select>
+							</div>
 								<label>제목</label>
 								<div class="row margin-bottom-20">
 									<div class="col-md-12">

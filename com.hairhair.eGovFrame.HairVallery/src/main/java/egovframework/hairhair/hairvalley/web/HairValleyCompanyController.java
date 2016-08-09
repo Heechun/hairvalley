@@ -227,8 +227,7 @@ public class HairValleyCompanyController {
 			portfolioVO.setPortfolio_image(portfolio_image);
 		}
 		portfolioVO.setCompany_name(company_name);
-		portfolioVO.setPortfolio_filter("man");
-
+		
 		companyService.companyPortfolioInsert(portfolioVO);
 		
 		//포트폴리오 이미지 복수개 첨부시 동작
