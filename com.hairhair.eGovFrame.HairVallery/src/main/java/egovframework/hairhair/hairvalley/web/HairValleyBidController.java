@@ -261,6 +261,9 @@ public class HairValleyBidController {
 	}
 	
 	
+	
+	
+	
 	@RequestMapping(value = "/bid_selectUserBidContentList.do")
 	public String selectUserBidContentList(ModelMap model, HttpServletRequest request) throws Exception{
 		

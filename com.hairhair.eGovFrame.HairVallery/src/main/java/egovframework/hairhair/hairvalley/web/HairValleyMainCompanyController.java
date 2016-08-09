@@ -146,7 +146,7 @@ public class HairValleyMainCompanyController {
 		model.addAttribute("page", page);
 		model.addAttribute("totalpage", totalpage);		
 		
-		return "hairvalley/bid_board/bid_boardList";
+		return "hairvalley/bid_company_contents/bid_companyContentList";
 	}
 	/*
 	 * 로그인시 입찰정보 계약완료 내역 조회
@@ -191,7 +191,7 @@ public class HairValleyMainCompanyController {
 		model.addAttribute("page", page);
 		model.addAttribute("totalpage", totalpage);		
 		
-		return "hairvalley/bid_board/bid_boardList";
+		return "hairvalley/bid_company_contents/bid_companyCompleteContentList";
 	}
 	/*
 	 * ajax 중복id체크
