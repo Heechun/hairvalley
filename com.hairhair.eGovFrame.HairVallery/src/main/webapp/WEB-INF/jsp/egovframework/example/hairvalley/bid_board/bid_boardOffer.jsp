@@ -23,7 +23,7 @@
 						</div>
 						<hr>
 						<label><strong>업체 ID</strong><span class="color-red">*</span></label>
-						<input class="form-control margin-bottom-20" type="text" name="company_id">
+						<input class="form-control margin-bottom-20" type="text" name="company_id" readonly="readonly" value="${company_id }">
 						
 								
 						<label><strong>제안 가격</strong> <span class="color-red">*</span></label>

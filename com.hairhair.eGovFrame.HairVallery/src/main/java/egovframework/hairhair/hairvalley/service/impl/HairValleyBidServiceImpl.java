@@ -157,6 +157,12 @@ public class HairValleyBidServiceImpl extends EgovAbstractServiceImpl implements
 		// TODO Auto-generated method stub
 		return hairvalleyBidMapper.selectEmailInfomation(vo);
 	}
+	@Override
+	public int selectBidOfferAlready(
+			HairValleyBidOfferVO hairvalley_bid_offer_vo) throws Exception {
+		// TODO Auto-generated method stub
+		return hairvalleyBidMapper.selectBidOfferAlready(hairvalley_bid_offer_vo);
+	}
 	
 	
 }

@@ -311,7 +311,6 @@ public class HairValleyCompanyController {
 	public String review(ModelMap model, HttpSession session, HttpServletRequest request ,String company_name){
 		
 		String user_id = (String) session.getAttribute("user_id");
-				
 		
 		int page = 1;
 
@@ -349,7 +348,7 @@ public class HairValleyCompanyController {
 			if (totalnum % 10 != 0)
 				totalpage++;
 		}
-		
+		model.addAttribute("company_name",company_name);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("user_id", user_id);
 		model.addAttribute("page", page);
@@ -403,14 +402,15 @@ public class HairValleyCompanyController {
 	 * 
 	 */
 	@RequestMapping(value = "/companyReviewContent.do")
-	public String reviewContent(int review_total_idx, ModelMap model){
+	public String reviewContent(int review_total_idx, ModelMap model, HttpSession session){
 		
 		companyService.companyReviewHitUpdate(review_total_idx);
 		HairValleyCompanyReviewVO reviewVO = companyService.companyReviewSelectContent(review_total_idx);
 		List<HairValleyCompanyImagesVO> imageList = companyService.companyReviewImageSelect(review_total_idx);
 		model.addAttribute("reviewVO", reviewVO);
 		model.addAttribute("imageList", imageList);
-		
+		String company_name = (String) session.getAttribute("company_name");
+		model.addAttribute("company_name", company_name);
 		return "hairvalley/company/review/company_reviewContent";
 	}
 	/*

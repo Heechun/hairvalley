@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +59,10 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
+
 import egovframework.hairhair.hairvalley.service.HairValleyBidContractVO;
+import egovframework.hairhair.hairvalley.service.HairValleyBidImagesVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidInsertVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidOfferVO;
 import egovframework.hairhair.hairvalley.service.HairValleyBidService;
@@ -240,6 +244,7 @@ public class HairValleyBidController {
 		
 		List<?> bidBoardContentFaceImages = hairvalleyBidService.selectBidBoardContentFaceImages(text_num);
 		List<?> bidBoardContentRefImages = hairvalleyBidService.selectBidBoardContentRefImages(text_num);
+
 		
 		List<?> bidBoardOffers = hairvalleyBidService.selectBidContentOffers(text_num);
 				
@@ -478,12 +483,21 @@ public class HairValleyBidController {
 		hairvalley_bid_offer_vo.setOffer_price(Integer.parseInt(request.getParameter("offer_price")));
 		hairvalley_bid_offer_vo.setAdd_offer(request.getParameter("add_offer"));
 		
-		int retval = hairvalleyBidService.insertBidOffer(hairvalley_bid_offer_vo);
+		if(hairvalleyBidService.selectBidOfferAlready(hairvalley_bid_offer_vo) > 0){
+			request.setAttribute("retval", -1);
+			request.setAttribute("methodName", "insertOffer");
+			request.setAttribute("text_num", text_num);
+			request.setAttribute("content_num", request.getParameter("content_num"));
+		}
+		else{
+			int retval = hairvalleyBidService.insertBidOffer(hairvalley_bid_offer_vo);
+			
+			request.setAttribute("retval", retval);
+			request.setAttribute("methodName", "insertOffer");
+			request.setAttribute("text_num", text_num);
+			request.setAttribute("content_num", request.getParameter("content_num"));
+		}
 		
-		request.setAttribute("retval", retval);
-		request.setAttribute("methodName", "insertOffer");
-		request.setAttribute("text_num", text_num);
-		request.setAttribute("content_num", request.getParameter("content_num"));
 		
 		return "hairvalley/bid_board/isSuccess";
 	}
@@ -599,7 +613,13 @@ public class HairValleyBidController {
 	        
 	 
 	    if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-	        
+	    	 if(isFaceImage){
+	            	url_list.add("uploads/UserFaceImages/"+ "default_images.PNG");
+	            }
+	            else
+	            {
+	            	url_list.add("uploads/UserRefImages/"+ "default_images.PNG");
+	            }
 	    } 
 	    else {
 	        for (int i = 0; i < mf.size(); i++) {

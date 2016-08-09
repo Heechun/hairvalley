@@ -120,6 +120,10 @@
 		insert into hairvalley_bid_offer_list (idx, company_id, text_num, offer_price, add_offer, reg_date)
 		values (HAIRVALLEY_BID_OFFER_LIST_SEQ.nextval, #{company_id}, #{text_num}, #{offer_price}, #{add_offer}, SYSDATE)
 	</insert>
+	 
+	<select id="selectBidOfferAlready" resultType="java.lang.Integer" parameterType="HairValleyBidOfferVO" >
+		select count(*) from hairvalley_bid_offer_list where text_num = #{text_num} and company_id = #{company_id}
+	</select>
 	
 	<select id="selectBidContentOffers" parameterType="java.lang.Integer" resultMap="bidOfferContent">
 		select company.company_id, company.company_name, company.company_image, offer.text_num, offer.offer_price, offer.add_offer, TO_CHAR(offer.reg_date, 'YYYY/MM/DD HH:MM:SS') reg_date

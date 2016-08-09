@@ -53,7 +53,7 @@
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:if test="${(user_id != null || company_id != null) && bidBoardContent.user_id == user_id }">
+																	<c:if test="${(user_id != null || company_id != null)}">
 																		<c:forEach items="${bidBoardContentFaceImages}"
 																			var="images">
 																			<li><img src="${images.image_url}"></li>

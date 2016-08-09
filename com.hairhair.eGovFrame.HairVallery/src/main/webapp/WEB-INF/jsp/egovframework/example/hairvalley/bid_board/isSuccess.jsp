@@ -67,10 +67,19 @@
 			location.href="/sample/bid_selectBoardContent.do?text_num=" + text_num + "&content_num="+ content_num;
 		</script>
 	</c:when>
-	<c:when test="${retval < 1 && methodName=='insertOffer'}">
+	<c:when test="${retval == 0 && methodName=='insertOffer'}">
 		<script>
 			alert("제안 등록에 실패하였습니다.");
 			history.back();
+		</script>	
+	</c:when>
+	<c:when test="${retval == -1 && methodName=='insertOffer'}">
+		<script>
+			var text_num = ${text_num};
+			var content_num = ${content_num};
+		
+			alert("이미 같은 업체가 제안 등록되어있습니다.");
+			location.href="/sample/bid_selectBoardContent.do?text_num=" + text_num + "&content_num="+ content_num;
 		</script>	
 	</c:when>
 	<c:when test="${retval == 1 && methodName=='updateBidContract'}">

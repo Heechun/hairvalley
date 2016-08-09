@@ -39,6 +39,8 @@ public interface HairValleyBidMapper {
 	
 	int insertBidOffer(HairValleyBidOfferVO hairvalley_bid_offer_vo);
 	
+	int selectBidOfferAlready(HairValleyBidOfferVO hairvalley_bid_offer_vo);
+	
 	List<?> selectBidContentOffers(int text_num);
 	
 	List<?> selectUserBidContentList(HashMap<String, Object> map);

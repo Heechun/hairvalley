@@ -31,6 +31,8 @@ public interface HairValleyBidService {
 	
 	int insertBidOffer(HairValleyBidOfferVO hairvalley_bid_offer_vo) throws Exception;
 	
+	int selectBidOfferAlready(HairValleyBidOfferVO hairvalley_bid_offer_vo) throws Exception;
+	
 	List<?> selectBidContentOffers(int text_num) throws Exception;
 	
 	List<?> selectUserBidContentList(HashMap<String, Object> map) throws Exception;
