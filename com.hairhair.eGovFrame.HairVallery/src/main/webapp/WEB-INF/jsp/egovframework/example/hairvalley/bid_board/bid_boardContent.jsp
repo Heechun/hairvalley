@@ -53,11 +53,14 @@
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:if test="${(user_id != null || company_id != null)}">
+																	<c:if test="${((user_id != null && bidBoardContent.user_id == user_id )|| company_id != null)}">
 																		<c:forEach items="${bidBoardContentFaceImages}"
 																			var="images">
 																			<li><img src="${images.image_url}"></li>
 																		</c:forEach>
+																	</c:if>
+																	<c:if test="${user_id == null || company_id == null}">
+																		<li><img src="uploads/UserFaceImages/default_images.PNG"></li>
 																	</c:if>
 																</ul>
 															</td>
@@ -65,11 +68,14 @@
 																style="text-align: left; padding: 0px;">
 																<ul class="pgwSlideshow"
 																	style="padding: 0px; margin: 0px">
-																	<c:if test="${user_id != null || company_id != null}">
+																	<c:if test="${((user_id != null && bidBoardContent.user_id == user_id )|| company_id != null)}">
 																		<c:forEach items="${bidBoardContentRefImages}"
 																			var="images">
 																			<li><img src="${images.image_url}"></li>
 																		</c:forEach>
+																	</c:if>
+																	<c:if test="${user_id == null || company_id == null}">
+																		<li><img src="uploads/UserFaceImages/default_images.PNG"></li>
 																	</c:if>
 																</ul>
 															</td>
@@ -146,7 +152,7 @@
 											onclick="move('/sample/bid_boardList.do');"
 											style="float: right; margin-right: 10px; margin-top: 10px;">목록으로</button>
 										
-										<c:if test="${user_id != null}">
+										<c:if test="${user_id != null && bidBoardContent.user_id == user_id}">
 											<button class="btn btn-red" id="deleteContentBtn"
 											onclick="move('/sample/bid_deleteBoardData.do?text_num=${bidBoardContent.text_num}');"
 											style="float: right; margin-right: 10px; margin-top: 10px;">글삭제</button>

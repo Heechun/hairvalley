@@ -86,7 +86,7 @@
 		<script>
 			var user_id = ${user_id};
 			alert("업체와 계약이 완료 되었습니다.");
-			location.href="sample/bid_selectUserBidCompleteContentList.do?user_id=" + user_id;
+			location.href="/sample/bid_selectUserBidCompleteContentList.do?user_id=" + user_id;
 		</script>
 	</c:when>
 	<c:when test="${retval < 1 && methodName=='updateBidContract'}">
